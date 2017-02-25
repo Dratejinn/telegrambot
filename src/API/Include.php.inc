@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace TelegramBot\API;
 
-define('DEVELOPMENT_MODE', FALSE);
-
 /* Base */
 require_once __DIR__ . '/Base/Interface/IOutbound.php.inc';
 require_once __DIR__ . '/Base/Abstract/ABaseObject.php.inc';

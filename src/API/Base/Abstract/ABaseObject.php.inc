@@ -276,7 +276,7 @@ abstract class ABaseObject {
     }
 
     public static function EncodeJSON(\stdClass $structure) : string {
-        $str = json_encode($structure, DEVELOPMENT_MODE ? JSON_PRETTY_PRINT : 0);
+        $str = json_encode($structure);
         if ($str === FALSE) {
             $err = json_last_error();
             switch ($err) {
