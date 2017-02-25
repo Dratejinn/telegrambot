@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Telegram\API;
 
-require_once __DIR__ . '/API/Include.php.inc';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Method\SendMessage;
 
