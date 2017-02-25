@@ -25,8 +25,6 @@ final class API {
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE);
         curl_setopt($curl, CURLOPT_CAINFO, ConfigManager::GetConfig('CA-certfile'));
 
-        echo $payloadType . PHP_EOL;
-
         switch($payloadType) {
             case 'JSON':
                 $contentLength = strlen($payload);
@@ -52,7 +50,6 @@ final class API {
             return NULL;
         }
         if (!is_string($content)) {
-            var_dump($content);
             return NULL;
         }
         /* Decode json string */

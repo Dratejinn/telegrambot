@@ -216,7 +216,6 @@ abstract class ABaseObject {
                 throw new \Exception('Required field \'' . $field . '\' has not been set!');
             }
         }
-        var_dump($payload);
         return $payload;
     }
 
