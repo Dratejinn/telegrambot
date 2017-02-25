@@ -82,7 +82,12 @@ abstract class ABaseObject {
                 }
                 $this->_values[$sName] = $value;
             } else {
-                throw new \LogicException("Unexpected type provided for $name. Expected $fieldType but got $providedType!");
+                if (is_array($fieldType)) {
+                    $errorType = implode(',', $fieldType);
+                } else {
+                    $errorType = $fieldType;
+                }
+                throw new \LogicException("Unexpected type provided for $name. Expected $errorType but got $providedType!");
             }
         } else {
             throw new \LogicException('Unknown field \'' . $name . '\'!');
@@ -131,7 +136,7 @@ abstract class ABaseObject {
         }
     }
 
-    public function getFieldType(string $name) : string {
+    public function getFieldType(string $name) {
         return $this->_getFieldProperty($name, self::PROP_TYPE);
     }
 
@@ -171,7 +176,7 @@ abstract class ABaseObject {
             case 'array':
                 return self::T_ARRAY;
             case 'object':
-                if ($var instanceof ABaseObject) {
+                if ($var instanceof ABaseObject || $var instanceof InputFile) {
                     return self::T_OBJECT;
                 }
                 break;
@@ -185,34 +190,33 @@ abstract class ABaseObject {
     public function getMultipartFormData() : array {
         $payload = [];
 
+        $convertValue = function($item) {
+            if ($item instanceof InputFile) {
+                $item = $item->getCurlFile();
+            } elseif ($item instanceof ABaseObject) {
+                $item = $item->jsonify();
+            }
+            return $item;
+        };
+
         foreach (array_keys($this->_datamodel) as $field) {
             $external = $this->getExternalField($field);
             if ($this->hasFieldValue($field)) {
                 $value = $this->{$field};
-                $fieldType = $this->getFieldType($field);
-                switch ($fieldType) {
-                    case self::T_OBJECT:
-                        if ($value instanceof InputFile) {
-                            $value = $value->getCurlFile();
-                        } else {
-                            $value = $value->jsonify();
-                        }
-                    break;
-                    case self::T_ARRAY:
-                        array_walk_recursive($value, function(&$item, $key) {
-                            if ($item instanceof ABaseObject) {
-                                $item = $item->jsonify();
-                            } elseif ($item instanceof InputFile) {
-                                $item = $value->getCurlFile();
-                            }
-                        });
-                    break;
+                if (is_array($value)) {
+                    array_walk_recursive($value, function(&$item) use ($convertValue) {
+                        $item = $convertValue($item);
+                    });
+                } else {
+                    $value = $convertValue($value);
                 }
+
                 $payload[$external] = $value;
             } elseif (!$this->isOptional($field)) {
                 throw new \Exception('Required field \'' . $field . '\' has not been set!');
             }
         }
+        var_dump($payload);
         return $payload;
     }
 
@@ -234,7 +238,7 @@ abstract class ABaseObject {
 
     public function hasInputFile() {
         $hasInputFile = FALSE;
-        array_walk_recursive($this->_values, function($item) use ($hasInputFile) {
+        array_walk_recursive($this->_values, function($item, $key) use (&$hasInputFile) {
             if ($item instanceof InputFile) {
                 $hasInputFile = TRUE;
             }
