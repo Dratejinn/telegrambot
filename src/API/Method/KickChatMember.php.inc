@@ -9,24 +9,23 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
-class GetUserProfilePhotos extends ABaseObject implements IOutbound {
+class KickChatMember extends ABaseObject implements IOutbound {
 
     public static function GetDatamodel() : array {
         $datamodel = [
-            'userId'            => ['type' => ABaseObject::T_INT,   'optional' => FALSE, 'external' => 'user_id'],
-            'limit'             => ['type' => ABaseObject::T_INT,   'optional' => TRUE,  'external' => 'limit'],
-            'offset'            => ['type' => ABaseObject::T_INT,   'optional' => TRUE,  'external' => 'timeout'],
+            'chatId'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT], 'optional' => FALSE,    'external' => 'chat_id'],
+            'userId'     => ['type' => ABaseObject::T_INT,                          'optional' => FALSE,    'external' => 'user_id'],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
     public function call(Bot $bot) {
-        $reply = $bot->call('getUserProfilePhotos', $this);
+        $reply = $bot->call('kickChatMember', $this);
         $arr = [];
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 if (!empty($reply->result)) {
-                    return new Type\UserProfilePhotos($reply->result);
+                    return $reply->result;
                 }
             } else {
                 if (isset($reply->description)) {

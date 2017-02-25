@@ -9,24 +9,22 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
-class GetUserProfilePhotos extends ABaseObject implements IOutbound {
+class GetFile extends ABaseObject implements IOutbound {
 
     public static function GetDatamodel() : array {
         $datamodel = [
-            'userId'            => ['type' => ABaseObject::T_INT,   'optional' => FALSE, 'external' => 'user_id'],
-            'limit'             => ['type' => ABaseObject::T_INT,   'optional' => TRUE,  'external' => 'limit'],
-            'offset'            => ['type' => ABaseObject::T_INT,   'optional' => TRUE,  'external' => 'timeout'],
+            'fileId'            => ['type' => ABaseObject::T_STRING,   'optional' => FALSE, 'external' => 'file_id'],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
     public function call(Bot $bot) {
-        $reply = $bot->call('getUserProfilePhotos', $this);
+        $reply = $bot->call('getFile', $this);
         $arr = [];
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 if (!empty($reply->result)) {
-                    return new Type\UserProfilePhotos($reply->result);
+                    return new Type\File($reply->result);
                 }
             } else {
                 if (isset($reply->description)) {
