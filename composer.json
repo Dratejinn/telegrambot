@@ -8,5 +8,10 @@
             "email": "freek@thefrontdoor.nl"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+    "psr-4": {
+      "Telegram\\":"src/"
+    }
+  }
 }
