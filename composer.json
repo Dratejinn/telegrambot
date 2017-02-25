@@ -1,0 +1,12 @@
+{
+    "name": "freek/telegram-bot",
+    "description": "A Telegram bot api",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Freek van der Veer",
+            "email": "freek@thefrontdoor.nl"
+        }
+    ],
+    "require": {}
+}
