@@ -10,6 +10,14 @@ use Telegram\Bot\Handler\{AMessageHandler};
 
 abstract class ABot {
 
+    const UPDATE_TYPE_MESSAGE               = 'message';
+    const UPDATE_TYPE_EDITEDMESSAGE         = 'editedMessage';
+    const UPDATE_TYPE_CHANNELPOST           = 'channelPost';
+    const UPDATE_TYPE_EDITEDCHANNELPOST     = 'editedChannelPost';
+    const UPDATE_TYPE_INLINEQUERY           = 'inlineQuery';
+    const UPDATE_TYPE_CHOSENINLINERESULT    = 'chosenInlineResult';
+    const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
+
     protected $_bot         = NULL;
     private $_updateHandler = NULL;
 
