@@ -21,4 +21,9 @@ class InlineQueryResultVideo extends AInlineQueryResult {
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
+
+    public function __construct(\stdClass $payload = NULL) {
+        parent::__construct($payload);
+        $this->type = 'video';
+    }
 }
