@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Telegram\API\InlineQuery;
 
-use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult}
+use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
 class InlineQueryResultPhoto extends AInlineQueryResult {
 

@@ -45,12 +45,9 @@ abstract class ABot {
     }
 
     protected function _handleUpdates() {
-        echo 'Going to get updates' . PHP_EOL;
         $updates = $this->_updateHandler->call($this->_bot);
-        echo 'got ' . count($updates) . ' updates!' . PHP_EOL;
         if (!empty($updates)) {
             foreach ($updates as $update) {
-                echo 'Got Updatetype: ' . $update->getType() . PHP_EOL;
                 $this->_updateHandler->offset = $update->id + 1;
                 $updateType = $update->getType();
                 switch ($updateType) {
@@ -75,9 +72,6 @@ abstract class ABot {
                             $handler = new $this->_handlers[$updateType]($update, $this);
                             $handler->handle();
                         }
-                        break;
-                    default:
-                        echo 'Huh??' . PHP_EOL;
                         break;
                 }
             }

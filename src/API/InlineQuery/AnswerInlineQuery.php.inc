@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Telegram\API\InlineQuery;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
+use Telegram\API\Base\Interfaces\IOutbound;
 
-class AnswerInlineQuery extends ABaseObject {
+class AnswerInlineQuery extends ABaseObject implements IOutbound {
 
     public static function GetDatamodel() : array {
         $datamodel = [
@@ -19,5 +20,14 @@ class AnswerInlineQuery extends ABaseObject {
             'switchPmParameter' => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'switch_pm_parameter']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
+    }
+
+    public function call(\Telegram\API\Bot $bot) {
+        $reply = $bot->call('AnswerInlineQuery', $this);
+        if ($reply instanceof \stdClass) {
+            if ($reply->ok) {
+                return $reply->result;
+            }
+        }
     }
 }
