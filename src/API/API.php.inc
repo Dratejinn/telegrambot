@@ -25,12 +25,19 @@ final class API {
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE);
         curl_setopt($curl, CURLOPT_CAINFO, ConfigManager::GetConfig('CA-certfile'));
 
-        if ($payloadType === 'JSON') {
-            $contentLength = strlen($payload);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, [
-                'Content-type: application/json',
-                'Content-Length: ' . $contentLength
+        switch($payloadType) {
+            case 'JSON':
+                $contentLength = strlen($payload);
+                curl_setopt($curl, CURLOPT_HTTPHEADER, [
+                    'Content-type: application/json',
+                    'Content-Length: ' . $contentLength
                 ]);
+                break;
+            case 'MultiPartFormData':
+                curl_setopt($curl, CURLOPT_HTTPHEADER, [
+                    'Content-type: multipart/form-data'
+                ]);
+                break;
         }
         curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
         // output the response
@@ -43,7 +50,6 @@ final class API {
             return NULL;
         }
         if (!is_string($content)) {
-            var_dump($content);
             return NULL;
         }
         /* Decode json string */

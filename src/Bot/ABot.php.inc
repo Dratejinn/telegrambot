@@ -10,6 +10,14 @@ use Telegram\Bot\Handler\{AMessageHandler};
 
 abstract class ABot {
 
+    const UPDATE_TYPE_MESSAGE               = 'message';
+    const UPDATE_TYPE_EDITEDMESSAGE         = 'editedMessage';
+    const UPDATE_TYPE_CHANNELPOST           = 'channelPost';
+    const UPDATE_TYPE_EDITEDCHANNELPOST     = 'editedChannelPost';
+    const UPDATE_TYPE_INLINEQUERY           = 'inlineQuery';
+    const UPDATE_TYPE_CHOSENINLINERESULT    = 'chosenInlineResult';
+    const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
+
     protected $_bot         = NULL;
     private $_updateHandler = NULL;
 
@@ -37,12 +45,9 @@ abstract class ABot {
     }
 
     protected function _handleUpdates() {
-        echo 'Going to get updates' . PHP_EOL;
         $updates = $this->_updateHandler->call($this->_bot);
-        echo 'got ' . count($updates) . ' updates!' . PHP_EOL;
         if (!empty($updates)) {
             foreach ($updates as $update) {
-                echo 'Got Updatetype: ' . $update->getType() . PHP_EOL;
                 $this->_updateHandler->offset = $update->id + 1;
                 $updateType = $update->getType();
                 switch ($updateType) {
@@ -67,9 +72,6 @@ abstract class ABot {
                             $handler = new $this->_handlers[$updateType]($update, $this);
                             $handler->handle();
                         }
-                        break;
-                    default:
-                        echo 'Huh??' . PHP_EOL;
                         break;
                 }
             }

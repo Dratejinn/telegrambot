@@ -21,7 +21,7 @@ abstract class ASend extends ABaseObject implements IOutbound {
     }
 
     public function call(Bot $bot) {
-        $reply = $bot->call('sendMessage', $this);
+        $reply = $bot->call($this->_getApiCall(), $this);
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 return new Type\Message($reply->result);
@@ -33,5 +33,9 @@ abstract class ASend extends ABaseObject implements IOutbound {
                 }
             }
         }
+    }
+
+    protected function _getApiCall() : string {
+        return lcfirst((substr(static::class, strrpos(static::class, '\\') + 1)));
     }
 }

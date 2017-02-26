@@ -18,5 +18,4 @@ class SendMessage extends ASend {
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
-
 }

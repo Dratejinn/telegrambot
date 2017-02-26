@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Telegram\API\Type;
+use Telegram\API\InlineQuery\{ChosenInlineResult, InlineQuery};
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
