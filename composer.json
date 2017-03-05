@@ -10,9 +10,16 @@
     ],
     "require": {},
     "autoload": {
-    "psr-4": {
-      "Telegram\\":"src/",
-      "Examples\\":"Examples/"
-    }
-  }
+        "psr-4": {
+            "Telegram\\":"src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Examples\\":"Examples/"
+        }
+    },
+    "bin": [
+        "bin/ConfigGenerator.php"
+    ]
 }
