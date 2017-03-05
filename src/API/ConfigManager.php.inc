@@ -11,15 +11,21 @@ final class ConfigManager {
         self::$_Configs[$name] = $value;
     }
 
-    public static function AddConfigFromFile(string $configPath) {
-        if (file_exists($configPath)) {
-            $config = @file_get_contents($configPath);
+    public static function AddConfigFromFile(string $configPath) : bool {
+        if (!file_exists($configPath)) {
+            return FALSE;
+        }
+        $config = @file_get_contents($configPath);
+
+        if ($config === FALSE) {
+            return FALSE;
         }
         $json = json_decode($config);
 
         foreach ($json as $key => $value) {
             self::$_Configs[$key] = $value;
         }
+        return TRUE;
     }
 
     public static function GetConfig(string $name) {
