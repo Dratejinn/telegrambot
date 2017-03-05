@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Telegram\API;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Method\SendMessage;
 use Telegram\API\Base\InputFile;
@@ -18,9 +18,15 @@ $bot = new Bot($devToken);
 
 ConfigManager::AddConfig('CA-certfile', __DIR__ . '/cacert.pem');
 
-$pieces = $argv;
-array_shift($pieces);
-$message  = implode(' ', $pieces);
+$res = ConfigManager::AddConfigFromFile(__DIR__ . '/../TelegramConfig.json');
+
+if ($res === TRUE) {
+    echo 'Loading config was succesfull!' . PHP_EOL;
+}
+
+// $pieces = $argv;
+// array_shift($pieces);
+// $message  = implode(' ', $pieces);
 
 // $sendMessage = new Method\SendMessage;
 // $sendMessage->chatId = $tfdDev;
@@ -52,15 +58,15 @@ $message  = implode(' ', $pieces);
 
 // var_dump($result);
 
-$sendChatAction = new Method\SendChatAction;
-$sendChatAction->chatId = $tfdDev;
-$sendChatAction->action = Method\SendChatAction::ACTION_UPLOAD_AUDIO;
-$sendChatAction->call($bot);
+// $sendChatAction = new Method\SendChatAction;
+// $sendChatAction->chatId = $tfdDev;
+// $sendChatAction->action = Method\SendChatAction::ACTION_UPLOAD_AUDIO;
+// $sendChatAction->call($bot);
 
-$sendAudio = new Method\SendAudio;
-$inputFile = new InputFile('nicesong.mp3');
+// $sendAudio = new Method\SendAudio;
+// $inputFile = new InputFile('nicesong.mp3');
 
-$sendAudio->audio = $inputFile;
-$sendAudio->chatId = $tfdDev;
-sleep(5);
-$sendAudio->call($bot);
+// $sendAudio->audio = $inputFile;
+// $sendAudio->chatId = $tfdDev;
+// sleep(5);
+// $sendAudio->call($bot);
