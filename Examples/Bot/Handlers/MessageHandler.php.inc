@@ -15,4 +15,4 @@ class MessageHandler extends AMessageHandler {
     public function handleText(string $text) {
         $this->sendTextMessage('You typed in the text: ' . $text);
     }
-} 
+}
