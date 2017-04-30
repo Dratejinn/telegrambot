@@ -23,9 +23,11 @@ final class API {
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, TRUE);
-        curl_setopt($curl, CURLOPT_CAINFO, ConfigManager::GetConfig('CA-certfile'));
+        if (ConfigManager::HasConfig('CA-certfile')) {
+            curl_setopt($curl, CURLOPT_CAINFO, ConfigManager::GetConfig('CA-certfile'));
+        }
 
-        switch($payloadType) {
+        switch ($payloadType) {
             case 'JSON':
                 $contentLength = strlen($payload);
                 curl_setopt($curl, CURLOPT_HTTPHEADER, [
