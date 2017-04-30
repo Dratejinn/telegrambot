@@ -7,6 +7,10 @@ namespace Telegram\API;
 final class ConfigManager {
     private static $_Configs = [];
 
+    private function __construct() {
+        //no
+    }
+
     public static function AddConfig(string $name, $value) {
         self::$_Configs[$name] = $value;
     }
@@ -29,9 +33,13 @@ final class ConfigManager {
     }
 
     public static function GetConfig(string $name) {
-        if (isset(self::$_Configs[$name])) {
+        if (self::HasConfig($name)) {
             return self::$_Configs[$name];
         }
         return NULL;
+    }
+
+    public static function HasConfig(string $name) : bool {
+        return isset(self::$_Configs[$name]);
     }
 }

@@ -18,4 +18,4 @@ class ExampleCommandHandler extends ACommandHandler {
             'example'
         ];
     }
-} 
+}
