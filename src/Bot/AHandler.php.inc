@@ -20,7 +20,7 @@ abstract class AHandler {
         $this->_bot = $bot;
         $this->_apiBot = $bot->getBot();
 
-        switch($this->_type) {
+        switch ($this->_type) {
             case 'message':
             case 'editedMessage':
             case 'channelPost':

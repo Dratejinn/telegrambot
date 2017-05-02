@@ -19,6 +19,7 @@ abstract class ABot {
     const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
 
     protected $_bot         = NULL;
+    protected $_me          = NULL;
     private $_updateHandler = NULL;
 
     protected $_handlers    = [];
@@ -29,12 +30,22 @@ abstract class ABot {
         //initialize APIbot
         $this->_bot = new API\Bot($token);
         $this->_updateHandler = new GetUpdates;
+        $getMe = new GetMe;
+        $this->_me = $getMe->call($this->_bot);
     }
 
-    public function setHandler(string $handlerCLass, string $handlerType) {
+    public function __invoke(string $token = NULL) {
+        return new static($token);
+    }
+
+    public function setHandler(string $handlerClass, string $handlerType) {
         if ($this->_isValidHandler($handlerClass, $handlerType)) {
             $this->_handlers[$handlerType] = $handlerClass;
         }
+    }
+
+    public function getUsername() : string {
+        return $this->_me->username;
     }
 
     public function run() {
@@ -56,9 +67,7 @@ abstract class ABot {
                     case 'channelPost':
                     case 'editedChannelPost':
                         if (isset($update->message->leftChatMember)) {
-                            $getMe = new GetMe;
-                            $me = $getMe->call($this->_bot);
-                            if ($me->id === $update->message->leftChatMember->id) {
+                            if ($this->_me->id === $update->message->leftChatMember->id) {
                                 unset($this->_chats[$update->message->chat->id]);
                             }
                         } elseif (!isset($this->_chats[$update->message->chat->id])) {
@@ -93,7 +102,7 @@ abstract class ABot {
     }
 
     protected function _isValidHandler(string $className, string $handlerType) : bool {
-        switch($handlerType) {
+        switch ($handlerType) {
             case 'message':
             case 'editedMessage':
             case 'channelPost':
