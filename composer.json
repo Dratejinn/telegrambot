@@ -1,5 +1,5 @@
 {
-    "name": "freek/telegram-bot",
+    "name": "dratejinn/telegram-bot",
     "description": "A Telegram bot api",
     "type": "library",
     "authors": [
@@ -8,7 +8,11 @@
             "email": "freek@thefrontdoor.nl"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.0.0",
+        "ext-curl": "*",
+        "monolog/monolog": "^1.22"
+    },
     "autoload": {
         "psr-4": {
             "Telegram\\":"src/"
