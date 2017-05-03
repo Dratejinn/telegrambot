@@ -15,7 +15,7 @@ class GetMe extends ABaseObject implements IOutbound {
         $reply = $bot->call('getMe', $this);
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
-                    return new Type\User($reply->result);
+                return new Type\User($reply->result);
             }
         }
         return NULL;

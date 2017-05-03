@@ -12,6 +12,10 @@ abstract class ACommandHandler extends \Telegram\Bot\AHandler {
         throw new \Exception('This method should not be invoked!');
     }
 
+    public function getArguments() : array {
+        return explode(' ', $this->_message->text);
+    }
+
     abstract public function handleCommand(string $command);
-    abstract public static function GetRespondsTo();
+    abstract public static function GetRespondsTo() : array;
 }

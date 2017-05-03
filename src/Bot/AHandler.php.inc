@@ -5,6 +5,7 @@ namespace Telegram\Bot;
 use Telegram\API;
 
 use Telegram\API\Method\SendMessage;
+use Monolog\Logger;
 
 abstract class AHandler {
     protected $_type        = NULL;
@@ -53,6 +54,14 @@ abstract class AHandler {
             $sendMessage->text = $text;
             return $this->sendMessage($sendMessage);
         }
+    }
+
+    public function getLogger() : Logger {
+        return $this->_bot->getLogger();
+    }
+
+    public function getLoggerContext() : array {
+        return $this->_bot->getLoggerContext();
     }
 
     abstract public function handle();

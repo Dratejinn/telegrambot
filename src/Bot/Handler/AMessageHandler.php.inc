@@ -20,7 +20,6 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
     }
 
     public function handle() {
-        echo 'Going to handle Message!' . PHP_EOL;
         if (isset($this->_message->text)) {
             $text = $this->_message->text;
             if ($this->isCommand($text)) {
@@ -29,7 +28,7 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
                 if ($commandHandler) {
                     $commandHandler->handleCommand($command);
                 } else {
-                    $this->sendTextMessage('I dont know how to respond to that command!');
+                    $this->handleUnknownCommand($command);
                 }
             } else {
                 $this->handleText($text);
@@ -39,6 +38,11 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
 
     /* Override for text handling!*/
     public function handleText(string $text) {
+
+    }
+
+    /* Override for handling unknown commands */
+    public function handleUnknownCommand(string $command) {
 
     }
 
@@ -70,11 +74,11 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
      * @todo implement multi handlers for one command!
      */
     private function _getCorrectCommandHandler(string $command) {
-        echo 'Going to try to find a correct command handler!' . PHP_EOL;
         foreach ($this->_commandHandlers as $handler) {
             if (in_array($command, $handler::GetRespondsTo(), TRUE)) {
                 return new $handler($this->_update, $this->_bot);
             }
         }
+        $this->getLogger()->info('Could not find a commandHandler for command: ' . $command, $this->getLoggerContext());
     }
 }

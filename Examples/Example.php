@@ -17,7 +17,7 @@ $bot = new Bot($token);
 //CA-certfile config is optional, provide this if the curl CAINFO property should be set to something else than default
 // API\ConfigManager::AddConfig('CA-certfile', __DIR__ . '/cacert.pem');
 
-$res = ConfigManager::AddConfigFromFile(__DIR__ . '/../TelegramConfig.json');
+$res = ConfigManager::AddConfigFromJSONFile(__DIR__ . '/../TelegramConfig.json');
 
 if ($res === TRUE) {
     echo 'Loading config was succesfull!' . PHP_EOL;

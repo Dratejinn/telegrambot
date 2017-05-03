@@ -8,6 +8,8 @@ use Telegram\API;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+define('DEVELOPMENT_MODE', TRUE);
+
 API\ConfigManager::AddConfigFromINIFile(__DIR__ . '/Log.ini', 'Log');
 //CA-certfile config is optional, provide this if the curl CAINFO property should be set to something else than default
 // API\ConfigManager::AddConfig('CA-certfile', __DIR__ . '/cacert.pem');

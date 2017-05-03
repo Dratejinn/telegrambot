@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace Telegram\Bot;
 
 use Telegram\API;
-use Telegram\API\Method\{GetUpdates, GetMe};
+use Telegram\API\Method\GetUpdates;
+use Telegram\API\Type\User;
 use Telegram\Bot\Handler\{AMessageHandler};
+use Monolog\Logger;
 
 abstract class ABot {
 
@@ -30,8 +32,7 @@ abstract class ABot {
         //initialize APIbot
         $this->_bot = new API\Bot($token);
         $this->_updateHandler = new GetUpdates;
-        $getMe = new GetMe;
-        $this->_me = $getMe->call($this->_bot);
+        $this->_me = $this->_bot->getMe();
     }
 
     public function __invoke(string $token = NULL) {
@@ -44,8 +45,12 @@ abstract class ABot {
         }
     }
 
+    public function getMe() : User {
+        return $this->_me;
+    }
+
     public function getUsername() : string {
-        return $this->_me->username;
+        return $this->_me->getUsername();
     }
 
     public function run() {
@@ -68,9 +73,11 @@ abstract class ABot {
                     case 'editedChannelPost':
                         if (isset($update->message->leftChatMember)) {
                             if ($this->_me->id === $update->message->leftChatMember->id) {
+                                $this->getLogger()->info('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
                                 unset($this->_chats[$update->message->chat->id]);
                             }
                         } elseif (!isset($this->_chats[$update->message->chat->id])) {
+                            $this->getLogger()->info('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
                             $this->_chats[$update->message->chat->id] = $update->message->chat;
                         }
                         //fallthrough intended
@@ -122,6 +129,14 @@ abstract class ABot {
                 return FALSE;
         }
         return class_exists($className) && is_a($className, $handlerClass, TRUE);
+    }
+
+    public function getLogger() : Logger {
+        return $this->_bot->getLogger();
+    }
+
+    public function getLoggerContext() : array {
+        return $this->_bot->getLoggerContext();
     }
 
 }

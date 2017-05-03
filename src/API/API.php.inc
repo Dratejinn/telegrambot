@@ -13,7 +13,10 @@ final class API {
 
     const URL = 'https://api.telegram.org/bot%s/';
 
-    const LOG_CHANNEL_LENGTH = 12;
+    const GLOBAL_LOGGER_PREFIX = 'TelegramBot-';
+    const LOG_CHANNEL_LENGTH = 6;
+    const LOG_LEVEL_LENGTH = 6;
+    const LOG_CONTEXT_BOTNAME_LENGTH = 10;
 
     private static $_LogFormatter = NULL;
     private static $_LogChannelLengthProcessor = NULL;
@@ -64,6 +67,8 @@ final class API {
             return NULL;
         }
         if (!is_string($content)) {
+            $logger = self::GetLogger('API');
+            $logger->error('Return value of curl handle is not of type string!');
             return NULL;
         }
         /* Decode json string */
@@ -76,7 +81,6 @@ final class API {
     }
 
     public static function GetLogger(string $context = NULL) : Logger {
-
         //initialize basic logformatter
         if (self::$_LogFormatter === NULL) {
             self::_CreateDefaultLogFormatter();
@@ -90,16 +94,17 @@ final class API {
         if (!ConfigManager::HasConfig('Log') || $context === NULL) {
             $logger = self::_GetDefaultLogger();
         } else {
-            if (Registry::HasLogger('TelegramBot-' . $context)) {
-                $logger = Registry::GetInstance('TelegramBot-' . $context);
+            if (Registry::HasLogger(self::GLOBAL_LOGGER_PREFIX . $context)) {
+                $logger = Registry::GetInstance(self::GLOBAL_LOGGER_PREFIX . $context);
             } else {
                 $config = ConfigManager::GetConfig('Log');
                 if (!isset($config[$context])) {
                     $logger = self::_GetDefaultLogger();
-                    $logger->withName();
+                    $logger = $logger->withName($context);
                 } else {
                     $logLevel = $config[$context]['level'] ?? Logger::DEBUG;
                     $logger = new Logger($context);
+                    $logger->pushProcessor(self::$_LogChannelLengthProcessor);
                     if (isset($config[$context]['cli']) && php_sapi_name() === 'cli') {
                         $cliLog = new StreamHandler(STDOUT, $logLevel);
                         $cliLog->setFormatter(self::$_LogFormatter);
@@ -116,20 +121,13 @@ final class API {
                         }
                     }
                 }
-                Registry::AddLogger($logger, 'TelegramBot-' . $logger->getName());
+                Registry::AddLogger($logger, self::GLOBAL_LOGGER_PREFIX . $context);
             }
         }
         return $logger;
     }
 
     private static function _GetDefaultLogger() : Logger {
-        if (self::$_LogFormatter === NULL) {
-            self::_CreateDefaultLogFormatter();
-        }
-        if (self::$_LogChannelLengthProcessor === NULL) {
-            self::_CreateDefaultLogChannelLengthProcessor();
-        }
-
         if (Registry::HasLogger('TBot-Default')) {
             return Registry::GetInstance('TBot-Default');
         }
@@ -165,12 +163,17 @@ final class API {
     }
 
     private static function _CreateDefaultLogFormatter() {
-        $format = "%datetime% | %channel% | %level_name% | %message% %context% %extra%\n";
+        $format = "%datetime% | %channel% | %level_name% | %context.botname% | %message% %context% %extra%\n";
         //line formatter with output, default time, no inline breaks and leave empty context/extra
         self::$_LogFormatter = new LineFormatter($format, NULL, FALSE, TRUE);
     }
 
     private static function _CreateDefaultLogChannelLengthProcessor() {
-        self::$_LogChannelLengthProcessor = new \Telegram\LogHelpers\ChannelLengthProcessor(self::LOG_CHANNEL_LENGTH);
+        self::$_LogChannelLengthProcessor = new \Telegram\LogHelpers\LengthProcessor([
+            'channel' => self::LOG_CHANNEL_LENGTH,
+            'level_name' => self::LOG_LEVEL_LENGTH
+            ], [
+            'botname' => self::LOG_CONTEXT_BOTNAME_LENGTH
+            ]);
     }
 }
