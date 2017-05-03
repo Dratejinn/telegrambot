@@ -6,9 +6,13 @@ namespace Telegram\API;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use \Telegram\API\Method\{SetWebhook, DeleteWebhook, GetWebhookInfo};
-use \Telegram\API\Bot;
-$token = '';
+use Telegram\API\Method\{SetWebhook, DeleteWebhook, GetWebhookInfo};
+use Telegram\API\{Bot, ConfigManager};
+
+ConfigManager::AddConfigFromINIFile(__DIR__ . '/../Tokens.ini', 'token');
+$tokens = ConfigManager::GetConfig('token');
+var_dump($tokens);
+$token = $tokens['devbot']['token'];
 
 $bot = new Bot($token);
 
