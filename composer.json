@@ -2,10 +2,11 @@
     "name": "dratejinn/telegram-bot",
     "description": "A Telegram bot api",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Freek van der Veer",
-            "email": "freek@thefrontdoor.nl"
+            "email": "freek_vanderveer@hotmail.com"
         }
     ],
     "require": {
