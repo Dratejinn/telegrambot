@@ -6,9 +6,11 @@ namespace Telegram\Bot;
 
 use Telegram\API;
 use Telegram\API\Method\GetUpdates;
-use Telegram\API\Type\User;
+use Telegram\API\Type\{User, Update};
 use Telegram\Bot\Handler\{AMessageHandler};
 use Telegram\LogHelpers;
+
+use Psr\Log;
 
 abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
 
@@ -21,6 +23,9 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
     const UPDATE_TYPE_INLINEQUERY           = 'inlineQuery';
     const UPDATE_TYPE_CHOSENINLINERESULT    = 'chosenInlineResult';
     const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
+
+    const GETUPDATES_SLEEP_INTERVAL = 1; //seconds
+    const RUN_ERROR_TIMEOUT = 60; //seconds
 
     protected $_bot         = NULL;
     protected $_me          = NULL;
@@ -55,44 +60,57 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
         return $this->_me->getUsername();
     }
 
-    public function run() {
+    public function run(bool $throwOnFailure = TRUE) {
         while (TRUE) {
-            $this->_handleUpdates();
-            sleep(1);
+            try {
+                $updates = $this->_updateHandler->call($this->_bot);
+                $this->handleUpdates($updates);
+            } catch (\Throwable $e) {
+                if ($throwOnFailure) {
+                    throw $e;
+                } else {
+                    $this->logError((string) $e, $this->getLoggerContext());
+                    sleep(self::RUN_ERROR_TIMEOUT);
+                }
+            }
+            sleep(self::GETUPDATES_SLEEP_INTERVAL);
         }
     }
 
-    protected function _handleUpdates() {
-        $updates = $this->_updateHandler->call($this->_bot);
+    public function handleUpdates(array $updates) {
         if (!empty($updates)) {
             foreach ($updates as $update) {
-                $this->_updateHandler->offset = $update->id + 1;
-                $updateType = $update->getType();
-                switch ($updateType) {
-                    case 'message':
-                    case 'editedMessage':
-                    case 'channelPost':
-                    case 'editedChannelPost':
-                        if (isset($update->message->leftChatMember)) {
-                            if ($this->_me->id === $update->message->leftChatMember->id) {
-                                $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
-                                unset($this->_chats[$update->message->chat->id]);
-                            }
-                        } elseif (!isset($this->_chats[$update->message->chat->id])) {
-                            $this->logInfo('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
-                            $this->_chats[$update->message->chat->id] = $update->message->chat;
-                        }
-                        //fallthrough intended
-                    case 'inlineQuery':
-                    case 'chosenInlineResult':
-                    case 'callbackQuery':
-                        if (isset($this->_handlers[$updateType])) {
-                            $handler = new $this->_handlers[$updateType]($update, $this);
-                            $handler->handle();
-                        }
-                        break;
-                }
+                $this->handleUpdate($update);
             }
+        }
+    }
+
+    public function handleUpdate(Update $update) {
+        $this->_updateHandler->offset = $update->id + 1;
+        $updateType = $update->getType();
+        switch ($updateType) {
+            case 'message':
+            case 'editedMessage':
+            case 'channelPost':
+            case 'editedChannelPost':
+                if (isset($update->message->leftChatMember)) {
+                    if ($this->_me->id === $update->message->leftChatMember->id) {
+                        $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
+                        unset($this->_chats[$update->message->chat->id]);
+                    }
+                } elseif (!isset($this->_chats[$update->message->chat->id])) {
+                    $this->logInfo('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
+                    $this->_chats[$update->message->chat->id] = $update->message->chat;
+                }
+                //fallthrough intended
+            case 'inlineQuery':
+            case 'chosenInlineResult':
+            case 'callbackQuery':
+                if (isset($this->_handlers[$updateType])) {
+                    $handler = new $this->_handlers[$updateType]($update, $this);
+                    $handler->handle();
+                }
+                break;
         }
     }
 
@@ -137,4 +155,10 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
         return $this->_bot->getLoggerContext();
     }
 
+    public function setLoggerRecursively(Log\LoggerAwareInterface $logger) {
+        $this->setLogger($logger);
+        foreach ($this->_handlers as $handler) {
+            $handler->setLogger($logger);
+        }
+    }
 }

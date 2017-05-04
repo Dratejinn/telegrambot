@@ -1,3 +1,7 @@
+<?php
+
+class StubbyMcStub {
+
     public static function GetLogger(string $context = NULL) : Logger {
         //initialize basic logformatter
         if (self::$_LogFormatter === NULL) {
@@ -94,3 +98,4 @@
             'botname' => self::LOG_CONTEXT_BOTNAME_LENGTH
             ]);
     }
+}
