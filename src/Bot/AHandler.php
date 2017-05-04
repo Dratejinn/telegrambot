@@ -7,7 +7,10 @@ use Telegram\API;
 use Telegram\API\Method\SendMessage;
 use Monolog\Logger;
 
-abstract class AHandler {
+abstract class AHandler implements LogHelpers\Interfaces\ILoggerAwareInterface {
+
+    use LogHelpers\Traits\TLoggerTrait;
+
     protected $_type        = NULL;
     protected $_update      = NULL;
     protected $_bot         = NULL;
@@ -54,10 +57,6 @@ abstract class AHandler {
             $sendMessage->text = $text;
             return $this->sendMessage($sendMessage);
         }
-    }
-
-    public function getLogger() : Logger {
-        return $this->_bot->getLogger();
     }
 
     public function getLoggerContext() : array {

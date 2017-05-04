@@ -237,7 +237,7 @@ abstract class ABaseObject {
 
     public function hasInputFile() {
         $hasInputFile = FALSE;
-        array_walk_recursive($this->_values, function($item, $key) use (&$hasInputFile) {
+        array_walk_recursive($this->_values, function($item) use (&$hasInputFile) {
             if ($item instanceof InputFile) {
                 $hasInputFile = TRUE;
             }
@@ -256,14 +256,14 @@ abstract class ABaseObject {
                 switch ($fieldType) {
                     case self::T_OBJECT:
                         $value = $value->jsonify();
-                    break;
+                        break;
                     case self::T_ARRAY:
-                        array_walk_recursive($value, function(&$item, $key) {
+                        array_walk_recursive($value, function(&$item) {
                             if ($item instanceof ABaseObject) {
                                 $item = $item->jsonify();
                             }
                         });
-                    break;
+                        break;
                 }
                 $payload->{$external} = $value;
             } elseif (!$this->isOptional($field)) {

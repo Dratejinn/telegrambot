@@ -8,9 +8,11 @@ use Telegram\API;
 use Telegram\API\Method\GetUpdates;
 use Telegram\API\Type\User;
 use Telegram\Bot\Handler\{AMessageHandler};
-use Monolog\Logger;
+use Telegram\LogHelpers;
 
-abstract class ABot {
+abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
+
+    use LogHelpers\Traits\TLoggerTrait;
 
     const UPDATE_TYPE_MESSAGE               = 'message';
     const UPDATE_TYPE_EDITEDMESSAGE         = 'editedMessage';
@@ -73,11 +75,11 @@ abstract class ABot {
                     case 'editedChannelPost':
                         if (isset($update->message->leftChatMember)) {
                             if ($this->_me->id === $update->message->leftChatMember->id) {
-                                $this->getLogger()->info('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
+                                $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
                                 unset($this->_chats[$update->message->chat->id]);
                             }
                         } elseif (!isset($this->_chats[$update->message->chat->id])) {
-                            $this->getLogger()->info('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
+                            $this->logInfo('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
                             $this->_chats[$update->message->chat->id] = $update->message->chat;
                         }
                         //fallthrough intended
@@ -129,10 +131,6 @@ abstract class ABot {
                 return FALSE;
         }
         return class_exists($className) && is_a($className, $handlerClass, TRUE);
-    }
-
-    public function getLogger() : Logger {
-        return $this->_bot->getLogger();
     }
 
     public function getLoggerContext() : array {

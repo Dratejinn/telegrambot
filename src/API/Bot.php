@@ -6,10 +6,11 @@ namespace Telegram\API;
 
 use Telegram\API\Method\GetMe;
 use Telegram\API\Type\User;
-use Monolog\Logger;
+use Telegram\LogHelpers;
 
-class Bot {
+class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
 
+    use LogHelpers\Traits\TLoggerTrait;
     /**
      * The token used to identify the bot
      * @var string
@@ -34,7 +35,7 @@ class Bot {
     }
 
     public function call(string $method, Base\Abstracts\ABaseObject $payload) {
-        $this->getLogger()->debug('Calling method: ' . $method, $this->getLoggerContext());
+        $this->logDebug('Calling method: ' . $method, $this->getLoggerContext());
         return API::CallMethod($method, $this, $payload);
     }
 
@@ -50,10 +51,6 @@ class Bot {
         }
     }
 
-    public function getLogger() : Logger {
-        return API::GetLogger('BOT');
-    }
-
     public function getLoggerContext() : array {
         $username = $this->getUsername();
         if (empty($username)) {
@@ -61,5 +58,4 @@ class Bot {
         }
         return ['botname' => $username];
     }
-
 }

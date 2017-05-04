@@ -79,6 +79,6 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
                 return new $handler($this->_update, $this->_bot);
             }
         }
-        $this->getLogger()->info('Could not find a commandHandler for command: ' . $command, $this->getLoggerContext());
+        $this->logInfo('Could not find a commandHandler for command: ' . $command, $this->getLoggerContext());
     }
 }

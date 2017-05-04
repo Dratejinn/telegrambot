@@ -12,6 +12,9 @@
     "require": {
         "php": ">=7.0.0",
         "ext-curl": "*",
+        "psr/log": "~1.0"
+    },
+    "require-dev": {
         "monolog/monolog": "^1.22"
     },
     "autoload": {
@@ -21,7 +24,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Examples\\":"Examples/"
+            "Examples\\":"Examples/",
         }
     },
     "bin": [
