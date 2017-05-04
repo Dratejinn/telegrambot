@@ -1,18 +1,34 @@
+
 {
-    "name": "freek/telegram-bot",
+    "name": "dratejinn/telegrambot",
     "description": "A Telegram bot api",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Freek van der Veer",
-            "email": "freek@thefrontdoor.nl"
+            "email": "freek_vanderveer@hotmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.0.0",
+        "ext-curl": "*",
+        "psr/log": "~1.0"
+    },
+    "require-dev": {
+        "monolog/monolog": "^1.22"
+    },
     "autoload": {
-    "psr-4": {
-      "Telegram\\":"src/",
-      "Examples\\":"Examples/"
-    }
-  }
+        "psr-4": {
+            "Telegram\\":"src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Examples\\":"Examples/",
+        }
+    },
+    "bin": [
+        "bin/ConfigGenerator.php"
+    ]
 }
