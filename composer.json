@@ -25,7 +25,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Examples\\":"Examples/",
+            "Examples\\":"Examples/"
         }
     },
     "bin": [
