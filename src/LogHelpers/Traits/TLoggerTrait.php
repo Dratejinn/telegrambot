@@ -135,7 +135,7 @@ trait TLoggerTrait
     }
 
     public function hasLogger() : bool {
-        return $this->_logger !== NULL;
+        return $this->_logger instanceof Log\LoggerInterface;
     }
 
     public function getLogger() : Log\LoggerInterface {
