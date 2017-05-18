@@ -89,10 +89,10 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
         $this->_updateHandler->offset = $update->id + 1;
         $updateType = $update->getType();
         switch ($updateType) {
-            case 'message':
-            case 'editedMessage':
-            case 'channelPost':
-            case 'editedChannelPost':
+            case static::UPDATE_TYPE_MESSAGE:
+            case static::UPDATE_TYPE_EDITEDMESSAGE:
+            case static::UPDATE_TYPE_CHANNELPOST:
+            case static::UPDATE_TYPE_EDITEDCHANNELPOST:
                 if (isset($update->message->leftChatMember)) {
                     if ($this->_me->id === $update->message->leftChatMember->id) {
                         $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
@@ -103,9 +103,9 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
                     $this->_chats[$update->message->chat->id] = $update->message->chat;
                 }
                 //fallthrough intended
-            case 'inlineQuery':
-            case 'chosenInlineResult':
-            case 'callbackQuery':
+            case static::UPDATE_TYPE_INLINEQUERY:
+            case static::UPDATE_TYPE_CHOSENINLINERESULT:
+            case static::UPDATE_TYPE_CALLBACKQUERY:
                 if (isset($this->_handlers[$updateType])) {
                     $handler = new $this->_handlers[$updateType]($update, $this);
                     $handler->handle();

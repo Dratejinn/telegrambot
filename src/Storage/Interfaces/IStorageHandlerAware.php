@@ -8,7 +8,7 @@ namespace Telegram\Storage\Interfaces;
  * Describes a storage service aware instance.
  */
 interface IStorageHandlerAware {
-    public function hasStorageService() : bool;
-    public function getStorageService() : array;
-    public function addStorageService(ITelegramStorageService $storageService);
+    public function hasStorageHandler() : bool;
+    public function getStorageHandler() : array;
+    public function setStorageHandler(ITelegramStorageService $storageService);
 }
