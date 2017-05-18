@@ -30,7 +30,7 @@ class GetChatAdministrators extends ABaseObject implements IOutbound {
                 }
             } else {
                 if (isset($reply->description)) {
-                    throw new \Exception("Could not properly execute the request!\n\n" . $reply->description);
+                    throw new \Exception("Could not properly execute the request!\n" . $reply->description);
                 } else {
                     throw new \Exception('An unknown error has occurred!');
                 }

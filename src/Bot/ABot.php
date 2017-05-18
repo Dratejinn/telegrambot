@@ -155,7 +155,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
         return $this->_bot->getLoggerContext();
     }
 
-    public function setLoggerRecursively(Log\LoggerAwareInterface $logger) {
+    public function setLoggerRecursively(Log\LoggerInterface $logger) {
         $this->setLogger($logger);
         foreach ($this->_handlers as $handler) {
             $handler->setLogger($logger);

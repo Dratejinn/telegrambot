@@ -33,7 +33,7 @@ class SendChatAction extends ABaseObject {
                 return $reply->result;
             } else {
                 if (isset($reply->description)) {
-                    echo "Could not properly execute the request!\n\n" . $reply->description . PHP_EOL;
+                    throw new \Exception("Could not properly execute the request!\n" . $reply->description);
                 } else {
                     throw new \Exception('An unknown error has occurred!');
                 }
