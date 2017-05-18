@@ -109,7 +109,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
                 if (isset($this->_handlers[$updateType])) {
                     $handler = new $this->_handlers[$updateType]($update, $this);
                     if ($this->hasLogger()) {
-                        $handler->setLogger($logger);
+                        $handler->setLogger($this->logger);
                     }
                     $handler->handle();
                 }
