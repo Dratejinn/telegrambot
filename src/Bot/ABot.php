@@ -70,10 +70,14 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
                     throw $e;
                 } else {
                     $this->logError((string) $e, $this->getLoggerContext());
-                    sleep(self::RUN_ERROR_TIMEOUT);
+                    if (static::RUN_ERROR_TIMEOUT > 0) {
+                        sleep(static::RUN_ERROR_TIMEOUT);
+                    }
                 }
             }
-            sleep(self::GETUPDATES_SLEEP_INTERVAL);
+            if (static::GETUPDATES_SLEEP_INTERVAL > 0) {
+                sleep(static::GETUPDATES_SLEEP_INTERVAL);
+            }
         }
     }
 
