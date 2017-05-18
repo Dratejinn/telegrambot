@@ -6,6 +6,7 @@ use Telegram\API;
 
 use Telegram\API\Method\SendMessage;
 use Monolog\Logger;
+use Telegram\LogHelpers;
 
 abstract class AHandler implements LogHelpers\Interfaces\ILoggerAwareInterface {
 
