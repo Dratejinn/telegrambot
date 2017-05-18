@@ -108,6 +108,9 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
             case static::UPDATE_TYPE_CALLBACKQUERY:
                 if (isset($this->_handlers[$updateType])) {
                     $handler = new $this->_handlers[$updateType]($update, $this);
+                    if ($this->hasLogger()) {
+                        $handler->setLogger($logger);
+                    }
                     $handler->handle();
                 }
                 break;
@@ -153,12 +156,5 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
 
     public function getLoggerContext() : array {
         return $this->_bot->getLoggerContext();
-    }
-
-    public function setLoggerRecursively(Log\LoggerInterface $logger) {
-        $this->setLogger($logger);
-        foreach ($this->_handlers as $handler) {
-            $handler->setLogger($logger);
-        }
     }
 }
