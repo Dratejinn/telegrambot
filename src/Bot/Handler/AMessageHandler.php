@@ -26,6 +26,9 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
                 $command = $this->getCommandName($text);
                 $commandHandler = $this->_getCorrectCommandHandler($command);
                 if ($commandHandler) {
+                    if ($this->hasLogger()) {
+                        $commandHandler->setLogger($this->getLogger());
+                    }
                     $commandHandler->handleCommand($command);
                 } else {
                     $this->handleUnknownCommand($command);
