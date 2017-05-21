@@ -23,7 +23,7 @@ class AnswerInlineQuery extends ABaseObject implements IOutbound {
     }
 
     public function call(\Telegram\API\Bot $bot) {
-        $reply = $bot->call('AnswerInlineQuery', $this);
+        $reply = $bot->call('answerInlineQuery', $this);
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 return $reply->result;

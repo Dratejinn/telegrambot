@@ -22,7 +22,7 @@ class AnswerShippingQuery extends ABaseObject implements IOutbound {
     }
 
     public function call(Bot $bot) {
-        $reply = $bot->call('answerCallbackQuery', $this);
+        $reply = $bot->call('answerShippingQuery', $this);
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 return TRUE;

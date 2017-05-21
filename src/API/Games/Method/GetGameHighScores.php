@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Telegram\API\Games\Method;
 
+use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Type\GameHighScore;
 
-class GetGameHighScores extends ABaseObject {
+class GetGameHighScores extends ABaseObject implements IOutbound {
 
     public static function GetDatamodel() : array {
         $datamodel = [

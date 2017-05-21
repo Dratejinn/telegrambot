@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Telegram\API\Payments\Method;
 
-use Telegram\API\Base\Abstracts\ABaseObject;
+use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
 use Telegram\API\Type\InlineKeyboardMarkup;
 
-class SendInvoice extends ABaseObject {
+class SendInvoice extends ASend {
 
     public static function GetDatamodel() : array {
         $datamodel = [
