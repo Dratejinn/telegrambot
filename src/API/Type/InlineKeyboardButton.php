@@ -16,6 +16,7 @@ class InlineKeyboardButton extends ABaseObject {
         'switchInlineQuery'     => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,    'external' => 'switch_inline_query'],
         'switchQueryCurrChat'   => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,    'external' => 'switch_inline_query_current_chat'],
         'callbackGame'          => ['type' => ABaseObject::T_OBJECT, 'optional' => TRUE,    'external' => 'callback_game',                      'class' => CallbackGame::class],
+        'pay'                   => ['type' => ABaseObject::T_BOOL,   'optional' => TRUE,    'external' => 'pay']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

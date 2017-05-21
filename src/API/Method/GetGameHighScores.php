@@ -20,7 +20,7 @@ class GetGameHighScores extends ABaseObject {
     }
 
     public function call(Bot $bot) {
-        $reply = $bot->call($this->_getApiCall(), $this);
+        $reply = $bot->call('getGameHighScores', $this);
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 $gameHighScores = [];

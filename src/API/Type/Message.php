@@ -29,12 +29,14 @@ class Message extends ABaseObject {
             'sticker'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'sticker',                    'class' => Sticker::class],
             'video'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'video',                      'class' => Video::class],
             'voice'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'voice',                      'class' => Voice::class],
+            'videoNote'             => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'video_note',                 'class' => VideoNote::class],
             'caption'               => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'caption'],
             'contact'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'contact',                    'class' => Contact::class],
             'location'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',                   'class' => Location::class],
             'venue'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'venue',                      'class' => Venue::class],
 
             'newChatMember'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'new_chat_member',            'class' => User::class],
+            'newChatMembers'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_members'],
             'leftChatMember'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'left_chat_member',           'class' => User::class],
             'newChatTitle'          => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'new_chat_title'],
             'newChatPhoto'          => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_photo'],
@@ -44,7 +46,9 @@ class Message extends ABaseObject {
             'channelChatCreated'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'channel_chat_created'],
             'migrateToChatId'       => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'migrate_to_chat_id'],
             'migrateFromChatId'     => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'migrateFromChatId'],
-            'pinnedMessage'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pinned_message',             'class' => Message::class]
+            'pinnedMessage'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pinned_message',             'class' => Message::class],
+            'invoice'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'invoice',                    'class' => Invoice::class],
+            'successfulPayment'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'successful_payment',         'class' => SuccessfulPayment::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
@@ -74,6 +78,13 @@ class Message extends ABaseObject {
                 $photoSizes[] = new PhotoSize($photoSize);
             }
             $this->newChatPhoto = $photoSizes;
+        }
+        if (isset($this->newChatMembers)) {
+            $chatMembers = [];
+            foreach ($this->newChatMembers as $chatMember) {
+                $chatMembers[] = new User($chatMember);
+            }
+            $this->newChatMembers = $chatMembers;
         }
     }
 

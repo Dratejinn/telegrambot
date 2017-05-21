@@ -23,6 +23,8 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
     const UPDATE_TYPE_INLINEQUERY           = 'inlineQuery';
     const UPDATE_TYPE_CHOSENINLINERESULT    = 'chosenInlineResult';
     const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
+    const UPDATE_TYPE_SHIPPINGQUERY         = 'shippingQuery';
+    const UPDATE_TYPE_PRECHECKOUTQUERY      = 'preCheckoutQuery';
 
     const GETUPDATES_SLEEP_INTERVAL = 1; //seconds
     const RUN_ERROR_TIMEOUT = 60; //seconds
@@ -110,6 +112,8 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
             case static::UPDATE_TYPE_INLINEQUERY:
             case static::UPDATE_TYPE_CHOSENINLINERESULT:
             case static::UPDATE_TYPE_CALLBACKQUERY:
+            case static::UPDATE_TYPE_SHIPPINGQUERY:
+            case static::UPDATE_TYPE_PRECHECKOUTQUERY:
                 if (isset($this->_handlers[$updateType])) {
                     $handler = new $this->_handlers[$updateType]($update, $this);
                     if ($this->hasLogger()) {

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Telegram\API\Type;
+
 use Telegram\API\InlineQuery\{ChosenInlineResult, InlineQuery};
 
 use Telegram\API\Base\Abstracts\ABaseObject;
@@ -20,7 +21,9 @@ class Update extends ABaseObject {
             'editedChannelPost'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'edited_channel_post',    'class' => Message::class],
             'inlineQuery'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'inline_query',           'class' => InlineQuery::class],
             'chosenInlineResult'    => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'chosen_inline_result',   'class' => ChosenInlineResult::class],
-            'callbackQuery'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'callback_query',         'class' => CallbackQuery::class]
+            'callbackQuery'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'callback_query',         'class' => CallbackQuery::class],
+            'shippingQuery'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'shipping_query',         'class' => ShippingQuery::class],
+            'preCheckoutQuery'      => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pre_checkout_query',     'class' => PreCheckoutQuery::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

@@ -12,10 +12,10 @@ abstract class ASend extends ABaseObject implements IOutbound {
 
     public static function GetDatamodel() : array {
         $datamodel = [
-            'chatId'                => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'chat_id'],
-            'disableNotification'   => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'disable_notification'],
-            'replyToMessageId'      => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'reply_to_message_id'],
-            'replyMarkup'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_markup',           'class' => [Type\InlineKeyboardMarkup::class, Type\ReplyKeyboardMarkup::class, Type\ReplyKeyboardRemove::class, Type\ForceReply::class]],
+            'chatId'                => ['type' => [ABaseObject::T_INT, ABaseObject::T_STRING], 'optional' => FALSE,    'external' => 'chat_id'],
+            'disableNotification'   => ['type' => ABaseObject::T_BOOL,                         'optional' => TRUE,     'external' => 'disable_notification'],
+            'replyToMessageId'      => ['type' => ABaseObject::T_INT,                          'optional' => TRUE,     'external' => 'reply_to_message_id'],
+            'replyMarkup'           => ['type' => ABaseObject::T_OBJECT,                       'optional' => TRUE,     'external' => 'reply_markup',           'class' => [Type\InlineKeyboardMarkup::class, Type\ReplyKeyboardMarkup::class, Type\ReplyKeyboardRemove::class, Type\ForceReply::class]],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

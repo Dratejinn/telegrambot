@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Telegram\API\InlineQuery;
 
-use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult}
+use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
 class InlineQueryResultMpeg4Gif extends AInlineQueryResult {
 
@@ -14,6 +14,7 @@ class InlineQueryResultMpeg4Gif extends AInlineQueryResult {
             'thumbUrl'      => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'thumb_url'],
             'mpeg4Width'    => ['type' => ABaseObject::T_INT,    'optional' => TRUE,     'external' => 'mpeg4_width'],
             'mpeg4Height'   => ['type' => ABaseObject::T_INT,    'optional' => TRUE,     'external' => 'mpeg4_height'],
+            'mpeg4Duration' => ['type' => ABaseObject::T_INT,    'optional' => TRUE,     'external' => 'mpeg4_duration'],
             'caption'       => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,     'external' => 'caption'],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
