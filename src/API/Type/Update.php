@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Telegram\API\Type;
 
-use Telegram\API\InlineQuery\{ChosenInlineResult, InlineQuery};
-
+use Telegram\API\InlineQuery\Type\{ChosenInlineResult, InlineQuery};
+use Telegram\API\Payments\Type\{PreCheckoutQuery, ShippingQuery};
 use Telegram\API\Base\Abstracts\ABaseObject;
 
 class Update extends ABaseObject {
