@@ -8,6 +8,9 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 
 class Animation extends ABaseObject {
 
+    protected static $_IdProp = 'fileId';
+
+
     public static function GetDatamodel() : array {
         $datamodel = [
             'fileId'        => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'file_id'],

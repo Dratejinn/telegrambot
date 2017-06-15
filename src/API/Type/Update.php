@@ -12,6 +12,8 @@ class Update extends ABaseObject {
 
     private $_type = NULL;
 
+    protected static $_IdProp = 'id';
+
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'                    => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'update_id'],

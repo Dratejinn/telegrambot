@@ -9,12 +9,15 @@ use Telegram\API\Method\GetUpdates;
 use Telegram\API\Type\{User, Update};
 use Telegram\Bot\Handler\{AMessageHandler};
 use Telegram\LogHelpers;
+use Telegram\Storage\Interfaces\IStorageHandlerAware;
+use Telegram\Storage\Traits\TStorageHandlerTrait;
 
 use Psr\Log;
 
-abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
+abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, IStorageHandlerAware {
 
     use LogHelpers\Traits\TLoggerTrait;
+    use TStorageHandlerTrait;
 
     const UPDATE_TYPE_MESSAGE               = 'message';
     const UPDATE_TYPE_EDITEDMESSAGE         = 'editedMessage';
