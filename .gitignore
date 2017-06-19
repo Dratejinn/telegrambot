@@ -2,3 +2,4 @@ TelegramConfig.json
 /vendor/
 *.log
 Tokens.ini
+phinx.yml
