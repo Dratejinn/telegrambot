@@ -26,7 +26,11 @@ class TelegramAdapter {
     }
 
     public function getClassBaseName() : string {
-        return (new \ReflectionClass($this->_telegramClass))->getShortName();
+        return static::GetBaseObjectClassBaseName($this->_telegramClass);
+    }
+
+    public static function GetBaseObjectClassBaseName(ABaseObject $object) : string {
+        return (new \ReflectionClass($object))->getShortName();
     }
 
     public function getTypeForProperty(string $property) {

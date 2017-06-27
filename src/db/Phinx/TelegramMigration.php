@@ -10,30 +10,29 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\Storage\Migrations\TelegramAdapter;
 
 class TelegramMigration extends AbstractMigration {
-    protected function _migrateTelegramClass(ABaseObject $telegramClass, string $tableName = NULL, bool $createOptionalColumns = TRUE, array $options = []) {
+    protected function _migrateTelegramClass(ABaseObject $telegramClass, bool $createOptionalColumns = TRUE, array $options = []) {
         $adapter = new TelegramAdapter($telegramClass);
 
-        if ($tableName === NULL) {
-            $tableName = $adapter->getClassBaseName();
-        }
+        $tableName = $adapter->getClassBaseName();
 
         $table = $this->table($tableName);
         foreach ($adapter->getProperties($createOptionalColumns) as $property) {
+            if ($adapter->getCustomFieldForProperty($property, 'optional') == TRUE) {
+                $propOptions = ['null' => TRUE];
+            } else {
+                $propOptions = [];
+            }
             $propType = $this->_getMySqlTypeForProperty($adapter, $property);
-            $options = [];
             if (isset($options[$propType])) {
-                if (isset($options[$propType][$propType])) {
-                    $options = $options[$property][$propType];
-                }
+                $propOptions = $options[$propType];
             }
             if ($property === 'id') {
-                if ($propType == 'integer') {
-                    continue;
-                } else {
-                    $property = 'telegram_id';
-                }
+                $property = 'telegram_id';
             }
-            $table->addColumn($property, $propType, $options);
+            $table->addColumn($property, $propType, $propOptions);
+            if ($property === 'telegram_id') {
+                $table->addIndex(array('telegram_id'), array('unique' => TRUE, 'name' => 'UNI_telegram_id'));
+            }
         }
         $table->create();
     }
@@ -49,6 +48,7 @@ class TelegramMigration extends AbstractMigration {
             if (in_array(ABaseObject::T_ARRAY || ABaseObject::T_OBJECT)) {
                 return 'string';
             } elseif (in_array(ABaseObject::T_BOOL) && in_array(ABaseObject::T_INT) && count($telegramType) == 2) {
+                //ensure integer type when only boolean or integers are possible
                 return ABaseObject::T_INT;
             } else {
                 //safe fallback

@@ -12,11 +12,9 @@ trait TStorageHandlerTrait
 
     private $_storageHandler = NULL;
 
-    abstract public function getStorageHandlerName() : string;
-
-    public function store(string $class, ABaseObject $object, array $optionalArguments = []) : bool {
+    public function store(ABaseObject $object, array $optionalArguments = []) : bool {
         if ($this->hasStorageHandler()) {
-            return $this->_storageHandler->store($class, $object, $optionalArguments);
+            return $this->_storageHandler->store($object, $optionalArguments);
         }
         return FALSE;
     }

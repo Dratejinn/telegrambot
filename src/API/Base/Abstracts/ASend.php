@@ -27,7 +27,7 @@ abstract class ASend extends ABaseObject implements IOutbound {
                 return new Type\Message($reply->result);
             } else {
                 if (isset($reply->description)) {
-                    echo "Could not properly execute the request!\n\n" . $reply->description . PHP_EOL;
+                    $bot->logAlert("Could not properly execute the request!\n\n" . $reply->description . PHP_EOL);
                 } else {
                     throw new \Exception('An unknown error has occurred!');
                 }

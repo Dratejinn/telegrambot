@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Telegram\API\Base\Abstracts;
 
 use Telegram\API\Base\InputFile;
-use Telegram\Storage\Interfaces\ITelegramStorageAaware;
+use Telegram\Storage\Interfaces\{IStorageHandlerAware, ITelegramStorageHandler};
 
 abstract class ABaseObject implements IStorageHandlerAware {
 
@@ -92,6 +92,31 @@ abstract class ABaseObject implements IStorageHandlerAware {
             if (is_array($fieldType) && in_array($type, $fieldType) || $type === $fieldType) {
                 $isOfCorrectType = TRUE;
             }
+            if (!$isOfCorrectType && is_scalar($value)) {
+                if (is_array($fieldType)) {
+                    $temp = $fieldType;
+                    $usingType = array_shift($temp);
+                } else {
+                    $usingType = $fieldType;
+                }
+                if (in_array($usingType, [self::T_STRING, self::T_INT, self::T_FLOAT, self::T_BOOL])) {
+                    switch ($usingType) {
+                        case self::T_STRING:
+                            $value = (string) $value;
+                            break;
+                        case self::T_INT:
+                            $value = (int) $value;
+                            break;
+                        case self::T_FLOAT:
+                            $value = (float) $value;
+                            break;
+                        case self::T_BOOL:
+                            $value = (bool) $value;
+                            break;
+                    }
+                    $isOfCorrectType = TRUE;
+                }
+            }
             if ($isOfCorrectType) {
                 if ($fieldType === self::T_OBJECT) {
                     $classes = $this->_getFieldProperty($sName, self::PROP_CLASS);
@@ -157,6 +182,10 @@ abstract class ABaseObject implements IStorageHandlerAware {
         return isset($this->_datamodel[$name]);
     }
 
+    public function getFQCN() : string {
+        return static::class;
+    }
+
     private function _getFieldProperty(string $field, string $property) {
         if ($this->hasField($field)) {
             if (isset($this->_datamodel[$field][$property])) {
@@ -187,7 +216,6 @@ abstract class ABaseObject implements IStorageHandlerAware {
                 return $field;
             }
         }
-        // echo 'Got a field that is not yet added with name: ' . $name . PHP_EOL;
         return 'unknown';
     }
 

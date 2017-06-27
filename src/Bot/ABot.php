@@ -105,10 +105,12 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                 if (isset($update->message->leftChatMember)) {
                     if ($this->_me->id === $update->message->leftChatMember->id) {
                         $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
+                        $this->delete($update->message->chat);
                         unset($this->_chats[$update->message->chat->id]);
                     }
                 } elseif (!isset($this->_chats[$update->message->chat->id])) {
                     $this->logInfo('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
+                    $this->store($update->message->chat);
                     $this->_chats[$update->message->chat->id] = $update->message->chat;
                 }
                 //fallthrough intended

@@ -3,3 +3,4 @@ TelegramConfig.json
 *.log
 Tokens.ini
 phinx.yml
+/Examples/userCreds.php
