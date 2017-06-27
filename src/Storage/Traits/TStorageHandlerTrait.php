@@ -26,11 +26,18 @@ trait TStorageHandlerTrait
         return FALSE;
     }
     
-    public function load(string $class, string $id = '*', string $index = 'id', array $optionalArguments = []) : ABaseObject {
+    public function load(string $class, string $id = '*', string $index = 'id', array $optionalArguments = []) {
         if ($this->hasStorageHandler()) {
             return $this->_storageHandler->load($class, $id, $index, $optionalArguments);
         }
         return NULL;
+    }
+
+    public function loadAll(string $class, string $index = NULL, array $optionalArguments = []) : array {
+        if ($this->hasStorageHandler()) {
+            return $this->_storageHandler->loadAll($class, $index, $optionalArguments);
+        }
+        return [];
     }
 
     public function hasStorageHandler() : bool {

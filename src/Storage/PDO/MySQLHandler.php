@@ -178,19 +178,20 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         $dummy = new $class;
         $adapter = new TelegramAdapter($dummy);
         $table = $adapter->getClassBaseName();
-        if ($dummy::HasIdProperty()) {
-            $index = $dummy::GetIdProperty();
-            if ($index === 'id') {
-                $index = 'telegram_id';
+        if ($index === NULL) {
+            if ($dummy::HasIdProperty()) {
+                $index = $dummy::GetIdProperty();
+                if ($index === 'id') {
+                    $index = 'telegram_id';
+                }
+            } else {
+                throw new \InvalidArgumentException("No index provided for object $table!");
             }
-        } else {
-            throw new \InvalidArgumentException("No index provided for object $table!");
         }
         $statement = $pdo->prepare("SELECT * FROM `$table` WHERE `$index` = :id");
         $success = $statement->execute(['id' => $id]);
 
         if (!$success) {
-            var_dump($statement->errorInfo());
             $this->disconnect();
             return new $class;
         }
@@ -203,6 +204,43 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         $this->disconnect();
         $obj = new $class($stdObj);
         return $obj;
+    }
+
+    public function loadAll(string $class, string $index = NULL, array $optionalArguments = []) : array {
+        $pdo = $this->connect();
+        $dummy = new $class;
+        $adapter = new TelegramAdapter($dummy);
+        $table = $adapter->getClassBaseName();
+        if ($index === NULL) {
+            if ($dummy::HasIdProperty()) {
+                $index = $dummy::GetIdProperty();
+                if ($index === 'id') {
+                    $index = 'telegram_id';
+                }
+            } else {
+                throw new \InvalidArgumentException("No index provided for object $table!");
+            }
+        }
+        $statement = $pdo->prepare("SELECT * FROM `$table`");
+        $success = $statement->execute(['id' => $id]);
+
+        if (!$success) {
+            $this->disconnect();
+            return [];
+        }
+        $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
+        $objArr = $statement->fetchAll();
+        if (isset($stdObj->{'telegram_id'})) {
+            $stdObj->id = $stdObj->{'telegram_id'};
+            unset($stdObj->{'telegram_id'});
+        }
+        $this->disconnect();
+        $ret = [];
+        foreach ($objArr as $stdObj) {
+            $ret[] = new $class($stdObj);
+        }
+        return $ret;
+
     }
 
     private function _getColumnName(string $propertyName) {

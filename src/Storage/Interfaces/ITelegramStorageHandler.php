@@ -11,4 +11,5 @@ interface ITelegramStorageHandler {
     public function store(ABaseObject $object, array $optionalArguments = []) : bool;
     public function delete(ABaseObject $object) : bool;
     public function load(string $class, string $id = '', string $index = NULL, array $optionalArguments = []) : ABaseObject;
+    public function loadAll(string $class, string $index = NULL, array $optionalArguments = []) : array;
 }
