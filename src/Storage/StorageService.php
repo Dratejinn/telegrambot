@@ -20,13 +20,13 @@ class StorageService implements Interfaces\ITelegramStorageService, ILoggerAware
         return 'StorageService';
     }
 
-    public function store(ABaseObject $object) : bool {
+    public function store(string $origin, string $class, ABaseObject $object) : bool {
         if (empty($this->_storageHandlers)) {
             throw new \Exception('No storageHandlers pushed onto the stack!');
         }
         $success = TRUE;
         foreach ($this->_storageHandlers as $storageHandler) {
-            $res = $storageHandler->store($object);
+            $res = $storageHandler->store($origin, $class, $object);
             if (!$res) {
                 $success = FALSE;
                 $this->logAlert('Storing was unsuccessfull for StorageHandler ' . $storageHandler->getStorageHandlerName());
@@ -49,18 +49,19 @@ class StorageService implements Interfaces\ITelegramStorageService, ILoggerAware
         return $success;
     }
 
-    public function load(string $class, string $id, string $index) : ABaseObject {
+    public function load(string $origin, string $class, string $id, string $index = 'id') : ABaseObject {
         if (empty($this->_storageHandlers)) {
             throw new \Exception('No storageHandlers pushed onto the stack!');
         }
         foreach ($this->_storageHandlers as $storageHandler) {
-            $result = $storageHandler->load($class, $id, $index);
+            $result = $storageHandler->load($origin, $class, $id, $index);
             if (is_a($result, $class)) {
                 return $result;
             } else {
                 $this->logAlert("Incompatible result encountered while loading $class with loader " . $storageHandler->getStorageHandlerName());
             }
         }
+        throw new \Exception("unable to load data for class '$class' with id '$id' and index '$index'");
     }
 
     public function pushStorageHandler(Interfaces\ITelegramStorageHandler $storageHandler) {

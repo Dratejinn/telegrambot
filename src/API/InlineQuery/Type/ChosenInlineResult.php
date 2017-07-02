@@ -9,6 +9,8 @@ use Telegram\API;
 
 class ChosenInlineResult extends ABaseObject {
 
+    protected static $_IdProp = 'resultId';
+
     public static function GetDatamodel() : array {
         $datamodel = [
             'resultId'          => ['type' => ABaseObject::T_STRING,   'optional' => FALSE,    'external' => 'result_id'],

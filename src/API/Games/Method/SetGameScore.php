@@ -34,7 +34,7 @@ class SetGameScore extends ABaseObject implements IOutbound {
                 }
             } else {
                 if (isset($reply->description)) {
-                    echo "Could not properly execute the request!\n\n" . $reply->description . PHP_EOL;
+                    $bot->logAlert("Could not properly execute the request!\n\n" . $reply->description . PHP_EOL);
                 } else {
                     throw new \Exception('An unknown error has occurred!');
                 }

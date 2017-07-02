@@ -15,6 +15,7 @@ class KickChatMember extends ABaseObject implements IOutbound {
         $datamodel = [
             'chatId'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT], 'optional' => FALSE,    'external' => 'chat_id'],
             'userId'     => ['type' => ABaseObject::T_INT,                          'optional' => FALSE,    'external' => 'user_id'],
+            'untilDate'  => ['type' => ABaseObject::T_INT,                          'optional' => TRUE,     'external' => 'until_date']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

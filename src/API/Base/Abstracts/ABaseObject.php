@@ -5,13 +5,14 @@ declare(strict_types = 1);
 namespace Telegram\API\Base\Abstracts;
 
 use Telegram\API\Base\InputFile;
+use Telegram\Storage\Interfaces\{IStorageHandlerAware, ITelegramStorageHandler};
 
-abstract class ABaseObject {
+abstract class ABaseObject implements IStorageHandlerAware {
 
     const T_STRING = 'string';
     const T_INT = 'integer';
     const T_FLOAT = 'float';
-    const T_BOOL = 'bool';
+    const T_BOOL = 'boolean';
     const T_ARRAY = 'array';
     const T_OBJECT = 'object';
 
@@ -21,9 +22,37 @@ abstract class ABaseObject {
     const PROP_CLASS = 'class';
     const PROP_CONTENT = 'content';
 
+    protected static $_IdProp = '';
+
     private $_values = [];
 
     protected $_datamodel = NULL;
+
+    public function hasStorageHandler() : bool {
+        return $this->_storageHandler instanceof ITelegramStorageHandler;
+    }
+
+    public function getStorageHandler() : ITelegramStorageHandler {
+        return $this->_storageHandler;
+    }
+
+    public function setStorageHandler(ITelegramStorageHandler $storageHandler) {
+        $this->_storageHandler = $storageHandler;
+    }
+
+    public function store() : bool {
+        if ($this->hasStorageHandler()) {
+            return $this->_storageHandler->store(static::class, $this);
+        }
+        return FALSE;
+    }
+
+    public function delete() : bool {
+        if ($this->hasStorageHandler()) {
+            return $this->_storageHandler->delete($this);
+        }
+        return FALSE;
+    }
 
     public function __construct(\stdClass $payload = NULL) {
         $this->_datamodel = static::GetDatamodel();
@@ -63,6 +92,31 @@ abstract class ABaseObject {
             if (is_array($fieldType) && in_array($type, $fieldType) || $type === $fieldType) {
                 $isOfCorrectType = TRUE;
             }
+            if (!$isOfCorrectType && is_scalar($value)) {
+                if (is_array($fieldType)) {
+                    $temp = $fieldType;
+                    $usingType = array_shift($temp);
+                } else {
+                    $usingType = $fieldType;
+                }
+                if (in_array($usingType, [self::T_STRING, self::T_INT, self::T_FLOAT, self::T_BOOL])) {
+                    switch ($usingType) {
+                        case self::T_STRING:
+                            $value = (string) $value;
+                            break;
+                        case self::T_INT:
+                            $value = (int) $value;
+                            break;
+                        case self::T_FLOAT:
+                            $value = (float) $value;
+                            break;
+                        case self::T_BOOL:
+                            $value = (bool) $value;
+                            break;
+                    }
+                    $isOfCorrectType = TRUE;
+                }
+            }
             if ($isOfCorrectType) {
                 if ($fieldType === self::T_OBJECT) {
                     $classes = $this->_getFieldProperty($sName, self::PROP_CLASS);
@@ -77,7 +131,7 @@ abstract class ABaseObject {
                         }
                     }
                     if (!$isPropperClass) {
-                        throw new \Exception('Object of type \'' . get_class($value) . '\' is not an instance of ' . $class . '!');
+                        throw new \Exception('Object of type \'' . get_class($value) . '\' is not an instance of ' . implode(', ', $classes) . '!');
                     }
                 }
                 $this->_values[$sName] = $value;
@@ -128,6 +182,10 @@ abstract class ABaseObject {
         return isset($this->_datamodel[$name]);
     }
 
+    public function getFQCN() : string {
+        return static::class;
+    }
+
     private function _getFieldProperty(string $field, string $property) {
         if ($this->hasField($field)) {
             if (isset($this->_datamodel[$field][$property])) {
@@ -158,8 +216,23 @@ abstract class ABaseObject {
                 return $field;
             }
         }
-        // echo 'Got a field that is not yet added with name: ' . $name . PHP_EOL;
         return 'unknown';
+    }
+
+    public static function HasIdProperty() : bool {
+        return !empty(static::$_IdProp);
+    }
+
+    public static function GetIdProperty() {
+        return static::$_IdProp;
+    }
+
+    public static function SetIDProperty(string $propName) {
+        $datamodel = static::GetDatamodel();
+        if (!isset($datamodel[$propName])) {
+            throw new \LogicException('Unknown property ' . $propName . '!');
+        }
+        static::$_IdProp = $propName;
     }
 
     public static function GetTypeForVar($var) {
@@ -294,9 +367,9 @@ abstract class ABaseObject {
         return $str;
     }
 
-    public static function DecodeJSON(string $jsonString) : \stdClass {
+    public static function DecodeJSON(string $jsonString, bool $throw = TRUE) : \stdClass {
         $obj = json_decode($jsonString, FALSE);
-        if ($obj === NULL) {
+        if ($obj === NULL && $throw) {
             $err = json_last_error();
             switch ($err) {
                 case JSON_ERROR_NONE:

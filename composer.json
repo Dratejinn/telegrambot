@@ -16,7 +16,8 @@
         "psr/log": "~1.0"
     },
     "require-dev": {
-        "monolog/monolog": "^1.22"
+        "monolog/monolog": "^1.22",
+        "robmorgan/phinx": "^0.8.1"
     },
     "autoload": {
         "psr-4": {

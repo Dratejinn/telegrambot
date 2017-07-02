@@ -9,6 +9,8 @@ use Telegram\API\Type;
 
 class InlineQuery extends ABaseObject {
 
+    protected static $_IdProp = 'id';
+
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'        => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'id'],

@@ -11,6 +11,7 @@ use Telegram\LogHelpers;
 class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
 
     use LogHelpers\Traits\TLoggerTrait;
+    
     /**
      * The token used to identify the bot
      * @var string
@@ -18,12 +19,20 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
     private $_token = NULL;
     private $_me = NULL;
 
+    protected static $_ConnectionRetryTimeout = 120;
+
     public function __construct(string $token = NULL) {
         if ($token !== NULL) {
             $this->_token = $token;
         }
         $getMe = new GetMe;
-        $this->_me = $getMe->call($this);
+        do {
+            $this->_me = $getMe->call($this);
+            if (!$this->_me instanceof User) {
+                $this->alert("'Me' is not an instance of User! Telegram api might be down... retrying in " . static::$_ConnectionRetryTimeout . ' seconds...');
+                sleep(static::$_ConnectionRetryTimeout);
+            }
+        } while (!$this->_me instanceof User);
     }
 
     public function setToken(string $token) {
@@ -57,5 +66,9 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
             $username = 'UNKNOWN-BOT';
         }
         return ['botname' => $username];
+    }
+
+    public static function SetConnectionRetryTimeout(int $timeoutinSeconds) {
+        static::$_ConnectionRetryTimeout = $timeoutinSeconds;
     }
 }

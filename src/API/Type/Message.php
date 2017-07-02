@@ -10,6 +10,8 @@ use Telegram\API\Payments\Type\{Invoice, SuccessfulPayment};
 
 class Message extends ABaseObject {
 
+    protected static $_IdProp = 'id';
+
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'                    => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'message_id'],

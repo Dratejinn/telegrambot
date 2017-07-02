@@ -12,25 +12,32 @@ trait TStorageHandlerTrait
 
     private $_storageHandler = NULL;
 
-    abstract public function getStorageHandlerName() : string;
-
-    public function store(ABaseObject $object) : bool {
+    public function store(ABaseObject $object, array $optionalArguments = []) : bool {
         if ($this->hasStorageHandler()) {
-            return $this->_storageHandler->store($object);
+            return $this->_storageHandler->store($object, $optionalArguments);
         }
         return FALSE;
     }
+
     public function delete(ABaseObject $object) : bool {
         if ($this->hasStorageHandler()) {
             return $this->_storageHandler->delete($object);
         }
         return FALSE;
     }
-    public function load(string $id, string $index) {
+    
+    public function load(string $class, string $id = '*', string $index = 'id', array $optionalArguments = []) {
         if ($this->hasStorageHandler()) {
-            return $this->_storageHandler->load($id, $index);
+            return $this->_storageHandler->load($class, $id, $index, $optionalArguments);
         }
         return NULL;
+    }
+
+    public function loadAll(string $class, string $index = NULL, array $optionalArguments = []) : array {
+        if ($this->hasStorageHandler()) {
+            return $this->_storageHandler->loadAll($class, $index, $optionalArguments);
+        }
+        return [];
     }
 
     public function hasStorageHandler() : bool {

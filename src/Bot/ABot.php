@@ -6,15 +6,18 @@ namespace Telegram\Bot;
 
 use Telegram\API;
 use Telegram\API\Method\GetUpdates;
-use Telegram\API\Type\{User, Update};
+use Telegram\API\Type\{User, Update, Chat};
 use Telegram\Bot\Handler\{AMessageHandler};
 use Telegram\LogHelpers;
+use Telegram\Storage\Interfaces\IStorageHandlerAware;
+use Telegram\Storage\Traits\TStorageHandlerTrait;
 
 use Psr\Log;
 
-abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
+abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, IStorageHandlerAware {
 
     use LogHelpers\Traits\TLoggerTrait;
+    use TStorageHandlerTrait;
 
     const UPDATE_TYPE_MESSAGE               = 'message';
     const UPDATE_TYPE_EDITEDMESSAGE         = 'editedMessage';
@@ -93,6 +96,13 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
 
     public function handleUpdate(Update $update) {
         $this->_updateHandler->offset = $update->id + 1;
+        //if the chatlist is empty and we have a storage handler, load all chats from the storage handler
+        if ($this->hasStorageHandler() && empty($this->_chats)) {
+            $chats = $this->loadAll(Chat::class);
+            foreach ($chats as $chat) {
+                $this->_chats[$chat->id] = $chat;
+            }
+        }
         $updateType = $update->getType();
         switch ($updateType) {
             case static::UPDATE_TYPE_MESSAGE:
@@ -102,10 +112,12 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface {
                 if (isset($update->message->leftChatMember)) {
                     if ($this->_me->id === $update->message->leftChatMember->id) {
                         $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
+                        $this->delete($update->message->chat);
                         unset($this->_chats[$update->message->chat->id]);
                     }
                 } elseif (!isset($this->_chats[$update->message->chat->id])) {
                     $this->logInfo('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
+                    $this->store($update->message->chat);
                     $this->_chats[$update->message->chat->id] = $update->message->chat;
                 }
                 //fallthrough intended

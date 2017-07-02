@@ -30,4 +30,12 @@ class InlineKeyboardMarkup extends ABaseObject {
             $this->inlineKeyboard = $keyboard;
         }
     }
+    public function addRow(array $row) {
+        foreach ($row as $rowButton) {
+            if (!$rowButton instanceof InlineKeyboardButton) {
+                throw new \Exception('Entry of row is not an instance of InlineKeyboardButton');
+            }
+        }
+        $this->inlineKeyboard[] = $row;
+    }
 }
