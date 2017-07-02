@@ -9,19 +9,17 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
-class KickChatMember extends ABaseObject implements IOutbound {
+class ExportChatInviteLink extends ABaseObject implements IOutbound {
 
     public static function GetDatamodel() : array {
         $datamodel = [
             'chatId'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT], 'optional' => FALSE,    'external' => 'chat_id'],
-            'userId'     => ['type' => ABaseObject::T_INT,                          'optional' => FALSE,    'external' => 'user_id'],
-            'untilDate'  => ['type' => ABaseObject::T_INT,                          'optional' => TRUE,     'external' => 'until_date']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
     public function call(Bot $bot) {
-        $reply = $bot->call('kickChatMember', $this);
+        $reply = $bot->call('exportChatInviteLink', $this);
         $arr = [];
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
