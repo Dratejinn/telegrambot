@@ -20,7 +20,7 @@ class MySQLStorageHandler implements Interfaces\ITelegramStorageHandler {
         if ($this->_connection === NULL) {
             if (!class_exists('PDO') || !in_array('mysql', \PDO::getAvailableDrivers(), TRUE)) {
                 // @codeCoverageIgnoreStart
-                throw new \RuntimeException('You need to enable the PDO_Mysql extension for Phinx to run properly.');
+                throw new \RuntimeException('You need to enable the PDO_Mysql extension for the storagehandler to run properly.');
                 // @codeCoverageIgnoreEnd
             }
 
