@@ -40,6 +40,10 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
 
     protected $_chats = [];
 
+    private $_joinChatHandlers = [];
+
+    private $_leaveChatHandlers = [];
+
     public function __construct(string $token = NULL) {
         //initialize APIbot
         $this->_bot = new API\Bot($token);
@@ -55,6 +59,22 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
         if ($this->_isValidHandler($handlerClass, $handlerType)) {
             $this->_handlers[$handlerType] = $handlerClass;
         }
+    }
+
+    public function addJoinChatHandler(string $name, callable $callback) {
+        $this->_joinChatHandlers[$name] = $callback;
+    }
+
+    public function removeJoinChatHandler(string $name) {
+        unset($this->_joinChatHandlers[$name]);
+    }
+
+    public function addLeaveChatHandler(string $name, callable $callback) {
+        $this->_leaveChatHandlers[$name] = $callback;
+    }
+
+    public function removeLeaveChatHandler(string $name) {
+        unset($this->_leaveChatHandlers[$name]);
     }
 
     public function getMe() : User {
@@ -114,11 +134,17 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                         $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
                         $this->delete($update->message->chat);
                         unset($this->_chats[$update->message->chat->id]);
+                        foreach ($this->_leaveChatHandlers as $name => $callable) {
+                            $callable($name, $update->message->chat, $update->message);
+                        }
                     }
                 } elseif (!isset($this->_chats[$update->message->chat->id])) {
                     $this->logInfo('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
                     $this->store($update->message->chat);
                     $this->_chats[$update->message->chat->id] = $update->message->chat;
+                    foreach ($this->_joinChatHandlers as $name => $callable) {
+                        $callable($name, $update->message->chat, $update->message);
+                    }
                 }
                 //fallthrough intended
             case static::UPDATE_TYPE_INLINEQUERY:

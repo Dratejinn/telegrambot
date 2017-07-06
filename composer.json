@@ -18,6 +18,10 @@
         "monolog/monolog": "^1.22",
         "robmorgan/phinx": "^0.8.1"
     },
+    "suggest": {
+        "robmorgan/phinx": "Allow easy use for mysql storage migrations",
+        "monolog/monolog": "Allow great logging"
+    },
     "autoload": {
         "psr-4": {
             "Telegram\\":"src/"

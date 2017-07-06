@@ -31,7 +31,7 @@ class TelegramMigration extends AbstractMigration {
             }
             $table->addColumn($property, $propType, $propOptions);
             if ($property === 'telegram_id') {
-                $table->addIndex(array('telegram_id'), array('unique' => TRUE, 'name' => 'UNI_telegram_id'));
+                $table->addIndex(['telegram_id'], ['unique' => TRUE, 'name' => 'UNI_telegram_id']);
             }
         }
         $table->create();
