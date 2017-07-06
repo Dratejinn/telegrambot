@@ -20,6 +20,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logEmergency($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->emergency($message, $context);
         }
@@ -37,6 +40,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logAlert($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->alert($message, $context);
         }
@@ -53,6 +59,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logCritical($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->critical($message, $context);
         }
@@ -68,6 +77,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logError($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->error($message, $context);
         }
@@ -85,6 +97,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logWarning($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->warning($message, $context);
         }
@@ -99,6 +114,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logNotice($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->notice($message, $context);
         }
@@ -115,6 +133,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logInfo($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->info($message, $context);
         }
@@ -129,6 +150,9 @@ trait TLoggerTrait
      * @return void
      */
     public function logDebug($message, array $context = array()) {
+        if (empty($context) && method_exists($this, 'getLoggerContext')) {
+            $context = $this->getLoggerContext();
+        }
         if ($this->hasLogger()) {
             $this->getLogger()->debug($message, $context);
         }
