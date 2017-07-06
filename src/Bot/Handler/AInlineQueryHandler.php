@@ -24,7 +24,7 @@ abstract class AInlineQueryHandler extends \Telegram\Bot\AHandler {
     }
 
     public function sendAnswer(InlineQuery\Method\AnswerInlineQuery $answerInlineQuery) {
-        $answerInlineQuery->call($this->_bot);
+        $answerInlineQuery->call($this->_apiBot);
     }
 
     public static function GenerateId() : string {
