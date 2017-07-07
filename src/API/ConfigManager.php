@@ -65,8 +65,4 @@ final class ConfigManager {
     public static function HasConfig(string $name) : bool {
         return isset(self::$_Configs[$name]);
     }
-
-    public function __invoke(string $name) {
-        return self::GetConfig($name);
-    }
 }

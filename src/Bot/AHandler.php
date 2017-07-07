@@ -7,10 +7,13 @@ use Telegram\API;
 use Telegram\API\Method\SendMessage;
 use Monolog\Logger;
 use Telegram\LogHelpers;
+use Telegram\Storage\Interfaces\IStorageHandlerAware;
+use Telegram\Storage\Traits\TStorageHandlerTrait;
 
-abstract class AHandler implements LogHelpers\Interfaces\ILoggerAwareInterface {
+abstract class AHandler implements LogHelpers\Interfaces\ILoggerAwareInterface, IStorageHandlerAware {
 
     use LogHelpers\Traits\TLoggerTrait;
+    use TStorageHandlerTrait;
 
     protected $_type        = NULL;
     protected $_update      = NULL;

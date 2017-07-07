@@ -161,6 +161,9 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                     if ($this->hasLogger()) {
                         $handler->setLogger($this->getLogger());
                     }
+                    if ($this->hasStorageHandler()) {
+                        $handler->setStorageHandler($this->getStorageHandler());
+                    }
                     $handler->handle();
                 }
                 break;
