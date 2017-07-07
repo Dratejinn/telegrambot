@@ -9,7 +9,7 @@ use Telegram\API\Method\GetUpdates;
 use Telegram\API\Type\{User, Update, Chat};
 use Telegram\Bot\Handler\{AMessageHandler};
 use Telegram\LogHelpers;
-use Telegram\Storage\Interfaces\IStorageHandlerAware;
+use Telegram\Storage\Interfaces\{ITelegramStorageHandler, IStorageHandlerAware};
 use Telegram\Storage\Traits\TStorageHandlerTrait;
 
 use Psr\Log;
@@ -32,23 +32,44 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
     const GETUPDATES_SLEEP_INTERVAL = 1; //seconds
     const RUN_ERROR_TIMEOUT = 60; //seconds
 
-    protected $_bot         = NULL;
-    protected $_me          = NULL;
-    private $_updateHandler = NULL;
 
-    protected $_handlers    = [];
+    protected $_bot             = NULL;
+    protected $_me              = NULL;
+    private $_updateHandler     = NULL;
 
-    protected $_chats = [];
+    protected $_handlers        = [];
 
-    private $_joinChatHandlers = [];
+    protected $_chats           = [];
+
+    private $_joinChatHandlers  = [];
 
     private $_leaveChatHandlers = [];
 
-    public function __construct(string $token = NULL) {
+    private $_initialized       = FALSE;
+
+    public function __construct(string $token = NULL, ITelegramStorageHandler $storageHandler = NULL) {
         //initialize APIbot
         $this->_bot = new API\Bot($token);
         $this->_updateHandler = new GetUpdates;
         $this->_me = $this->_bot->getMe();
+        if ($storageHandler) {
+            $this->setStorageHandler($storageHandler);
+            $this->init();
+        }
+    }
+
+    public function init() {
+        $this->logDebug('Initializing!', $this->getLoggerContext());
+        //if the chatlist is empty and we have a storage handler, load all chats from the storage handler
+        if ($this->hasStorageHandler() && empty($this->_chats)) {
+            $chats = $this->loadAll(Chat::class);
+            foreach ($chats as $chat) {
+                if (!$chat instanceof Chat) {
+                    throw new \LogicException('retrieval of chats went wrong! Chat is not an instance of Telegram\\API\\Type\\Chat!');
+                }
+                $this->_chats[$chat->id] = $chat;
+            }
+        }
     }
 
     public function __invoke(string $token = NULL) {
@@ -120,13 +141,6 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
 
     public function handleUpdate(Update $update) {
         $this->_updateHandler->offset = $update->id + 1;
-        //if the chatlist is empty and we have a storage handler, load all chats from the storage handler
-        if ($this->hasStorageHandler() && empty($this->_chats)) {
-            $chats = $this->loadAll(Chat::class);
-            foreach ($chats as $chat) {
-                $this->_chats[$chat->id] = $chat;
-            }
-        }
         $updateType = $update->getType();
         switch ($updateType) {
             case static::UPDATE_TYPE_MESSAGE:

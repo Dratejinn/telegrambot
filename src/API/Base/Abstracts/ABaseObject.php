@@ -57,8 +57,11 @@ abstract class ABaseObject implements IStorageHandlerAware {
     public function __construct(\stdClass $payload = NULL) {
         $this->_datamodel = static::GetDatamodel();
         if ($payload) {
-            foreach ($payload as $externalField => $value) {
-                $field = $this->getInternalField($externalField);
+            $internalFields = array_keys($this->_datamodel);
+            foreach ($payload as $field => $value) {
+                if (!in_array($field, $internalFields)) {
+                    $field = $this->getInternalField($field);
+                }
                 if ($field === 'unknown') {
                     continue;
                 }

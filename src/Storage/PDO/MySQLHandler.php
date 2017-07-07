@@ -177,6 +177,12 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         $pdo = $this->connect();
         $obj = $this->_loadBaseFromDatabase($pdo, $class, $id, $index);
         $this->disconnect();
+        foreach ($obj as $propName => $value) {
+            //prop that was not found
+            if ($value === NULL) {
+                unset($obj->{$propName});
+            }
+        }
         $obj = new $class($stdObj);
         return $obj;
     }
@@ -200,15 +206,54 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
 
         if (!$success) {
             $this->disconnect();
-            return new \stdClass;
+            return NULL;
         }
         $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
         $stdObj = $statement->fetch();
+        $this->_sanitizeStdObj($stdObj);
+        $datamodel = $dummy::GetDatamodel();
+        $this->_loadObjectRecursively($stdObj, $datamodel);
+        return $stdObj;
+    }
+
+    public function loadAll(string $class, array $optionalArguments = []) : array {
+        $pdo = $this->connect();
+        $dummy = new $class;
+        $adapter = new TelegramAdapter($dummy);
+        $table = $adapter->getClassBaseName();
+        $statement = $pdo->prepare("SELECT * FROM `$table`");
+        $success = $statement->execute();
+        if (!$success) {
+            $this->disconnect();
+            return [];
+        }
+        $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
+        $objArr = $statement->fetchAll();
+
+        $ret = [];
+        $datamodel = $dummy::GetDatamodel();
+        foreach ($objArr as $stdObj) {
+            $this->_sanitizeStdObj($stdObj);
+            $this->_loadObjectRecursively($stdObj, $datamodel);
+            $ret[] = new $class($stdObj);
+        }
+        $this->disconnect();
+        return $ret;
+    }
+
+    private function _sanitizeStdObj(\stdClass $stdObj) {
         if (isset($stdObj->{'telegram_id'})) {
             $stdObj->id = $stdObj->{'telegram_id'};
             unset($stdObj->{'telegram_id'});
         }
-        $datamodel = $dummy::GetDatamodel();
+        foreach ($stdObj as $propName => $propVal) {
+            if ($propVal === NULL) {
+                unset($stdObj->{$propName});
+            }
+        }
+    }
+
+    private function _loadObjectRecursively(\stdClass $stdObj, array $datamodel) {
         foreach ($datamodel as $propName => $model) {
             if (!isset($stdObj->{$propName})) {
                 continue;
@@ -223,44 +268,6 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
                 }
             }
         }
-        return $stdObj;
-    }
-
-    public function loadAll(string $class, array $optionalArguments = []) : array {
-        $pdo = $this->connect();
-        $dummy = new $class;
-        $adapter = new TelegramAdapter($dummy);
-        $table = $adapter->getClassBaseName();
-        $statement = $pdo->prepare("SELECT * FROM `$table`");
-
-        $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
-        $objArr = $statement->fetchAll();
-        if (isset($stdObj->{'telegram_id'})) {
-            $stdObj->id = $stdObj->{'telegram_id'};
-            unset($stdObj->{'telegram_id'});
-        }
-        $this->disconnect();
-        $ret = [];
-        $datamodel = $dummy::GetDatamodel();
-        foreach ($objArr as $stdObj) {
-            foreach ($datamodel as $propName => $model) {
-                if (!isset($stdObj->{$propName})) {
-                    continue;
-                }
-                if (isset($model['class'])) {
-                    //first try to json_decode the value; if that returns false we can safely assume there is a table to retrieve it.
-                    $propVal = json_decode($stdObj->{$propName});
-                    if ($propVal === NULL) {
-                        $stdObj->{$propName} = $this->_loadBaseFromDatabase($pdo, $model['class'], $stdObj->{$propName});
-                    } else {
-                        $stdObj->{$propName} = $propVal;
-                    }
-                }
-            }
-            $ret[] = new $class($stdObj);
-        }
-        return $ret;
-
     }
 
     private function _getColumnName(string $propertyName) {
