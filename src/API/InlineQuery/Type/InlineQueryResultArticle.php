@@ -16,7 +16,6 @@ class InlineQueryResultArticle extends AInlineQueryResult {
             'thumb_url'             => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'hide_url'],
             'thumb_width'           => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'hide_url'],
             'thumb_height'          => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'hide_url'],
-            'input_message_content' => ['type' => ABaseObject::T_OBJECT,    'optional' => FALSE,    'external' => 'input_message_content', 'class' => [InlineQuery\InputTextMessageContent::class, InlineQuery\InputLocationMessageContent::class, InlineQuery\InputVenueMessageContent::class, InlineQuery\InputContactMessageContent::class]],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

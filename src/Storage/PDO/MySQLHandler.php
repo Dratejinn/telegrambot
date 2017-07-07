@@ -226,28 +226,13 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         return $stdObj;
     }
 
-    public function loadAll(string $class, string $index = NULL, array $optionalArguments = []) : array {
+    public function loadAll(string $class, array $optionalArguments = []) : array {
         $pdo = $this->connect();
         $dummy = new $class;
         $adapter = new TelegramAdapter($dummy);
         $table = $adapter->getClassBaseName();
-        if ($index === NULL) {
-            if ($dummy::HasIdProperty()) {
-                $index = $dummy::GetIdProperty();
-                if ($index === 'id') {
-                    $index = 'telegram_id';
-                }
-            } else {
-                throw new \InvalidArgumentException("No index provided for object $table!");
-            }
-        }
         $statement = $pdo->prepare("SELECT * FROM `$table`");
-        $success = $statement->execute(['id' => $id]);
 
-        if (!$success) {
-            $this->disconnect();
-            return [];
-        }
         $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
         $objArr = $statement->fetchAll();
         if (isset($stdObj->{'telegram_id'})) {
@@ -256,7 +241,22 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         }
         $this->disconnect();
         $ret = [];
+        $datamodel = $dummy::GetDatamodel();
         foreach ($objArr as $stdObj) {
+            foreach ($datamodel as $propName => $model) {
+                if (!isset($stdObj->{$propName})) {
+                    continue;
+                }
+                if (isset($model['class'])) {
+                    //first try to json_decode the value; if that returns false we can safely assume there is a table to retrieve it.
+                    $propVal = json_decode($stdObj->{$propName});
+                    if ($propVal === NULL) {
+                        $stdObj->{$propName} = $this->_loadBaseFromDatabase($pdo, $model['class'], $stdObj->{$propName});
+                    } else {
+                        $stdObj->{$propName} = $propVal;
+                    }
+                }
+            }
             $ret[] = new $class($stdObj);
         }
         return $ret;

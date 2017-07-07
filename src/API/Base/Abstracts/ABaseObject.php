@@ -141,6 +141,9 @@ abstract class ABaseObject implements IStorageHandlerAware {
                 } else {
                     $errorType = $fieldType;
                 }
+                if ($providedType === NULL) {
+                    $providedType = 'NULL';
+                }
                 throw new \LogicException("Unexpected type provided for $name. Expected $errorType but got $providedType!");
             }
         } else {

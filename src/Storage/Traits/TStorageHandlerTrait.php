@@ -33,9 +33,9 @@ trait TStorageHandlerTrait
         return NULL;
     }
 
-    public function loadAll(string $class, string $index = NULL, array $optionalArguments = []) : array {
+    public function loadAll(string $class, array $optionalArguments = []) : array {
         if ($this->hasStorageHandler()) {
-            return $this->_storageHandler->loadAll($class, $index, $optionalArguments);
+            return $this->_storageHandler->loadAll($class, $optionalArguments);
         }
         return [];
     }
