@@ -175,6 +175,13 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
 
     public function load(string $class, string $id = '', string $index = NULL, array $optionalArguments = []) : ABaseObject {
         $pdo = $this->connect();
+        $obj = $this->_loadBaseFromDatabase($pdo, $class, $id, $index);
+        $this->disconnect();
+        $obj = new $class($stdObj);
+        return $obj;
+    }
+
+    private function _loadBaseFromDatabase(\PDO $pdo, string $class, string $id = '', string $index = NULL) {
         $dummy = new $class;
         $adapter = new TelegramAdapter($dummy);
         $table = $adapter->getClassBaseName();
@@ -193,7 +200,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
 
         if (!$success) {
             $this->disconnect();
-            return new $class;
+            return new \stdClass;
         }
         $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
         $stdObj = $statement->fetch();
@@ -201,9 +208,22 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
             $stdObj->id = $stdObj->{'telegram_id'};
             unset($stdObj->{'telegram_id'});
         }
-        $this->disconnect();
-        $obj = new $class($stdObj);
-        return $obj;
+        $datamodel = $dummy::GetDatamodel();
+        foreach ($datamodel as $propName => $model) {
+            if (!isset($stdObj->{$propName})) {
+                continue;
+            }
+            if (isset($model['class'])) {
+                //first try to json_decode the value; if that returns false we can safely assume there is a table to retrieve it.
+                $propVal = json_decode($stdObj->{$propName});
+                if ($propVal === NULL) {
+                    $stdObj->{$propName} = $this->_loadBaseFromDatabase($pdo, $model['class'], $stdObj->{$propName});
+                } else {
+                    $stdObj->{$propName} = $propVal;
+                }
+            }
+        }
+        return $stdObj;
     }
 
     public function loadAll(string $class, string $index = NULL, array $optionalArguments = []) : array {

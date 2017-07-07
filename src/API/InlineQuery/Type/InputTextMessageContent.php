@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Telegram\API\InlineQuery\Method;
+namespace Telegram\API\InlineQuery\Type;
 
-use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
+use Telegram\API\Base\Abstracts\ABaseObject;
 
-class InputTextMessageContent extends ASend {
+class InputTextMessageContent extends ABaseObject {
 
     public static function GetDatamodel() : array {
         $datamodel = [
