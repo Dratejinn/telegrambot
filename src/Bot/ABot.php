@@ -88,7 +88,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
     public function run(bool $throwOnFailure = TRUE) {
         while (TRUE) {
             try {
-                $updates = $this->_updateHandler->call($this->_bot);
+                $updates = $this->getUpdates();
                 $this->handleUpdates($updates);
             } catch (\Throwable $e) {
                 if ($throwOnFailure) {
@@ -104,6 +104,10 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                 sleep(static::GETUPDATES_SLEEP_INTERVAL);
             }
         }
+    }
+
+    public function getUpdates() : array {
+        return $this->_updateHandler->call($this->_bot);
     }
 
     public function handleUpdates(array $updates) {
