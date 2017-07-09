@@ -396,4 +396,19 @@ abstract class ABaseObject implements IStorageHandlerAware {
         }
         return $obj;
     }
+
+    public function isEqual(ABaseObject $object) : bool {
+        if (get_class($this) !== get_class($object)) {
+            return FALSE;
+        }
+        foreach ($this->_values as $key => $value) {
+            if (!isset($object->{$key})) {
+                return FALSE;
+            }
+            if ($value !== $object->{$key}) {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
 }

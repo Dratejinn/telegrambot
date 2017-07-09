@@ -169,4 +169,8 @@ trait TLoggerTrait
     public function setLogger(Log\LoggerInterface $logger) {
         $this->_logger = $logger;
     }
+
+    public function removeLogger() {
+        $this->_logger = NULL;
+    }
 }

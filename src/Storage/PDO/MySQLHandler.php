@@ -93,14 +93,14 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
 
         $insertValues = [];
         foreach ($datamodel as $propName => $settings) {
-            if (($settings['optional'] && !$storeOptionals) || !isset($object->{$propName})) {
+            if (($settings['optional'] && !$storeOptionals)) {
                 continue;
             }
             $colName = $this->_getColumnName($propName);
-            if (!in_array($colName, $databaseColumns) && $object->{$propName} instanceof ABaseObject) {
+            if (isset($object->{$propName}) && !in_array($colName, $databaseColumns) && $object->{$propName} instanceof ABaseObject) {
                     $insertValues[$colName] = $object->getJSON();
             } else {
-                if ($object->{$propName} instanceof ABaseObject) {
+                if (isset($object->{$propName}) && $object->{$propName} instanceof ABaseObject) {
                     //check if the property has a Database or not.
                     $propObject = $object->{$propName};
                     $hasTableStatement->execute([':database' => $this->_database, ':tableName' => $telegramAdapter::GetBaseObjectClassBaseName($propObject)]);
@@ -119,7 +119,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
                         $insertValues[$colName] = $object->getJSON();
                     }
                 } else {
-                    $insertValues[$colName] = $object->{$propName};
+                    $insertValues[$colName] = isset($object->{$propName}) ? $object->{$propName} : NULL;
                 }
             }
         }
@@ -177,13 +177,15 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         $pdo = $this->connect();
         $obj = $this->_loadBaseFromDatabase($pdo, $class, $id, $index);
         $this->disconnect();
-        foreach ($obj as $propName => $value) {
-            //prop that was not found
-            if ($value === NULL) {
-                unset($obj->{$propName});
+        if ($obj !== NULL) {
+            foreach ($obj as $propName => $value) {
+                //prop that was not found
+                if ($value === NULL) {
+                    unset($obj->{$propName});
+                }
             }
         }
-        $obj = new $class($stdObj);
+        $obj = new $class($obj);
         return $obj;
     }
 
@@ -210,6 +212,10 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         }
         $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
         $stdObj = $statement->fetch();
+        if ($stdObj === FALSE) {
+            $this->disconnect();
+            return NULL;
+        }
         $this->_sanitizeStdObj($stdObj);
         $datamodel = $dummy::GetDatamodel();
         $this->_loadObjectRecursively($stdObj, $datamodel);

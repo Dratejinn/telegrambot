@@ -16,7 +16,7 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
 
     public function __construct(API\Type\Update $update, ABot $bot) {
         parent::__construct($update, $bot);
-        $this->_message = $update->message;
+        $this->_message = $update->{$update->getType()};
     }
 
     public function handle() {

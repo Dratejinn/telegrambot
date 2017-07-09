@@ -16,7 +16,7 @@ class User extends ABaseObject {
             'firstName'     => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'first_name'],
             'lastName'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'last_name'],
             'username'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'username'],
-            'languageCode' => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'language_code']
+            'languageCode'  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'language_code']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

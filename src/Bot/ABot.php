@@ -35,6 +35,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
 
     protected $_bot             = NULL;
     protected $_me              = NULL;
+
     private $_updateHandler     = NULL;
 
     protected $_handlers        = [];
@@ -164,6 +165,16 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                     foreach ($this->_joinChatHandlers as $name => $callable) {
                         $callable($name, $update->{$updateType}->chat, $update->{$updateType});
                     }
+                } else {
+                    //check if we should update the chat in storage
+                    $storedInfo = $this->load(Chat::class, (string) $update->{$updateType}->chat->id);
+                    if ($storedInfo instanceof Chat) {
+                        $this->logDebug('Found Stored info');
+                        if (!$update->{$updateType}->chat->isEqual($storedInfo)) {
+                            $this->logInfo('Updating chat with id: ' . $update->{$updateType}->chat->id, $this->getLoggerContext());
+                            $this->store($update->{$updateType}->chat);
+                        }
+                    }
                 }
                 //fallthrough intended
             case static::UPDATE_TYPE_INLINEQUERY:
@@ -180,6 +191,8 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                         $handler->setStorageHandler($this->getStorageHandler());
                     }
                     $handler->handle();
+                } else {
+                    $this->logAlert('Warning no suitable handler found for type: ' . $updateType);
                 }
                 break;
         }

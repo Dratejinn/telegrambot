@@ -28,6 +28,8 @@ class TelegramMigration extends AbstractMigration {
             }
             if ($property === 'id') {
                 $property = 'telegram_id';
+                //ensure that length is sufficient for long id's (like with channels);
+                $propOptions['limit'] = 32;
             }
             $table->addColumn($property, $propType, $propOptions);
             if ($property === 'telegram_id') {
