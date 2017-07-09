@@ -82,7 +82,7 @@ abstract class ABaseObject implements IStorageHandlerAware {
         if (isset($this->_values[$sName])) {
             return $this->_values[$sName];
         }
-        throw new \LogicException('Unknown field \'' . $name . '\'!');
+        throw new \LogicException('Unknown field \'' . $name . '\' for object: ' . get_class($this) . '!');
     }
 
     public function __set(string $name, $value) {

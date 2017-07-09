@@ -147,21 +147,22 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
             case static::UPDATE_TYPE_EDITEDMESSAGE:
             case static::UPDATE_TYPE_CHANNELPOST:
             case static::UPDATE_TYPE_EDITEDCHANNELPOST:
-                if (isset($update->message->leftChatMember)) {
-                    if ($this->_me->id === $update->message->leftChatMember->id) {
-                        $this->logInfo('Removing chat with id:' . $update->message->chat->id . ' from current chatlist!', $this->getLoggerContext());
-                        $this->delete($update->message->chat);
-                        unset($this->_chats[$update->message->chat->id]);
+                $updateType = $update->getType();
+                if (isset($update->{$updateType}->leftChatMember)) {
+                    if ($this->_me->id === $update->{$updateType}->leftChatMember->id) {
+                        $this->logInfo('Removing chat with id: ' . $update->{$updateType}->chat->id . ' from current chatlist!', $this->getLoggerContext());
+                        $this->delete($update->{$updateType}->chat);
+                        unset($this->_chats[$update->{$updateType}->chat->id]);
                         foreach ($this->_leaveChatHandlers as $name => $callable) {
-                            $callable($name, $update->message->chat, $update->message);
+                            $callable($name, $update->{$updateType}->chat, $update->{$updateType});
                         }
                     }
-                } elseif (!isset($this->_chats[$update->message->chat->id])) {
-                    $this->logInfo('Adding chat with id:' . $update->message->chat->id, $this->getLoggerContext());
-                    $this->store($update->message->chat);
-                    $this->_chats[$update->message->chat->id] = $update->message->chat;
+                } elseif (!isset($this->_chats[$update->{$updateType}->chat->id])) {
+                    $this->logInfo('Adding chat with id: ' . $update->{$updateType}->chat->id, $this->getLoggerContext());
+                    $this->store($update->{$updateType}->chat);
+                    $this->_chats[$update->{$updateType}->chat->id] = $update->{$updateType}->chat;
                     foreach ($this->_joinChatHandlers as $name => $callable) {
-                        $callable($name, $update->message->chat, $update->message);
+                        $callable($name, $update->{$updateType}->chat, $update->{$updateType});
                     }
                 }
                 //fallthrough intended

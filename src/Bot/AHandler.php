@@ -67,5 +67,12 @@ abstract class AHandler implements LogHelpers\Interfaces\ILoggerAwareInterface, 
         return $this->_bot->getLoggerContext();
     }
 
+    public function getLanguageCode() {
+        if ($this->_message !== NULL) {
+            return $this->_message->from->languageCode;
+        }
+        return NULL;
+    }
+
     abstract public function handle();
 }
