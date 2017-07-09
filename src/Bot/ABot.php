@@ -68,7 +68,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                 if (!$chat instanceof Chat) {
                     throw new \LogicException('retrieval of chats went wrong! Chat is not an instance of Telegram\\API\\Type\\Chat!');
                 }
-                $this->_chats[$chat->id] = $chat;
+                $this->_chats[(string) $chat->id] = $chat;
             }
         }
     }
@@ -153,15 +153,15 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                     if ($this->_me->id === $update->{$updateType}->leftChatMember->id) {
                         $this->logInfo('Removing chat with id: ' . $update->{$updateType}->chat->id . ' from current chatlist!', $this->getLoggerContext());
                         $this->delete($update->{$updateType}->chat);
-                        unset($this->_chats[$update->{$updateType}->chat->id]);
+                        unset($this->_chats[(string) $update->{$updateType}->chat->id]);
                         foreach ($this->_leaveChatHandlers as $name => $callable) {
                             $callable($name, $update->{$updateType}->chat, $update->{$updateType});
                         }
                     }
-                } elseif (!isset($this->_chats[$update->{$updateType}->chat->id])) {
+                } elseif (!isset($this->_chats[(string) $update->{$updateType}->chat->id])) {
                     $this->logInfo('Adding chat with id: ' . $update->{$updateType}->chat->id, $this->getLoggerContext());
                     $this->store($update->{$updateType}->chat);
-                    $this->_chats[$update->{$updateType}->chat->id] = $update->{$updateType}->chat;
+                    $this->_chats[(string) $update->{$updateType}->chat->id] = $update->{$updateType}->chat;
                     foreach ($this->_joinChatHandlers as $name => $callable) {
                         $callable($name, $update->{$updateType}->chat, $update->{$updateType});
                     }
@@ -206,7 +206,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
         return $this->_chats;
     }
 
-    public function getChatById(int $id) {
+    public function getChatById(string $id) {
         if (isset($this->_chats[$id])) {
             return $this->_chats[$id];
         }
