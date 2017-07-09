@@ -16,7 +16,7 @@ class Update extends ABaseObject {
 
     public static function GetDatamodel() : array {
         $datamodel = [
-            'id'                    => ['type' => [ABaseObject::T_INT, ABaseObject::T_FLOAT],       'optional' => FALSE,    'external' => 'update_id'],
+            'id'                    => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => FALSE,    'external' => 'update_id'],
             'message'               => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'message',                'class' => Message::class],
             'editedMessage'         => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'edited_message',         'class' => Message::class],
             'channelPost'           => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'channel_post',           'class' => Message::class],

@@ -17,7 +17,7 @@ class Chat extends ABaseObject {
 
     public static function GetDatamodel() : array {
         $datamodel = [
-            'id'            => ['type' => [ABaseObject::T_INT, ABaseObject::T_FLOAT],       'optional' => FALSE,    'external' => 'id'],
+            'id'            => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => FALSE,    'external' => 'id'],
             'type'          => ['type' => ABaseObject::T_STRING,                            'optional' => FALSE,    'external' => 'type'],
             'title'         => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'title'],
             'username'      => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'username'],
