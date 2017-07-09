@@ -29,7 +29,9 @@ class TelegramMigration extends AbstractMigration {
             if ($property === 'id') {
                 $property = 'telegram_id';
                 //ensure that length is sufficient for long id's (like with channels);
-                $propOptions['limit'] = 32;
+                if ($propType === 'integer') {
+                    $propType = 'biginteger';
+                }
             }
             $table->addColumn($property, $propType, $propOptions);
             if ($property === 'telegram_id') {
@@ -47,11 +49,13 @@ class TelegramMigration extends AbstractMigration {
             $telegramType = $telegramType[0];
         }
         if (is_array($telegramType)) {
-            if (in_array(ABaseObject::T_ARRAY || ABaseObject::T_OBJECT)) {
+            if (in_array(ABaseObject::T_ARRAY, $telegramType) || in_array(ABaseObject::T_OBJECT, $telegramType)) {
                 return 'string';
-            } elseif (in_array(ABaseObject::T_BOOL) && in_array(ABaseObject::T_INT) && count($telegramType) == 2) {
+            } elseif ((in_array(ABaseObject::T_BOOL, $telegramType) || in_array(ABaseObject::T_INT, $telegramType)) && count($telegramType) == 2) {
                 //ensure integer type when only boolean or integers are possible
                 return ABaseObject::T_INT;
+            } elseif ((in_array(ABaseObject::T_FLOAT, $telegramType) || in_array(ABaseObject::T_INT, $telegramType)) && count($telegramType) == 2) {
+                return ABaseObject::T_FLOAT;
             } else {
                 //safe fallback
                 return 'string';
