@@ -4,6 +4,13 @@ declare(strict_types = 1);
 
 namespace Telegram\API\Base\Interfaces;
 
+use Telegram\API\Bot;
+
 interface IOutbound {
-    public function call(\Telegram\API\Bot $bot);
+
+    /**
+     * @param \Telegram\API\Bot $bot
+     * @return mixed
+     */
+    public function call(Bot $bot);
 }

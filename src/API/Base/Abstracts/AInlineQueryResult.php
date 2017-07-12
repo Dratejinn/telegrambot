@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Telegram\API\Base\Abstracts;
 
 use Telegram\API\InlineQuery;
+use Telegram\API\Type;
 
 abstract class AInlineQueryResult extends ABaseObject {
 

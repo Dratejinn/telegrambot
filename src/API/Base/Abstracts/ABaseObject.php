@@ -22,24 +22,49 @@ abstract class ABaseObject implements IStorageHandlerAware {
     const PROP_CLASS = 'class';
     const PROP_CONTENT = 'content';
 
+    /**
+     * Id field property used for StorageHandlers
+     * @var string
+     */
     protected static $_IdProp = '';
 
+    /**
+     * Used to store values according to the provided datamodel
+     * @var array
+     */
     private $_values = [];
 
+    /**
+     * the loaded datamodel
+     * @var array|null
+     */
     protected $_datamodel = NULL;
 
+    /**
+     * @inheritdoc
+     */
     public function hasStorageHandler() : bool {
         return $this->_storageHandler instanceof ITelegramStorageHandler;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getStorageHandler() : ITelegramStorageHandler {
         return $this->_storageHandler;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function setStorageHandler(ITelegramStorageHandler $storageHandler) {
         $this->_storageHandler = $storageHandler;
     }
 
+    /**
+     * Used to store the object if there is a StorageHandler
+     * @return bool
+     */
     public function store() : bool {
         if ($this->hasStorageHandler()) {
             return $this->_storageHandler->store(static::class, $this);
@@ -47,6 +72,10 @@ abstract class ABaseObject implements IStorageHandlerAware {
         return FALSE;
     }
 
+    /**
+     * Used to delete this object from storage
+     * @return bool
+     */
     public function delete() : bool {
         if ($this->hasStorageHandler()) {
             return $this->_storageHandler->delete($this);
@@ -54,6 +83,10 @@ abstract class ABaseObject implements IStorageHandlerAware {
         return FALSE;
     }
 
+    /**
+     * ABaseObject constructor.
+     * @param \stdClass|NULL $payload
+     */
     public function __construct(\stdClass $payload = NULL) {
         $this->_datamodel = static::GetDatamodel();
         if ($payload) {
@@ -77,6 +110,11 @@ abstract class ABaseObject implements IStorageHandlerAware {
         }
     }
 
+    /**
+     * Magic getter used to retrieve the values of the properties defined in the datamodel
+     * @param string $name
+     * @return mixed
+     */
     public function __get(string $name) {
         $sName = lcfirst($name);
         if (isset($this->_values[$sName])) {
@@ -85,6 +123,12 @@ abstract class ABaseObject implements IStorageHandlerAware {
         throw new \LogicException('Unknown field \'' . $name . '\' for object: ' . get_class($this) . '!');
     }
 
+    /**
+     * Magic setter used to set the values of the properties defined in the datamodel
+     * @param string $name
+     * @param $value
+     * @throws \Exception
+     */
     public function __set(string $name, $value) {
         $sName = lcfirst($name);
         if ($this->hasField($name)) {
@@ -154,10 +198,22 @@ abstract class ABaseObject implements IStorageHandlerAware {
         }
     }
 
+    /**
+     * Used to check if a value of the datamodel is set
+     * @param string $name
+     * @return bool
+     */
     public function __isset(string $name) : bool {
         return isset($this->_values[$name]);
     }
 
+    /**
+     * Used to define set and get methods for the properties defined in the datamodel
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
+     * @throws \Exception
+     */
     public function __call(string $name, array $arguments) {
         $type = substr($name, 0, 3);
         if ($type === 'set' || $type === 'get') {
@@ -178,44 +234,89 @@ abstract class ABaseObject implements IStorageHandlerAware {
         throw new \Exception('Unknown method ' . $name);
     }
 
+    /**
+     * Used to only show the values when using var_dump to explore the object
+     * @return array
+     */
     public function __debugInfo() : array {
         return [
             'values' => $this->_values
         ];
     }
 
+    /**
+     * Used to check if a field has been defined by the datamodel
+     * @param string $name
+     * @return bool
+     */
     public function hasField(string $name) : bool {
         return isset($this->_datamodel[$name]);
     }
 
+    /**
+     * Used to get the Fully Qualified Class Name of the loaded object
+     * @return string
+     */
     public function getFQCN() : string {
         return static::class;
     }
 
+    /**
+     * Used to get a field property from the datamodel
+     * @param string $field
+     * @param string $property
+     * @return mixed
+     */
     private function _getFieldProperty(string $field, string $property) {
         if ($this->hasField($field)) {
             if (isset($this->_datamodel[$field][$property])) {
                 return $this->_datamodel[$field][$property];
             }
         }
+        return NULL;
     }
 
+    /**
+     * Used to get the property type of a field
+     * @param string $name
+     * @return mixed
+     */
     public function getFieldType(string $name) {
         return $this->_getFieldProperty($name, self::PROP_TYPE);
     }
 
+    /**
+     * Used to check if a field actually has a value
+     * @param string $name
+     * @return bool
+     */
     public function hasFieldValue(string $name) : bool {
         return isset($this->{$name});
     }
 
+    /**
+     * Used to check if a property is optional
+     * @param string $name
+     * @return bool
+     */
     public function isOptional(string $name) : bool {
         return $this->_getFieldProperty($name, self::PROP_OPTIONAL);
     }
 
+    /**
+     * Used to get the externally used name
+     * @param string $name
+     * @return string
+     */
     public function getExternalField(string $name) : string {
         return $this->_getFieldProperty($name, self::PROP_EXTERNAL);
     }
 
+    /**
+     * Used to get the internal (php) field name. Returns unknown when the field has not been found
+     * @param string $name
+     * @return string
+     */
     public function getInternalField(string $name) : string {
         foreach ($this->_datamodel as $field => $settings) {
             if ($settings[self::PROP_EXTERNAL] === $name) {
@@ -225,14 +326,26 @@ abstract class ABaseObject implements IStorageHandlerAware {
         return 'unknown';
     }
 
+    /**
+     * Check whether the class has an Id field
+     * @return bool
+     */
     public static function HasIdProperty() : bool {
         return !empty(static::$_IdProp);
     }
 
+    /**
+     * Used to get the Id property name
+     * @return string
+     */
     public static function GetIdProperty() {
         return static::$_IdProp;
     }
 
+    /**
+     * Used to set the Id property name
+     * @param string $propName
+     */
     public static function SetIDProperty(string $propName) {
         $datamodel = static::GetDatamodel();
         if (!isset($datamodel[$propName])) {
@@ -241,6 +354,11 @@ abstract class ABaseObject implements IStorageHandlerAware {
         static::$_IdProp = $propName;
     }
 
+    /**
+     * Used to get the type for a variable
+     * @param $var
+     * @return string|NULL
+     */
     public static function GetTypeForVar($var) {
         $type = gettype($var);
         switch ($type) {
@@ -260,12 +378,22 @@ abstract class ABaseObject implements IStorageHandlerAware {
                 }
                 break;
         }
+        return NULL;
     }
 
+    /**
+     * Encode this object to a json string
+     * @return string
+     */
     public function getJSON() : string {
         return self::EncodeJSON($this->jsonify());
     }
 
+    /**
+     * returns the object as MultipartFormData
+     * @return array
+     * @throws \Exception
+     */
     public function getMultipartFormData() : array {
         $payload = [];
 
@@ -298,6 +426,10 @@ abstract class ABaseObject implements IStorageHandlerAware {
         return $payload;
     }
 
+    /**
+     * Used to get the payload of the class
+     * @return array|string
+     */
     public function getPayload() {
         if ($this->hasInputFile()) {
             return $this->getMultipartFormData();
@@ -306,6 +438,10 @@ abstract class ABaseObject implements IStorageHandlerAware {
         }
     }
 
+    /**
+     * Used to get the payload type
+     * @return string
+     */
     public function getPayloadType() : string {
         if ($this->hasInputFile()) {
             return 'MultiPartFormData';
@@ -314,6 +450,10 @@ abstract class ABaseObject implements IStorageHandlerAware {
         }
     }
 
+    /**
+     * Used to check whether one of the fields set is an InputFile
+     * @return bool
+     */
     public function hasInputFile() {
         $hasInputFile = FALSE;
         array_walk_recursive($this->_values, function($item) use (&$hasInputFile) {
@@ -324,7 +464,12 @@ abstract class ABaseObject implements IStorageHandlerAware {
         return $hasInputFile;
     }
 
-    public function jsonify() : \stdClass {
+    /**
+     * Get a stdClass representation of the object
+     * @return mixed
+     * @throws \Exception
+     */
+    public function jsonify() {
         $payload = new \stdClass;
 
         foreach (array_keys($this->_datamodel) as $field) {
@@ -353,10 +498,19 @@ abstract class ABaseObject implements IStorageHandlerAware {
         return $payload;
     }
 
+    /**
+     * Used to get the datamodel definition of the class
+     * @return array
+     */
     public static function GetDatamodel() : array {
         return [];
     }
 
+    /**
+     * Encode a stdClass to json
+     * @param \stdClass $structure
+     * @return string
+     */
     public static function EncodeJSON(\stdClass $structure) : string {
         $str = json_encode($structure);
         if ($str === FALSE) {
@@ -367,12 +521,18 @@ abstract class ABaseObject implements IStorageHandlerAware {
                 case JSON_ERROR_UTF8:
                     throw new \LogicException('JSON encode error: Malformed UTF-8 characters');
                 default:
-                    throw new \LogicException('JSON encode error: Unknown error ('.$err.')');
+                    throw new \LogicException('JSON encode error: Unknown error (' . $err . ')');
             }
         }
         return $str;
     }
 
+    /**
+     * Decode a json string to a stdClass
+     * @param string $jsonString
+     * @param bool $throw
+     * @return \stdClass
+     */
     public static function DecodeJSON(string $jsonString, bool $throw = TRUE) : \stdClass {
         $obj = json_decode($jsonString, FALSE);
         if ($obj === NULL && $throw) {
@@ -391,13 +551,21 @@ abstract class ABaseObject implements IStorageHandlerAware {
                 case JSON_ERROR_UTF8:
                     throw new \LogicException('JSON decode error: Malformed UTF-8 characters, possibly incorrectly encoded');
                 default:
-                    throw new \LogicException('JSON decode error: Unknown error ('.$err.')');
+                    throw new \LogicException('JSON decode error: Unknown error (' . $err . ')');
             }
         }
         return $obj;
     }
 
+    /**
+     * Used to compare two ABaseObject objects to see if they are equal
+     * @param \Telegram\API\Base\Abstracts\ABaseObject $object
+     * @return bool
+     */
     public function isEqual(ABaseObject $object) : bool {
+        if ($this === $object) {
+            return TRUE;
+        }
         if (get_class($this) !== get_class($object)) {
             return FALSE;
         }

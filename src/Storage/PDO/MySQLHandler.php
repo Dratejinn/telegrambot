@@ -155,7 +155,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
             } else {
                 $col = $idProp;
             }
-            $statement = $pdo->prepare("DELETE FROM $table WHERE $col = :colval");
+            $statement = $pdo->prepare("DELETE FROM $table WHERE `$col` = :colval");
             $success = $statement->execute([':colval' => $object->{$idProp}]);
             $this->disconnect();
             return $success;
@@ -164,7 +164,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
             $datamodel = $object::GetDatamodel();
             $query = "DELETE FROM $table WHERE ";
             foreach (array_keys($datamodel) as $property) {
-                $query .= "$property = ?";
+                $query .= "`$property` = ?";
             }
             $statement = $pdo->prepare($query);
             $res = $statement->execute(array_values($datamodel));
@@ -202,16 +202,18 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
             } else {
                 throw new \InvalidArgumentException("No index provided for object $table!");
             }
+        } elseif ($index === 'id') {
+            $index = 'telegram_id';
         }
         $statement = $pdo->prepare("SELECT * FROM `$table` WHERE `$index` = :id");
+        $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
         $success = $statement->execute(['id' => $id]);
 
         if (!$success) {
             $this->disconnect();
             return NULL;
         }
-        $statement->setFetchMode(\PDO::FETCH_CLASS, \stdClass::class);
-        $stdObj = $statement->fetch();
+        $stdObj = $statement->fetch(\PDO::FETCH_CLASS);
         if ($stdObj === FALSE) {
             $this->disconnect();
             return NULL;

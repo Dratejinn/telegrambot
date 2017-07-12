@@ -31,8 +31,5 @@
         "psr-4": {
             "Examples\\":"Examples/"
         }
-    },
-    "bin": [
-        "bin/ConfigGenerator.php"
-    ]
+    }
 }

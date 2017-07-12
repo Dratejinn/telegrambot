@@ -10,6 +10,9 @@ use Telegram\API\Bot;
 
 abstract class ASend extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'chatId'                => ['type' => [ABaseObject::T_INT, ABaseObject::T_STRING, ABaseObject::T_FLOAT], 'optional' => FALSE,    'external' => 'chat_id'],
@@ -20,6 +23,12 @@ abstract class ASend extends ABaseObject implements IOutbound {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     * @param \Telegram\API\Bot $bot
+     * @return \Telegram\API\Type\Message
+     * @throws \Exception
+     */
     public function call(Bot $bot) {
         $reply = $bot->call($this->_getApiCall(), $this);
         if ($reply instanceof \stdClass) {
@@ -35,6 +44,10 @@ abstract class ASend extends ABaseObject implements IOutbound {
         }
     }
 
+    /**
+     * Used to get the API call from the object
+     * @return string
+     */
     protected function _getApiCall() : string {
         return lcfirst((substr(static::class, strrpos(static::class, '\\') + 1)));
     }
