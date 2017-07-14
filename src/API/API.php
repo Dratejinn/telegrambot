@@ -10,13 +10,27 @@ final class API {
 
     const URL = 'https://api.telegram.org/bot%s/';
 
+    /**
+     * @var \Monolog\Logger
+     */
     private static $_Logger = NULL;
 
+    /**
+     * @param string $method
+     * @param \Telegram\API\Bot $bot
+     * @param \Telegram\API\Base\Abstracts\ABaseObject $payload
+     * @return \stdClass
+     */
     public static function CallMethod(string $method, Bot $bot, Base\Abstracts\ABaseObject $payload) {
         $url = self::_GetURL($method, $bot->getToken());
         return self::SendRequest($url, $payload);
     }
 
+    /**
+     * @param string $url
+     * @param \Telegram\API\Base\Abstracts\ABaseObject $payload
+     * @return \stdClass
+     */
     public static function SendRequest(string $url, Base\Abstracts\ABaseObject $payload) {
         /* Create the headers */
 
@@ -92,22 +106,33 @@ final class API {
                     self::$_Logger->alert('JSON decode error: Malformed UTF-8 characters, possibly incorrectly encoded');
                     break;
                 default:
-                    self::$_Logger->alert('JSON decode error: Unknown error ('.$err.')');
+                    self::$_Logger->alert('JSON decode error: Unknown error (' . $err . ')');
                     break;
             }
         }
         return $res;
     }
 
-    private static function _GetURL(string $method, string $token) {
+    /**
+     * @param string $method
+     * @param string $token
+     * @return string
+     */
+    private static function _GetURL(string $method, string $token) : string {
         $botUrl = sprintf(self::URL, $token);
         return $botUrl . $method;
     }
 
+    /**
+     * @param \Psr\Log\LoggerAwareInterface $logger
+     */
     public static function SetLogger(Log\LoggerAwareInterface $logger) {
         self::$_Logger = $logger;
     }
 
+    /**
+     * @return bool
+     */
     public static function HasLogger() : bool {
         return self::$_Logger !== NULL;
     }

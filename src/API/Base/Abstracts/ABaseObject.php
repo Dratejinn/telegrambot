@@ -439,6 +439,7 @@ abstract class ABaseObject implements IStorageHandlerAware {
     }
 
     /**
+<<<<<<< Updated upstream
      * Used to get the payload type
      * @return string
      */
@@ -451,6 +452,7 @@ abstract class ABaseObject implements IStorageHandlerAware {
     }
 
     /**
+<<<<<<< Updated upstream
      * Used to check whether one of the fields set is an InputFile
      * @return bool
      */
@@ -465,7 +467,7 @@ abstract class ABaseObject implements IStorageHandlerAware {
     }
 
     /**
-     * Get a stdClass representation of the object
+     * Get a jsonified representation of the object
      * @return mixed
      * @throws \Exception
      */

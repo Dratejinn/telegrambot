@@ -9,6 +9,9 @@ use Psr\Log;
 trait TLoggerTrait
 {
 
+    /**
+     * @var \Monolog\Logger
+     */
     private $_logger = NULL;
 
     /**
@@ -19,7 +22,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logEmergency($message, array $context = array()) {
+    public function logEmergency($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -39,7 +42,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logAlert($message, array $context = array()) {
+    public function logAlert($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -58,7 +61,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logCritical($message, array $context = array()) {
+    public function logCritical($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -76,7 +79,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logError($message, array $context = array()) {
+    public function logError($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -96,7 +99,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logWarning($message, array $context = array()) {
+    public function logWarning($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -113,7 +116,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logNotice($message, array $context = array()) {
+    public function logNotice($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -132,7 +135,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logInfo($message, array $context = array()) {
+    public function logInfo($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -149,7 +152,7 @@ trait TLoggerTrait
      *
      * @return void
      */
-    public function logDebug($message, array $context = array()) {
+    public function logDebug($message, array $context = []) {
         if (empty($context) && method_exists($this, 'getLoggerContext')) {
             $context = $this->getLoggerContext();
         }
@@ -158,18 +161,32 @@ trait TLoggerTrait
         }
     }
 
+    /**
+     * @return bool
+     */
     public function hasLogger() : bool {
         return $this->_logger instanceof Log\LoggerInterface;
     }
 
+    /**
+     * @return \Psr\Log\LoggerInterface
+     */
     public function getLogger() : Log\LoggerInterface {
         return $this->_logger;
     }
 
+    /**
+     * @param \Psr\Log\LoggerInterface $logger
+     * @return void
+     */
     public function setLogger(Log\LoggerInterface $logger) {
         $this->_logger = $logger;
     }
 
+    /**
+     * removes the logger from the object
+     * @return void
+     */
     public function removeLogger() {
         $this->_logger = NULL;
     }
