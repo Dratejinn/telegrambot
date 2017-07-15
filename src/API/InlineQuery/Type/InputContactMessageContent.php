@@ -6,8 +6,18 @@ namespace Telegram\API\InlineQuery\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class InputContactMessageContent
+ * @package Telegram\API\InlineQuery\Type
+ * @property string $phoneNumber
+ * @property string $firstName
+ * @property null|string $lastName
+ */
 class InputContactMessageContent extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'phoneNumber'   => ['type' => ABaseObject::T_STRING,   'optional' => FALSE,    'external' => 'phone_number'],

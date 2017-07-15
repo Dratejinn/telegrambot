@@ -4,5 +4,10 @@
     <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <option name="CODING_STANDARD" value="TFD" />
     </inspection_tool>
+    <inspection_tool class="PhpMissingDocCommentInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="CHECK_CLASS" value="false" />
+      <option name="SKIP_EMPTY_FUNCTION" value="false" />
+      <option name="SKIP_EMPTY_METHOD" value="false" />
+    </inspection_tool>
   </profile>
 </component>

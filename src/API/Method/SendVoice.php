@@ -7,8 +7,18 @@ namespace Telegram\API\Method;
 use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
 use Telegram\API\Base\InputFile;
 
+/**
+ * Class SendVoice
+ * @package Telegram\API\Method
+ * @property string|\Telegram\API\Base\InputFile $voice
+ * @property null|string $caption
+ * @property null|int $duration
+ */
 class SendVoice extends ASend {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'voice'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE,    'external' => 'voice',      'class' => InputFile::class],

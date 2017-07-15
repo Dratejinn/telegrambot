@@ -9,15 +9,26 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
+/**
+ * Class GetChatMembersCount
+ * @package Telegram\API\Method
+ * @property string|int|float $chatId
+ */
 class GetChatMembersCount extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'chatId'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT], 'optional' => FALSE,    'external' => 'chat_id'],
+            'chatId'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT, ABaseObject::T_FLOAT], 'optional' => FALSE,    'external' => 'chat_id'],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('getChatMembersCount', $this);
         if ($reply instanceof \stdClass) {

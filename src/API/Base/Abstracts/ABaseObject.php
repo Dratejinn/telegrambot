@@ -22,6 +22,12 @@ abstract class ABaseObject implements IStorageHandlerAware {
     const PROP_CLASS = 'class';
     const PROP_CONTENT = 'content';
 
+
+    /**
+     * @var null|\Telegram\Storage\Interfaces\ITelegramStorageHandler
+     */
+    private $_storageHandler = NULL;
+
     /**
      * Id field property used for StorageHandlers
      * @var string
@@ -41,21 +47,22 @@ abstract class ABaseObject implements IStorageHandlerAware {
     protected $_datamodel = NULL;
 
     /**
-     * @inheritdoc
+     * Used to check whether the object has a storage handler
+     * @return bool
      */
     public function hasStorageHandler() : bool {
         return $this->_storageHandler instanceof ITelegramStorageHandler;
     }
 
     /**
-     * @inheritdoc
+     * Used to return the storageHandler
      */
     public function getStorageHandler() : ITelegramStorageHandler {
         return $this->_storageHandler;
     }
 
     /**
-     * @inheritdoc
+     * Set the storageHandler
      */
     public function setStorageHandler(ITelegramStorageHandler $storageHandler) {
         $this->_storageHandler = $storageHandler;
@@ -439,7 +446,6 @@ abstract class ABaseObject implements IStorageHandlerAware {
     }
 
     /**
-<<<<<<< Updated upstream
      * Used to get the payload type
      * @return string
      */
@@ -452,7 +458,6 @@ abstract class ABaseObject implements IStorageHandlerAware {
     }
 
     /**
-<<<<<<< Updated upstream
      * Used to check whether one of the fields set is an InputFile
      * @return bool
      */

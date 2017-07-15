@@ -6,8 +6,20 @@ namespace Telegram\API\InlineQuery\Type;
 
 use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
+/**
+ * Class InlineQueryResultLocation
+ * @package Telegram\API\InlineQuery\Type
+ * @property float $latitude
+ * @property float $longitude
+ * @property null|string $thumbUrl
+ * @property null|int $thumbWidth
+ * @property null|int $thumbHeight
+ */
 class InlineQueryResultLocation extends AInlineQueryResult {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'latitude'      => ['type' => ABaseObject::T_FLOAT,  'optional' => FALSE,   'external' => 'latitude'],
@@ -19,6 +31,9 @@ class InlineQueryResultLocation extends AInlineQueryResult {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
         $this->type = 'location';

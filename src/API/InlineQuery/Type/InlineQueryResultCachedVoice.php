@@ -6,8 +6,17 @@ namespace Telegram\API\InlineQuery\Type;
 
 use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
+/**
+ * Class InlineQueryResultCachedVoice
+ * @package Telegram\API\InlineQuery\Type
+ * @property null|string $caption
+ * @property string $voiceFileId
+ */
 class InlineQueryResultCachedVoice extends AInlineQueryResult {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'caption'           => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,    'external' => 'caption'],
@@ -16,6 +25,9 @@ class InlineQueryResultCachedVoice extends AInlineQueryResult {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
         $this->type = 'voice';

@@ -6,8 +6,19 @@ namespace Telegram\API\InlineQuery\Type;
 
 use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
+/**
+ * Class InlineQueryResultAudio
+ * @package Telegram\API\InlineQuery\Type
+ * @property string $audioUrl
+ * @property null|string $caption
+ * @property null|string $performer
+ * @property null|int $audioDuration
+ */
 class InlineQueryResultAudio extends AInlineQueryResult {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'audioUrl'          => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'audio_url'],
@@ -18,6 +29,9 @@ class InlineQueryResultAudio extends AInlineQueryResult {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
         $this->type = 'audio';

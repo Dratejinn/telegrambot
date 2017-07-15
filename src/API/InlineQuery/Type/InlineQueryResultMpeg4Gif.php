@@ -6,8 +6,21 @@ namespace Telegram\API\InlineQuery\Type;
 
 use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
+/**
+ * Class InlineQueryResultMpeg4Gif
+ * @package Telegram\API\InlineQuery\Type
+ * @property string $mpeg4url
+ * @property string $thumbUrl
+ * @property null|int $mpeg4Width
+ * @property null|int $mpeg4Height
+ * @property null|int $mpeg4Duration
+ * @property null|string $caption
+ */
 class InlineQueryResultMpeg4Gif extends AInlineQueryResult {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'mpeg4Url'      => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'mpeg4_url'],
@@ -20,6 +33,9 @@ class InlineQueryResultMpeg4Gif extends AInlineQueryResult {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
         $this->type = 'mpeg4_gif';

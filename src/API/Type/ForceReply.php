@@ -6,8 +6,17 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class ForceReply
+ * @package Telegram\API\Type
+ * @property bool $forceReply
+ * @property null|bool $selective
+ */
 class ForceReply extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'forceReply'    => ['type' => ABaseObject::T_BOOL,  'optional' => FALSE,    'external' => 'force_reply'],
@@ -16,6 +25,9 @@ class ForceReply extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
 

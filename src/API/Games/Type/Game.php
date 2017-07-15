@@ -6,8 +6,21 @@ namespace Telegram\API\Games\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class Game
+ * @package Telegram\API\Games\Type
+ * @property string $title
+ * @property string $description
+ * @property \Telegram\API\Type\PhotoSize[] $photo
+ * @property null|string $text
+ * @property null|\Telegram\API\Type\MessageEntity[] $textEntities
+ * @property null|\Telegram\API\Games\Type\Animation $animation
+ */
 class Game extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'title'         => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'title'],

@@ -11,6 +11,9 @@ use Telegram\API\Type;
 
 class GetWebhookInfo extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('getWebhookInfo', $this);
         if ($reply instanceof \stdClass) {

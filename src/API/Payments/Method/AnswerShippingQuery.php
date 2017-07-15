@@ -9,18 +9,32 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
+/**
+ * Class AnswerShippingQuery
+ * @package Telegram\API\Payments\Method
+ * @property string $shippingQueryId
+ * @property bool $ok
+ * @property null|\Telegram\API\Payments\Type\ShippingOption[] $shippingOptions
+ * @property null|string $errorMessage
+ */
 class AnswerShippingQuery extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'shippingQueryId'   => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'shipping_query_id'],
             'ok'                => ['type' => ABaseObject::T_BOOL,      'optional' => FALSE,    'external' => 'ok'],
-            'shipping_options'  => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'shipping_options'],
+            'shippingOptions'   => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'shipping_options'],
             'errorMessage'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'error_message'],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('answerShippingQuery', $this);
         if ($reply instanceof \stdClass) {

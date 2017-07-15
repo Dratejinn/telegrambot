@@ -6,8 +6,31 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class ChatMember
+ * @package Telegram\API\Type
+ * @property \Telegram\API\Type\User $user
+ * @property string $status
+ * @property null|int $untilDate
+ * @property null|bool $canBeEdited
+ * @property null|bool $canChangeInfo
+ * @property null|bool $canPostMessages
+ * @property null|bool $canEditMessages
+ * @property null|bool $canDeleteMessages
+ * @property null|bool $canInviteUsers
+ * @property null|bool $canRestrictMembers
+ * @property null|bool $canPinMessages
+ * @property null|bool $canPromoteMembers
+ * @property null|bool $canSendMessages
+ * @property null|bool $canSendMediaMessages
+ * @property null|bool $canSendOtherMessages
+ * @property null|bool $canAddWebPagePreviews
+ */
 class ChatMember extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'user'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => FALSE,    'external' => 'user',   'class' => User::class],

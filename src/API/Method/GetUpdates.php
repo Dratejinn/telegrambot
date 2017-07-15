@@ -9,8 +9,19 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
+/**
+ * Class GetUpdates
+ * @package Telegram\API\Method
+ * @property null|int $offset
+ * @property null|int $limit
+ * @property null|int $timeout
+ * @property null|string[] $allowedUpdates
+ */
 class GetUpdates extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'offset'            => ['type' => ABaseObject::T_INT,   'optional' => TRUE, 'external' => 'offset'],
@@ -21,6 +32,9 @@ class GetUpdates extends ABaseObject implements IOutbound {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('getUpdates', $this);
         $arr = [];

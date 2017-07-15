@@ -5,9 +5,24 @@ declare(strict_types=1);
 namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
+use Telegram\API\Games\Type\CallbackGame;
 
+/**
+ * Class InlineKeyboardButton
+ * @package Telegram\API\Type
+ * @property string $text
+ * @property null|string $url
+ * @property null|string $callbackData
+ * @property null|string $switchInlineQuery
+ * @property null|string $switchInlineQueryCurrentChat
+ * @property null|\Telegram\API\Games\Type\CallbackGame $callbackGame
+ * @property null|bool $pay
+ */
 class InlineKeyboardButton extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
         'text'                          => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,   'external' => 'text'],

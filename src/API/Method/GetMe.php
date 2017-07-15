@@ -11,6 +11,9 @@ use Telegram\API\Bot;
 
 class GetMe extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('getMe', $this);
         if ($reply instanceof \stdClass) {

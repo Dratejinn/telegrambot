@@ -6,6 +6,11 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class InlineKeyboardMarkup
+ * @package Telegram\API\Type
+ * @property array $inlineKeyboard
+ */
 class InlineKeyboardMarkup extends ABaseObject {
 
     /**

@@ -8,6 +8,14 @@ use Telegram\API\Type;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
+/**
+ * Class ASend
+ * @package Telegram\API\Base\Abstracts
+ * @property string|int|float $chatId
+ * @property null|bool $disableNotification
+ * @property null|int $replyToMessageId
+ * @property null|\Telegram\API\Type\InlineKeyboardMarkup|\Telegram\API\Type\ReplyKeyboardMarkup|\Telegram\API\Type\ReplyKeyboardRemove|\Telegram\API\Type\ForceReply $replyMarkup
+ */
 abstract class ASend extends ABaseObject implements IOutbound {
 
     /**

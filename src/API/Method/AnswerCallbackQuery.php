@@ -9,8 +9,20 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
+/**
+ * Class AnswerCallbackQuery
+ * @package Telegram\API\Method
+ * @property string $callbackQueryId
+ * @property null|string $text
+ * @property null|bool $showAlert
+ * @property null|string $url
+ * @property null|int $cacheTime
+ */
 class AnswerCallbackQuery extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'callbackQueryId'   => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'callback_query_id'],
@@ -22,6 +34,9 @@ class AnswerCallbackQuery extends ABaseObject implements IOutbound {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('answerCallbackQuery', $this);
         if ($reply instanceof \stdClass) {

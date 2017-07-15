@@ -1,21 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e2c332d-8c10-4385-93dc-7728dfdc9891" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+    <list default="true" id="f34f9f01-2463-44f7-803f-51ac69fe0eef" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/freek.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webResources.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/API/Type/VideoNote.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/blade.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/telegrambot.iml" afterPath="$PROJECT_DIR$/.idea/telegrambot.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Base/Abstracts/ABaseObject.php" afterPath="$PROJECT_DIR$/src/API/Base/Abstracts/ABaseObject.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Base/Abstracts/AInlineQueryResult.php" afterPath="$PROJECT_DIR$/src/API/Base/Abstracts/AInlineQueryResult.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Base/Abstracts/ASend.php" afterPath="$PROJECT_DIR$/src/API/Base/Abstracts/ASend.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Base/Helpers/InlineKeyboardRow.php" afterPath="$PROJECT_DIR$/src/API/Base/Helpers/InlineKeyboardRow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Base/InputFile.php" afterPath="$PROJECT_DIR$/src/API/Base/InputFile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Base/Interfaces/IOutbound.php" afterPath="$PROJECT_DIR$/src/API/Base/Interfaces/IOutbound.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Games/Method/GetGameHighScores.php" afterPath="$PROJECT_DIR$/src/API/Games/Method/GetGameHighScores.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Games/Method/SendGame.php" afterPath="$PROJECT_DIR$/src/API/Games/Method/SendGame.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Games/Method/SetGameScore.php" afterPath="$PROJECT_DIR$/src/API/Games/Method/SetGameScore.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Games/Type/Animation.php" afterPath="$PROJECT_DIR$/src/API/Games/Type/Animation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Games/Type/Game.php" afterPath="$PROJECT_DIR$/src/API/Games/Type/Game.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Games/Type/GameHighScore.php" afterPath="$PROJECT_DIR$/src/API/Games/Type/GameHighScore.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Method/AnswerInlineQuery.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Method/AnswerInlineQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/ChosenInlineResult.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/ChosenInlineResult.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQuery.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultArticle.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultArticle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultAudio.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultAudio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedAudio.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedAudio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedDocument.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedDocument.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedGif.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedGif.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedMpeg4Gif.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedMpeg4Gif.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedPhoto.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedPhoto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedSticker.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedSticker.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedVideo.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedVideo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedVoice.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultCachedVoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultContact.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultContact.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultDocument.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultDocument.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultGif.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultGif.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultLocation.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultLocation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultMpeg4Gif.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultMpeg4Gif.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultPhoto.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultPhoto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultVenue.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultVenue.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultVideo.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultVideo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultVoice.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InlineQueryResultVoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputContactMessageContent.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputContactMessageContent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputLocationMessageContent.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputLocationMessageContent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputTextMessageContent.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputTextMessageContent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputVenueMessageContent.php" afterPath="$PROJECT_DIR$/src/API/InlineQuery/Type/InputVenueMessageContent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/AnswerCallbackQuery.php" afterPath="$PROJECT_DIR$/src/API/Method/AnswerCallbackQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/DeleteChatPhoto.php" afterPath="$PROJECT_DIR$/src/API/Method/DeleteChatPhoto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/DeleteMessage.php" afterPath="$PROJECT_DIR$/src/API/Method/DeleteMessage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/DeleteWebhook.php" afterPath="$PROJECT_DIR$/src/API/Method/DeleteWebhook.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/EditMessageReplyMarkup.php" afterPath="$PROJECT_DIR$/src/API/Method/EditMessageReplyMarkup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/ExportChatInviteLink.php" afterPath="$PROJECT_DIR$/src/API/Method/ExportChatInviteLink.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetChat.php" afterPath="$PROJECT_DIR$/src/API/Method/GetChat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetChatAdministrators.php" afterPath="$PROJECT_DIR$/src/API/Method/GetChatAdministrators.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetChatMember.php" afterPath="$PROJECT_DIR$/src/API/Method/GetChatMember.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetChatMembersCount.php" afterPath="$PROJECT_DIR$/src/API/Method/GetChatMembersCount.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetFile.php" afterPath="$PROJECT_DIR$/src/API/Method/GetFile.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetMe.php" afterPath="$PROJECT_DIR$/src/API/Method/GetMe.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetUpdates.php" afterPath="$PROJECT_DIR$/src/API/Method/GetUpdates.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetUserProfilePhotos.php" afterPath="$PROJECT_DIR$/src/API/Method/GetUserProfilePhotos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetWebhookInfo.php" afterPath="$PROJECT_DIR$/src/API/Method/GetWebhookInfo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/KickChatMember.php" afterPath="$PROJECT_DIR$/src/API/Method/KickChatMember.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/LeaveChat.php" afterPath="$PROJECT_DIR$/src/API/Method/LeaveChat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/PinChatMessage.php" afterPath="$PROJECT_DIR$/src/API/Method/PinChatMessage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/PromoteChatMember.php" afterPath="$PROJECT_DIR$/src/API/Method/PromoteChatMember.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/RestrictChatMember.php" afterPath="$PROJECT_DIR$/src/API/Method/RestrictChatMember.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendAudio.php" afterPath="$PROJECT_DIR$/src/API/Method/SendAudio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendChatAction.php" afterPath="$PROJECT_DIR$/src/API/Method/SendChatAction.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendContact.php" afterPath="$PROJECT_DIR$/src/API/Method/SendContact.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendDocument.php" afterPath="$PROJECT_DIR$/src/API/Method/SendDocument.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendLocation.php" afterPath="$PROJECT_DIR$/src/API/Method/SendLocation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendMessage.php" afterPath="$PROJECT_DIR$/src/API/Method/SendMessage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendPhoto.php" afterPath="$PROJECT_DIR$/src/API/Method/SendPhoto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendVenue.php" afterPath="$PROJECT_DIR$/src/API/Method/SendVenue.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendVideo.php" afterPath="$PROJECT_DIR$/src/API/Method/SendVideo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendVideoNote.php" afterPath="$PROJECT_DIR$/src/API/Method/SendVideoNote.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SendVoice.php" afterPath="$PROJECT_DIR$/src/API/Method/SendVoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SetChatDescription.php" afterPath="$PROJECT_DIR$/src/API/Method/SetChatDescription.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SetChatPhoto.php" afterPath="$PROJECT_DIR$/src/API/Method/SetChatPhoto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SetChatTitle.php" afterPath="$PROJECT_DIR$/src/API/Method/SetChatTitle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/SetWebhook.php" afterPath="$PROJECT_DIR$/src/API/Method/SetWebhook.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/UnbanChatMember.php" afterPath="$PROJECT_DIR$/src/API/Method/UnbanChatMember.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/unpinChatMessage.php" afterPath="$PROJECT_DIR$/src/API/Method/unpinChatMessage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Method/AnswerPreCheckoutQuery.php" afterPath="$PROJECT_DIR$/src/API/Payments/Method/AnswerPreCheckoutQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Method/AnswerShippingQuery.php" afterPath="$PROJECT_DIR$/src/API/Payments/Method/AnswerShippingQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Method/SendInvoice.php" afterPath="$PROJECT_DIR$/src/API/Payments/Method/SendInvoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/Invoice.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/Invoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/LabeledPrice.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/LabeledPrice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/OrderInfo.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/OrderInfo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/PreCheckoutQuery.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/PreCheckoutQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/ShippingAddress.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/ShippingAddress.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/ShippingOption.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/ShippingOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/ShippingQuery.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/ShippingQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Payments/Type/SuccessfulPayment.php" afterPath="$PROJECT_DIR$/src/API/Payments/Type/SuccessfulPayment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Audio.php" afterPath="$PROJECT_DIR$/src/API/Type/Audio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/CallbackQuery.php" afterPath="$PROJECT_DIR$/src/API/Type/CallbackQuery.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Chat.php" afterPath="$PROJECT_DIR$/src/API/Type/Chat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/ChatMember.php" afterPath="$PROJECT_DIR$/src/API/Type/ChatMember.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/ChatPhoto.php" afterPath="$PROJECT_DIR$/src/API/Type/ChatPhoto.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Contact.php" afterPath="$PROJECT_DIR$/src/API/Type/Contact.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Document.php" afterPath="$PROJECT_DIR$/src/API/Type/Document.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/File.php" afterPath="$PROJECT_DIR$/src/API/Type/File.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/ForceReply.php" afterPath="$PROJECT_DIR$/src/API/Type/ForceReply.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/InlineKeyboardButton.php" afterPath="$PROJECT_DIR$/src/API/Type/InlineKeyboardButton.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/InlineKeyboardMarkup.php" afterPath="$PROJECT_DIR$/src/API/Type/InlineKeyboardMarkup.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/Interfaces/IStorageHandlerAware.php" afterPath="$PROJECT_DIR$/src/Storage/Interfaces/IStorageHandlerAware.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php" afterPath="$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/KeyboardButton.php" afterPath="$PROJECT_DIR$/src/API/Type/KeyboardButton.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Location.php" afterPath="$PROJECT_DIR$/src/API/Type/Location.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Message.php" afterPath="$PROJECT_DIR$/src/API/Type/Message.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/MessageEntity.php" afterPath="$PROJECT_DIR$/src/API/Type/MessageEntity.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/PhotoSize.php" afterPath="$PROJECT_DIR$/src/API/Type/PhotoSize.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/ReplyKeyboardMarkup.php" afterPath="$PROJECT_DIR$/src/API/Type/ReplyKeyboardMarkup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/ReplyKeyboardRemove.php" afterPath="$PROJECT_DIR$/src/API/Type/ReplyKeyboardRemove.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Sticker.php" afterPath="$PROJECT_DIR$/src/API/Type/Sticker.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Update.php" afterPath="$PROJECT_DIR$/src/API/Type/Update.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/User.php" afterPath="$PROJECT_DIR$/src/API/Type/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/UserProfilePhotos.php" afterPath="$PROJECT_DIR$/src/API/Type/UserProfilePhotos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Venue.php" afterPath="$PROJECT_DIR$/src/API/Type/Venue.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Video.php" afterPath="$PROJECT_DIR$/src/API/Type/Video.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Voice.php" afterPath="$PROJECT_DIR$/src/API/Type/Voice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/WebhookInfo.php" afterPath="$PROJECT_DIR$/src/API/Type/WebhookInfo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Bot/ABot.php" afterPath="$PROJECT_DIR$/src/Bot/ABot.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,38 +131,108 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
-    <pharConfigPath>C:\Users\Freek\Documents\GitHub\telegrambot\composer.json</pharConfigPath>
-    <pharPath>C:\ProgramData\ComposerSetup\bin\composer.phar</pharPath>
+  <component name="ComposerSettings" phpInterpreterId="1edbfb7c-8b43-46b5-85c4-3129ef3dec58">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <pharPath>/usr/local/bin/composer</pharPath>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChatPhoto.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/API/Type/ChatPhoto.php">
+      <file leaf-file-name="API.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/API.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="-1270">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
+      <file leaf-file-name="Bot.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/Bot.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+            <state relative-caret-position="-865">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="ConfigManager.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/ConfigManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+            <state relative-caret-position="-745">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ACallbackQueryHandler.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Bot/Handler/ACallbackQueryHandler.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserProfilePhotos.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/Type/UserProfilePhotos.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Venue.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/Type/Venue.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Video.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/Type/Video.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VideoNote.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/Type/VideoNote.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Voice.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/Type/Voice.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebhookInfo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/API/Type/WebhookInfo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="42" lean-forward="false" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -69,16 +246,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/src/Storage/Interfaces/IStorageHandlerAware.php" />
-        <option value="$PROJECT_DIR$/src/API/Base/Interfaces/IOutbound.php" />
-        <option value="$PROJECT_DIR$/src/API/Base/InputFile.php" />
-        <option value="$PROJECT_DIR$/src/API/Base/Abstracts/AInlineQueryResult.php" />
-        <option value="$PROJECT_DIR$/src/API/Base/Abstracts/ASend.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SendLocation.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SendMessage.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SendPhoto.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SendVenue.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SendVideo.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SendVideoNote.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SendVoice.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SetChatDescription.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SetChatPhoto.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SetChatTitle.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/SetWebhook.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/UnbanChatMember.php" />
+        <option value="$PROJECT_DIR$/src/API/Method/UnpinChatMessage.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Method/AnswerPreCheckoutQuery.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Method/AnswerShippingQuery.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Method/SendInvoice.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/Invoice.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/LabeledPrice.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/OrderInfo.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/PreCheckoutQuery.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/ShippingAddress.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/ShippingOption.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/ShippingQuery.php" />
+        <option value="$PROJECT_DIR$/src/API/Payments/Type/SuccessfulPayment.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Audio.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/CallbackQuery.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Chat.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/ChatMember.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/ChatPhoto.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Contact.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Document.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/File.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/ForceReply.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/InlineKeyboardButton.php" />
         <option value="$PROJECT_DIR$/src/API/Type/InlineKeyboardMarkup.php" />
-        <option value="$PROJECT_DIR$/src/API/Base/Helpers/InlineKeyboardRow.php" />
-        <option value="$PROJECT_DIR$/src/API/Base/Abstracts/ABaseObject.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/API/Type/KeyboardButton.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Location.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Message.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/MessageEntity.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/PhotoSize.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/ReplyKeyboardMarkup.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/ReplyKeyboardRemove.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Sticker.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Update.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/User.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/UserProfilePhotos.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Venue.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Video.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/VideoNote.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/Voice.php" />
+        <option value="$PROJECT_DIR$/src/API/Type/WebhookInfo.php" />
       </list>
     </option>
   </component>
@@ -88,7 +306,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7">
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
@@ -103,10 +324,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -116,46 +336,34 @@
             <id />
           </State>
           <State>
-            <id>Code SmellPHP</id>
+            <id>CSS</id>
           </State>
           <State>
-            <id>Code StylePHP</id>
+            <id>ECMAScript 6 migration aidsJavaScript</id>
           </State>
           <State>
-            <id>Control FlowPHP</id>
+            <id>GeneralJavaScript</id>
           </State>
           <State>
-            <id>DocBlocksJoomla!</id>
+            <id>Invalid elementsCSS</id>
           </State>
           <State>
-            <id>GeneralPHP</id>
+            <id>JavaScript</id>
           </State>
           <State>
-            <id>Joomla!</id>
-          </State>
-          <State>
-            <id>Naming conventionsPHP</id>
+            <id>Less</id>
           </State>
           <State>
             <id>PHP</id>
           </State>
           <State>
-            <id>PHP Strict StandardsPHP</id>
-          </State>
-          <State>
             <id>PHPDocPHP</id>
           </State>
           <State>
-            <id>Probable bugsPHP</id>
+            <id>Sass/SCSS</id>
           </State>
           <State>
-            <id>Replaceable assignmentsPHP</id>
-          </State>
-          <State>
-            <id>Type compatibilityPHP</id>
-          </State>
-          <State>
-            <id>UndefinedPHP</id>
+            <id>TypeScript</id>
           </State>
           <State>
             <id>UnusedPHP</id>
@@ -163,11 +371,14 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>PhpCSValidationInspection</id>
+            <id>PhpMissingDocCommentInspection</id>
           </State>
         </selected-state>
       </profile-state>
     </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -184,27 +395,27 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -214,11 +425,51 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bot" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Telegrambot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Telegrambot" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bot" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Handler" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Telegrambot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -232,11 +483,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -254,11 +505,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -276,11 +527,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="Telegrambot" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -296,7 +547,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Helpers" />
+              <option name="myItemId" value="Abstracts" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -307,7 +558,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.selected.package.stylelint" value="" />
@@ -401,35 +652,38 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0e2c332d-8c10-4385-93dc-7728dfdc9891" name="Default" comment="" />
+      <changelist id="f34f9f01-2463-44f7-803f-51ac69fe0eef" name="Default" comment="" />
       <created>1499888245565</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1499888245565</updated>
       <workItem from="1499888247825" duration="7555000" />
       <workItem from="1499895904510" duration="287000" />
+      <workItem from="1500134817871" duration="142000" />
+      <workItem from="1500135055502" duration="14920000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7842000" />
+    <option name="totallyTimeSpent" value="23473000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1797619" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -448,102 +702,418 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/API/Type/ChatPhoto.php">
+    <entry file="file://$PROJECT_DIR$/src/API/Method/SendVideoNote.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Base/Interfaces/IOutbound.php">
+    <entry file="file://$PROJECT_DIR$/src/API/Method/SendVoice.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Base/InputFile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="61" lean-forward="false" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
+        <state relative-caret-position="195">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Base/Abstracts/AInlineQueryResult.php">
+    <entry file="file://$PROJECT_DIR$/src/API/Method/SetChatDescription.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Storage/Interfaces/IStorageHandlerAware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Type/InlineKeyboardMarkup.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+        <state relative-caret-position="180">
+          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Type/InlineKeyboardButton.php">
+    <entry file="file://$PROJECT_DIR$/src/API/Method/SetChatPhoto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="15" column="48" lean-forward="false" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Base/Helpers/InlineKeyboardRow.php">
+    <entry file="file://$PROJECT_DIR$/src/API/Method/SetChatTitle.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+        <state relative-caret-position="180">
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Method/SetWebhook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Method/UnbanChatMember.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Method/UnpinChatMessage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="13" column="37" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Method/AnswerPreCheckoutQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Method/AnswerShippingQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/API/Base/Abstracts/ASend.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="50" column="34" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="34" />
+        <state relative-caret-position="240">
+          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Base/Abstracts/ABaseObject.php">
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Method/SendInvoice.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        <state relative-caret-position="150">
+          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/Invoice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/LabeledPrice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="24" lean-forward="false" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/OrderInfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="78" lean-forward="false" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/PreCheckoutQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="66" lean-forward="false" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+          <folding>
+            <element signature="e#72#116#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/ShippingAddress.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/ShippingOption.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="63" lean-forward="false" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/ShippingQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="73" lean-forward="false" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+          <folding>
+            <element signature="e#72#116#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Payments/Type/SuccessfulPayment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="44" lean-forward="false" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Audio.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/CallbackQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Chat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/ChatMember.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="45" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/API/Type/ChatPhoto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Contact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        <state relative-caret-position="210">
+          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Document.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        <state relative-caret-position="225">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/File.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/ForceReply.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/InlineKeyboardButton.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding>
+            <element signature="e#63#107#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/InlineKeyboardMarkup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/KeyboardButton.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Location.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Message.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-582">
+          <caret line="53" column="18" lean-forward="true" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+          <folding>
+            <element signature="e#63#107#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/MessageEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="47" lean-forward="false" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/PhotoSize.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/ReplyKeyboardMarkup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/ReplyKeyboardRemove.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Sticker.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="41" lean-forward="true" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="57" column="31" lean-forward="false" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="46" column="9" lean-forward="false" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/UserProfilePhotos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Venue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Video.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/VideoNote.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/Voice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Type/WebhookInfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="42" lean-forward="false" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/API.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1270">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/Bot.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-865">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/ConfigManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-745">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bot/Handler/ACallbackQueryHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

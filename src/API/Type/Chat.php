@@ -6,6 +6,20 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class Chat
+ * @package Telegram\API\Type
+ * @property float|int $id
+ * @property string $type
+ * @property null|string $title
+ * @property null|string $username
+ * @property null|string $firstName
+ * @property null|string $lastName
+ * @property null|bool $allAdmin
+ * @property null|\Telegram\API\Type\ChatPhoto $photo
+ * @property null|string $description
+ * @property null|string $inviteLink
+ */
 class Chat extends ABaseObject {
 
     const TYPE_PRIVATE = 'private';
@@ -13,8 +27,14 @@ class Chat extends ABaseObject {
     const TYPE_SUPERGROUP = 'supergroup';
     const TYPE_CHANNEL = 'channel';
 
+    /**
+     * @inheritdoc
+     */
     protected static $_IdProp = 'id';
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'            => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => FALSE,    'external' => 'id'],
@@ -31,6 +51,11 @@ class Chat extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * Create a chat instance
+     * @param int $id
+     * @param string $type
+     */
     final public static function Create(int $id, string $type) {
         $chat = new self;
         $chat->id = $id;

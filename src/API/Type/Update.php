@@ -8,12 +8,36 @@ use Telegram\API\InlineQuery\Type\{ChosenInlineResult, InlineQuery};
 use Telegram\API\Payments\Type\{PreCheckoutQuery, ShippingQuery};
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class Update
+ * @package Telegram\API\Type
+ * @property float|int $id
+ * @property null|\Telegram\API\Type\Message $message
+ * @property null|\Telegram\API\Type\Message $editedMessage
+ * @property null|\Telegram\API\Type\Message $channelPost
+ * @property null|\Telegram\API\Type\Message $editedChannelPost
+ * @property null|\Telegram\API\InlineQuery\Type\InlineQuery $inlineQuery
+ * @property null|\Telegram\API\InlineQuery\Type\ChosenInlineResult $chosenInlineResult
+ * @property null|\Telegram\API\Type\CallbackQuery $callbackQuery
+ * @property null|\Telegram\API\Payments\Type\ShippingQuery $shippingQuery
+ * @property null|\Telegram\API\Payments\Type\PreCheckoutQuery $preCheckoutQuery
+ */
 class Update extends ABaseObject {
 
+    /**
+     * This update type
+     * @var null|string
+     */
     private $_type = NULL;
 
+    /**
+     * @inheritdoc
+     */
     protected static $_IdProp = 'id';
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'                    => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => FALSE,    'external' => 'update_id'],
@@ -30,6 +54,10 @@ class Update extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * return this updates type
+     * @return string
+     */
     public function getType() {
         if ($this->_type === NULL) {
             foreach (array_keys($this->_datamodel) as $field) {

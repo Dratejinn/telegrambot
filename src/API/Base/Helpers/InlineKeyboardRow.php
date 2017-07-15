@@ -7,6 +7,11 @@ namespace Telegram\API\Base\Helpers;
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Type\InlineKeyboardButton;
 
+/**
+ * Class InlineKeyboardRow
+ * @package Telegram\API\Base\Helpers
+ * @property \Telegram\API\Type\InlineKeyboardButton[] $buttons
+ */
 class InlineKeyboardRow extends ABaseObject {
 
     /**

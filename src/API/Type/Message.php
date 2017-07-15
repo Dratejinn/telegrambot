@@ -8,10 +8,61 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Games\Type\Game;
 use Telegram\API\Payments\Type\{Invoice, SuccessfulPayment};
 
+/**
+ * Class Message
+ * @package Telegram\API\Type
+ * @property int $id
+ * @property null|\Telegram\API\Type\User $user
+ * @property int $date
+ * @property \Telegram\API\Type\Chat $chat
+ * @property null|\Telegram\API\Type\User $forwardFrom
+ * @property null|int $forwardFromMessageId
+ * @property null|int $forwardDate
+ * @property null|\Telegram\API\Type\Message $replyToMessage
+ * @property null|int $editDate
+ * @property null|string $text
+ * @property null|\Telegram\API\Type\MessageEntity[] $entities
+ * @property null|\Telegram\API\Type\Audio $audio
+ * @property null|\Telegram\API\Type\Document $document
+ * @property null|\Telegram\API\Games\Type\Game $game
+ * @property null|\Telegram\API\Type\PhotoSize[] $photo
+ * @property null|\Telegram\API\Type\Sticker $sticker
+ * @property null|\Telegram\API\Type\Video $video
+ * @property null|\Telegram\API\Type\VideoNote $videoNote
+ * @property null|string $caption
+ * @property null|\Telegram\API\Type\Contact $contact
+ * @property null|\Telegram\API\Type\Location $location
+ * @property null|\Telegram\API\Type\Venue $venue
+ * @property null|\Telegram\API\Type\User $newChatMember
+ * @property null|\Telegram\API\Type\User[] $newChatMembers
+ * @property null|\Telegram\API\Type\User $leftChatMember
+ * @property null|string $newChatTitle
+ * @property null|\Telegram\API\Type\PhotoSize[] $newChatPhoto
+ * @property null|bool $deleteChatPhoto
+ * @property null|bool $groupChatCreated
+ * @property null|bool $superGroupChatCreated
+ * @property null|bool $channelChatCreated
+ * @property null|int|float $migrateToChatId
+ * @property null|int|float $migrateFromChatId
+ * @property null|\Telegram\API\Type\Message $pinnedMessage
+ * @property null|\Telegram\API\Payments\Type\Invoice $invoice
+ * @property null|\Telegram\API\Payments\Type\SuccessfulPayment $succesfulPayment
+ */
 class Message extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     protected static $_IdProp = 'id';
 
+    /**
+     * @var null|string
+     */
+    private $_type = NULL;
+
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'                    => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'message_id'],
@@ -48,8 +99,8 @@ class Message extends ABaseObject {
             'groupChatCreated'      => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'group_chat_created'],
             'superGroupChatCreated' => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'supergroup_chat_created'],
             'channelChatCreated'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'channel_chat_created'],
-            'migrateToChatId'       => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'migrate_to_chat_id'],
-            'migrateFromChatId'     => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'migrateFromChatId'],
+            'migrateToChatId'       => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => TRUE,     'external' => 'migrate_to_chat_id'],
+            'migrateFromChatId'     => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => TRUE,     'external' => 'migrateFromChatId'],
             'pinnedMessage'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pinned_message',             'class' => Message::class],
             'invoice'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'invoice',                    'class' => Invoice::class],
             'successfulPayment'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'successful_payment',         'class' => SuccessfulPayment::class]
@@ -57,6 +108,10 @@ class Message extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * Message constructor.
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
 
@@ -92,6 +147,10 @@ class Message extends ABaseObject {
         }
     }
 
+    /**
+     * Returns the content type of this message
+     * @return string
+     */
     public function getContentType() : string {
         if ($this->_type === NULL) {
             foreach (array_keys($this->_datamodel) as $field) {
