@@ -11,13 +11,22 @@ use Telegram\API\Type\CallbackQuery;
 
 abstract class ACallbackQueryHandler extends \Telegram\Bot\AHandler {
 
+    /**
+     * @var \Telegram\API\Type\CallbackQuery
+     */
     protected $_callbackQuery = NULL;
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(API\Type\Update $update, ABot $bot) {
         parent::__construct($update, $bot);
         $this->_callbackQuery = $update->callbackQuery;
     }
 
+    /**
+     * Easy method used to remove an inlineKeyboard from the originating message
+     */
     protected function _removeInlineKeyboard() {
         if (isset($this->_callbackQuery->message)) {
             $removeInlineKeyboard = new EditMessageReplyMarkup;
