@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f34f9f01-2463-44f7-803f-51ac69fe0eef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LogHelpers/Interfaces/ILoggerAwareInterface.php" afterPath="$PROJECT_DIR$/src/LogHelpers/Interfaces/ILoggerAwareInterface.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LogHelpers/LengthProcessor.php" afterPath="$PROJECT_DIR$/src/LogHelpers/LengthProcessor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/Interfaces/ITelegramStorageHandler.php" afterPath="$PROJECT_DIR$/src/Storage/Interfaces/ITelegramStorageHandler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/Interfaces/ITelegramStorageService.php" afterPath="$PROJECT_DIR$/src/Storage/Interfaces/ITelegramStorageService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/Migrations/TelegramAdapter.php" afterPath="$PROJECT_DIR$/src/Storage/Migrations/TelegramAdapter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/PDO/Abstracts/AConnectionDetails.php" afterPath="$PROJECT_DIR$/src/Storage/PDO/Abstracts/AConnectionDetails.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.editorconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/PDO/Abstracts/APDOBase.php" afterPath="$PROJECT_DIR$/src/Storage/PDO/Abstracts/APDOBase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/PDO/ConnectionDetails/ConnectionDetailsMySQL.php" afterPath="$PROJECT_DIR$/src/Storage/PDO/ConnectionDetails/ConnectionDetailsMySQL.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php" afterPath="$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/PDO/UserCredentials.php" afterPath="$PROJECT_DIR$/src/Storage/PDO/UserCredentials.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/StorageService.php" afterPath="$PROJECT_DIR$/src/Storage/StorageService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage/Traits/TStorageHandlerTrait.php" afterPath="$PROJECT_DIR$/src/Storage/Traits/TStorageHandlerTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/db/Phinx/TelegramMigration.php" afterPath="$PROJECT_DIR$/src/db/Phinx/TelegramMigration.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,72 +25,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TLoggerTrait.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LogHelpers/Traits/TLoggerTrait.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LengthProcessor.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LogHelpers/LengthProcessor.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="43" column="29" lean-forward="false" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="IStorageHandlerAware.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Storage/Interfaces/IStorageHandlerAware.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TelegramAdapter.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Storage/Migrations/TelegramAdapter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="66" column="44" lean-forward="false" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnectionDetailsMySQL.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Storage/PDO/ConnectionDetails/ConnectionDetailsMySQL.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="695">
-              <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MySQLHandler.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="30" column="66" lean-forward="false" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
-              <folding>
-                <marker date="1500157695000" expanded="true" signature="6244:6355" ph="INSERT INTO ${$table}... " />
-                <marker date="1500157695000" expanded="true" signature="7179:7220" ph="DELETE FROM " />
-                <marker date="1500157695000" expanded="true" signature="7532:7556" ph="DELETE FROM " />
-                <marker date="1500157695000" expanded="true" signature="9738:9781" ph="SELECT * FRO... ${$table}" />
-                <marker date="1500157695000" expanded="true" signature="10768:10790" ph="SELECT * FRO... ${$table}" />
-                <marker date="1500157695000" expanded="true" signature="13472:13566" ph="SELECT * FRO... TABLES" />
-                <marker date="1500157695000" expanded="true" signature="13917:13990" ph="SELECT `COLU... COLUMNS" />
-                <marker date="1500157695000" expanded="true" signature="13917:14006" ph="SELECT `COLU... COLUMNS" />
-                <marker date="1500157695000" expanded="true" signature="13917:14029" ph="SELECT `COLU... COLUMNS" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -116,6 +55,76 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="TelegramAdapter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Storage/Migrations/TelegramAdapter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TelegramMigration.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/db/Phinx/TelegramMigration.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConnectionDetailsMySQL.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Storage/PDO/ConnectionDetails/ConnectionDetailsMySQL.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AConnectionDetails.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Storage/PDO/Abstracts/AConnectionDetails.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="APDOBase.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Storage/PDO/Abstracts/APDOBase.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="800">
+              <caret line="110" column="51" lean-forward="false" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StorageService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Storage/StorageService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserCredentials.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Storage/PDO/UserCredentials.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -124,11 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/API/Payments/Method/SendInvoice.php" />
-        <option value="$PROJECT_DIR$/src/API/Payments/Type/Invoice.php" />
-        <option value="$PROJECT_DIR$/src/API/Payments/Type/LabeledPrice.php" />
-        <option value="$PROJECT_DIR$/src/API/Payments/Type/OrderInfo.php" />
-        <option value="$PROJECT_DIR$/src/API/Payments/Type/PreCheckoutQuery.php" />
         <option value="$PROJECT_DIR$/src/API/Payments/Type/ShippingAddress.php" />
         <option value="$PROJECT_DIR$/src/API/Payments/Type/ShippingOption.php" />
         <option value="$PROJECT_DIR$/src/API/Payments/Type/ShippingQuery.php" />
@@ -171,10 +175,15 @@
         <option value="$PROJECT_DIR$/src/Storage/Interfaces/ITelegramStorageHandler.php" />
         <option value="$PROJECT_DIR$/src/Storage/Interfaces/ITelegramStorageService.php" />
         <option value="$PROJECT_DIR$/src/Storage/Migrations/TelegramAdapter.php" />
-        <option value="$PROJECT_DIR$/src/Storage/PDO/Abstracts/APDOBase.php" />
         <option value="$PROJECT_DIR$/src/Storage/PDO/Abstracts/AConnectionDetails.php" />
         <option value="$PROJECT_DIR$/src/Storage/PDO/ConnectionDetails/ConnectionDetailsMySQL.php" />
+        <option value="$PROJECT_DIR$/.editorconfig" />
         <option value="$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php" />
+        <option value="$PROJECT_DIR$/src/Storage/Traits/TStorageHandlerTrait.php" />
+        <option value="$PROJECT_DIR$/src/Storage/StorageService.php" />
+        <option value="$PROJECT_DIR$/src/Storage/PDO/UserCredentials.php" />
+        <option value="$PROJECT_DIR$/src/Storage/PDO/Abstracts/APDOBase.php" />
+        <option value="$PROJECT_DIR$/src/db/Phinx/TelegramMigration.php" />
       </list>
     </option>
   </component>
@@ -300,248 +309,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PDO" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PDO" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ConnectionDetails" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PDO" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Abstracts" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Interfaces" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogHelpers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogHelpers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Traits" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Type" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Base" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Base" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Abstracts" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -652,18 +419,17 @@
       <workItem from="1499888247825" duration="7555000" />
       <workItem from="1499895904510" duration="287000" />
       <workItem from="1500134817871" duration="142000" />
-      <workItem from="1500135055502" duration="18603000" />
+      <workItem from="1500135055502" duration="19549000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27156000" />
+    <option name="totallyTimeSpent" value="28102000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1797619" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1797619" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -694,38 +460,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/API/Type/Audio.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Type/CallbackQuery.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Type/Chat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/Type/ChatMember.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="45" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/API/Type/ChatPhoto.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1010,14 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/db/Phinx/TelegramMigration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LogHelpers/Interfaces/ILoggerAwareInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1042,6 +768,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.editorconfig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2791">
+          <caret line="377" column="28" lean-forward="true" selection-start-line="377" selection-start-column="28" selection-end-line="377" selection-end-column="28" />
+          <folding>
+            <marker date="1500157847000" expanded="true" signature="6244:6355" ph="INSERT INTO ${$table}... " />
+            <marker date="1500157847000" expanded="true" signature="7179:7220" ph="DELETE FROM " />
+            <marker date="1500157847000" expanded="true" signature="7532:7556" ph="DELETE FROM " />
+            <marker date="1500157847000" expanded="true" signature="9738:9781" ph="SELECT * FRO... ${$table}" />
+            <marker date="1500157847000" expanded="true" signature="10768:10790" ph="SELECT * FRO... ${$table}" />
+            <marker date="1500157847000" expanded="true" signature="13472:13566" ph="SELECT * FRO... TABLES" />
+            <marker date="1500157847000" expanded="true" signature="13917:13990" ph="SELECT `COLU... COLUMNS" />
+            <marker date="1500157847000" expanded="true" signature="13917:14006" ph="SELECT `COLU... COLUMNS" />
+            <marker date="1500157847000" expanded="true" signature="13917:14018" ph="SELECT `COLU... COLUMNS" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/Traits/TStorageHandlerTrait.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="785">
+          <caret line="87" column="29" lean-forward="false" selection-start-line="87" selection-start-column="29" selection-end-line="87" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/StorageService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/UserCredentials.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/ConnectionDetails/ConnectionDetailsMySQL.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/Abstracts/AConnectionDetails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/Abstracts/APDOBase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="110" column="51" lean-forward="false" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Storage/Interfaces/IStorageHandlerAware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Storage/Interfaces/ITelegramStorageHandler.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -1058,61 +866,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Storage/Interfaces/IStorageHandlerAware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/ConnectionDetails/ConnectionDetailsMySQL.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/Abstracts/AConnectionDetails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Storage/Migrations/TelegramAdapter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="66" column="44" lean-forward="false" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+        <state relative-caret-position="510">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/Abstracts/APDOBase.php">
+    <entry file="file://$PROJECT_DIR$/src/db/Phinx/TelegramMigration.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1406">
-          <caret line="96" column="51" lean-forward="false" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
+        <state relative-caret-position="720">
+          <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Storage/PDO/MySQLHandler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="66" lean-forward="false" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
-          <folding>
-            <marker date="1500157695000" expanded="true" signature="6244:6355" ph="INSERT INTO ${$table}... " />
-            <marker date="1500157695000" expanded="true" signature="7179:7220" ph="DELETE FROM " />
-            <marker date="1500157695000" expanded="true" signature="7532:7556" ph="DELETE FROM " />
-            <marker date="1500157695000" expanded="true" signature="9738:9781" ph="SELECT * FRO... ${$table}" />
-            <marker date="1500157695000" expanded="true" signature="10768:10790" ph="SELECT * FRO... ${$table}" />
-            <marker date="1500157695000" expanded="true" signature="13472:13566" ph="SELECT * FRO... TABLES" />
-            <marker date="1500157695000" expanded="true" signature="13917:13990" ph="SELECT `COLU... COLUMNS" />
-            <marker date="1500157695000" expanded="true" signature="13917:14006" ph="SELECT `COLU... COLUMNS" />
-            <marker date="1500157695000" expanded="true" signature="13917:14029" ph="SELECT `COLU... COLUMNS" />
-          </folding>
         </state>
       </provider>
     </entry>

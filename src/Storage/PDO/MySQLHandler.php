@@ -389,7 +389,6 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
      */
     protected function _prepareColumnsForTableStatement(\PDO $pdo, string $tableReplaceVal = 'tableName') : \PDOStatement {
         return $pdo->prepare("SELECT `COLUMN_NAME` FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = :$tableReplaceVal");
-        ""
     }
 
 }

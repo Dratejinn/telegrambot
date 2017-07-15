@@ -10,6 +10,13 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\Storage\Migrations\TelegramAdapter;
 
 class TelegramMigration extends AbstractMigration {
+
+    /**
+     * Migrate the provided Telegram class
+     * @param \Telegram\API\Base\Abstracts\ABaseObject $telegramClass
+     * @param bool $createOptionalColumns
+     * @param array $options
+     */
     protected function _migrateTelegramClass(ABaseObject $telegramClass, bool $createOptionalColumns = TRUE, array $options = []) {
         $adapter = new TelegramAdapter($telegramClass);
 
@@ -41,6 +48,12 @@ class TelegramMigration extends AbstractMigration {
         $table->create();
     }
 
+    /**
+     * Get the MySQL type for given property
+     * @param \Telegram\Storage\Migrations\TelegramAdapter $adapter
+     * @param string $property
+     * @return mixed|string
+     */
     protected function _getMySqlTypeForProperty(TelegramAdapter $adapter, string &$property) {
         $telegramType = $adapter->getTypeForProperty($property);
 

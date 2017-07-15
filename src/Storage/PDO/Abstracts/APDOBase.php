@@ -107,5 +107,9 @@ abstract class APDOBase {
         return $dsn;
     }
 
+    /**
+     * Implementing class should return the PDO URI
+     * @return string
+     */
     abstract protected function _getURI() : string;
 }
