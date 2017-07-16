@@ -124,7 +124,7 @@ final class API {
     }
 
     /**
-     * @param \Psr\Log\LoggerAwareInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public static function SetLogger(Log\LoggerInterface $logger) {
         self::$_Logger = $logger;
