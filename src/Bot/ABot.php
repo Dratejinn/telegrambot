@@ -170,14 +170,18 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
     /**
      * Call this method to run this bot other ways to run this bot are using getUpdates and handleUpdates
      * @param bool $throwOnFailure
+     * @param callable $errorHandler optional errorHandler to do some custom actions when an error occurs
      * @throws \Throwable
      */
-    public function run(bool $throwOnFailure = TRUE) {
+    public function run(bool $throwOnFailure = TRUE, callable $errorHandler = NULL) {
         while (TRUE) {
             try {
                 $updates = $this->getUpdates();
                 $this->handleUpdates($updates);
             } catch (\Throwable $e) {
+                if ($errorHandler !== NULL) {
+                    $errorHandler($e);
+                }
                 if ($throwOnFailure) {
                     throw $e;
                 } else {

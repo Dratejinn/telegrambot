@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f34f9f01-2463-44f7-803f-51ac69fe0eef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Method/GetUpdates.php" afterPath="$PROJECT_DIR$/src/API/Method/GetUpdates.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/Type/Chat.php" afterPath="$PROJECT_DIR$/src/API/Type/Chat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/API.php" afterPath="$PROJECT_DIR$/src/API/API.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Bot/ABot.php" afterPath="$PROJECT_DIR$/src/Bot/ABot.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,23 +19,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InlineQueryHandler.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Examples/Bot/Handlers/InlineQueryHandler.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="e#69#114#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MessageHandler.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Examples/Bot/Handlers/MessageHandler.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,8 +52,18 @@
       <file leaf-file-name="ABot.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Bot/ABot.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="307" column="75" lean-forward="false" selection-start-line="307" selection-start-column="75" selection-end-line="307" selection-end-column="75" />
+            <state relative-caret-position="400">
+              <caret line="171" column="34" lean-forward="true" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="API.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/API/API.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="649">
+              <caret line="128" column="56" lean-forward="false" selection-start-line="128" selection-start-column="56" selection-end-line="128" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -101,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetUpdates.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GetUpdates.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/API/Method/GetUpdates.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="26" column="66" lean-forward="false" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
+            <state relative-caret-position="244">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,7 +132,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/API/Type/Audio.php" />
         <option value="$PROJECT_DIR$/src/API/Type/CallbackQuery.php" />
         <option value="$PROJECT_DIR$/src/API/Type/ChatMember.php" />
         <option value="$PROJECT_DIR$/src/API/Type/ChatPhoto.php" />
@@ -182,9 +179,10 @@
         <option value="$PROJECT_DIR$/src/db/Phinx/TelegramMigration.php" />
         <option value="$PROJECT_DIR$/.codedocs" />
         <option value="$PROJECT_DIR$/vendor/monolog/monolog/src/Monolog/Processor/GitProcessor.php" />
-        <option value="$PROJECT_DIR$/src/Bot/ABot.php" />
         <option value="$PROJECT_DIR$/src/API/Type/Chat.php" />
         <option value="$PROJECT_DIR$/src/API/Method/GetUpdates.php" />
+        <option value="$PROJECT_DIR$/src/Bot/ABot.php" />
+        <option value="$PROJECT_DIR$/src/API/API.php" />
       </list>
     </option>
   </component>
@@ -293,20 +291,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Telegrambot" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -421,12 +405,12 @@
       <workItem from="1499895904510" duration="287000" />
       <workItem from="1500134817871" duration="142000" />
       <workItem from="1500135055502" duration="20816000" />
-      <workItem from="1500198192072" duration="2059000" />
+      <workItem from="1500198192072" duration="2558000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31428000" />
+    <option name="totallyTimeSpent" value="31927000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1022" extended-state="6" />
@@ -691,6 +675,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="530">
           <caret line="85" column="26" lean-forward="true" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -699,13 +684,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/API/API.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1270">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -781,14 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Examples/Bot/Handlers/MessageHandler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Examples/Bot/Handlers/Command/ExampleCommandHandler.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -809,14 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Bot/ABot.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="307" column="75" lean-forward="false" selection-start-line="307" selection-start-column="75" selection-end-line="307" selection-end-column="75" />
           <folding />
         </state>
       </provider>
@@ -847,8 +809,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/API/Method/GetUpdates.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="26" column="66" lean-forward="false" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
+        <state relative-caret-position="244">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bot/ABot.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="171" column="34" lean-forward="true" selection-start-line="171" selection-start-column="34" selection-end-line="171" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Examples/Bot/Handlers/MessageHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/API/API.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="128" column="56" lean-forward="false" selection-start-line="128" selection-start-column="56" selection-end-line="128" selection-end-column="56" />
           <folding />
         </state>
       </provider>
