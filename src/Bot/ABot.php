@@ -286,7 +286,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
 
     /**
      * Get all Chats this bot is in
-     * @return array
+     * @return \Telegram\API\Type\Chat[]
      */
     public function getChats() : array {
         return $this->_chats;
@@ -302,6 +302,17 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
             return $this->_chats[$id];
         }
         return NULL;
+    }
+
+    /**
+     * Used to send provided SendMessage to all chats available to this bot
+     * @param \Telegram\API\Method\SendMessage $sendMessage
+     */
+    public function sendMessageToAllChats(API\Method\SendMessage $sendMessage) {
+        foreach ($this->getChats() as $chat) {
+            $sendMessage->chatId = $chat->id;
+            $sendMessage->call($this->_bot);
+        }
     }
 
     /**
