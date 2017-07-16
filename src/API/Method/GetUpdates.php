@@ -24,7 +24,7 @@ class GetUpdates extends ABaseObject implements IOutbound {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'offset'            => ['type' => ABaseObject::T_INT,   'optional' => TRUE, 'external' => 'offset'],
+            'offset'            => ['type' => ABaseObject::T_FLOAT,   'optional' => TRUE, 'external' => 'offset'],
             'limit'             => ['type' => ABaseObject::T_INT,   'optional' => TRUE, 'external' => 'limit'],
             'timeout'           => ['type' => ABaseObject::T_INT,   'optional' => TRUE, 'external' => 'timeout'],
             'allowedUpdates'    => ['type' => ABaseObject::T_ARRAY, 'optional' => TRUE, 'external' => 'allowed_updates']
