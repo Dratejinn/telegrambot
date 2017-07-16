@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
+use Telegram\API\Bot;
+use Telegram\API\Method\GetChatAdministrators;
+use Telegram\API\Method\SendMessage;
 
 /**
  * Class Chat
@@ -53,12 +56,49 @@ class Chat extends ABaseObject {
 
     /**
      * Create a chat instance
-     * @param int $id
+     * @param float $id
      * @param string $type
      */
     final public static function Create(float $id, string $type) {
         $chat = new self;
         $chat->id = $id;
         $chat->type = $type;
+    }
+
+    /**
+     * @param \Telegram\API\Bot $bot
+     * @return \Telegram\API\Type\ChatMember[];
+     */
+    final public function getChatAdmins(Bot $bot) : array {
+        $getChatAdministrators = new GetChatAdministrators;
+        $getChatAdministrators->chatId = $this->id;
+        $result = $getChatAdministrators->call($bot);
+        if ($result === FALSE || $result === NULL) {
+            return [];
+        }
+        return $result;
+    }
+
+    /**
+     * Used to send a text message to the chat
+     * @param \Telegram\API\Bot $bot
+     * @param string $message
+     * @return \Telegram\API\Type\Message
+     */
+    final public function sendTextMessage(Bot $bot, string $message) {
+        $sendMessage = new SendMessage;
+        $sendMessage->text = $message;
+        return $this->sendMessage($bot, $sendMessage);
+    }
+
+    /**
+     * Used to send a sendMessage with given bot
+     * @param \Telegram\API\Bot $bot
+     * @param \Telegram\API\Method\SendMessage $message
+     * @return \Telegram\API\Type\Message
+     */
+    final public function sendMessage(Bot $bot, SendMessage $message) {
+        $message->chatId = $this->id;
+        return $message->call($bot);
     }
 }
