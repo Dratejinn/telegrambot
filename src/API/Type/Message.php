@@ -7,6 +7,7 @@ namespace Telegram\API\Type;
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Games\Type\Game;
 use Telegram\API\Payments\Type\{Invoice, SuccessfulPayment};
+use Telegram\API\Stickers\Type\Sticker;
 
 /**
  * Class Message
@@ -26,7 +27,7 @@ use Telegram\API\Payments\Type\{Invoice, SuccessfulPayment};
  * @property null|\Telegram\API\Type\Document $document
  * @property null|\Telegram\API\Games\Type\Game $game
  * @property null|\Telegram\API\Type\PhotoSize[] $photo
- * @property null|\Telegram\API\Type\Sticker $sticker
+ * @property null|\Telegram\API\Stickers\Type\Sticker $sticker
  * @property null|\Telegram\API\Type\Video $video
  * @property null|\Telegram\API\Type\VideoNote $videoNote
  * @property null|string $caption

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Telegram\API\Payments\Method;
 
 use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
-use Telegram\API\Type\InlineKeyboardMarkup;
 
 /**
  * Class SendInvoice

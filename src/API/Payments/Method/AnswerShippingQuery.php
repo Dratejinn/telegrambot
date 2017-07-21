@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Telegram\API\Payments\Method;
 
-use Telegram\API\Type;
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;

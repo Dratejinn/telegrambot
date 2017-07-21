@@ -30,3 +30,9 @@ phinx.yml
 
 #iml files
 .idea/*.iml
+
+#.idea php file
+.idea/php.xml
+
+#dictionaries
+.idea/dictionaries/*

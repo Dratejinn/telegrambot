@@ -47,7 +47,7 @@ class BaseClasses extends TelegramMigration {
             new Type\PhotoSize,
             new Type\ReplyKeyboardMarkup,
             new Type\ReplyKeyboardRemove,
-            new Type\Sticker,
+            new \Telegram\API\Stickers\Type\Sticker,
             new Type\Update,
             new Type\User,
             new Type\UserProfilePhotos,
