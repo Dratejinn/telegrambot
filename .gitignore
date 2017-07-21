@@ -27,3 +27,6 @@ phinx.yml
 
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
+
+#iml files
+.idea/*.iml
