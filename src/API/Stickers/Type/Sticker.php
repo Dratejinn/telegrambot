@@ -25,7 +25,7 @@ class Sticker extends ABaseObject {
      * @inheritdoc
      */
     protected static $_IdProp = 'fileId';
-    
+
     /**
      * @inheritdoc
      */
