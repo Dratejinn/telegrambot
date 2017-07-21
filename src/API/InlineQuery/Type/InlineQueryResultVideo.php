@@ -6,8 +6,23 @@ namespace Telegram\API\InlineQuery\Type;
 
 use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
+/**
+ * Class InlineQueryResultVideo
+ * @package Telegram\API\InlineQuery\Type
+ * @property string $videoUrl
+ * @property string $mimeType
+ * @property string $thumbUrl
+ * @property null|string $caption
+ * @property int $videoWidth
+ * @property int $videoHeight
+ * @property int $videoDuration
+ * @property null|string $description
+ */
 class InlineQueryResultVideo extends AInlineQueryResult {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'videoUrl'      => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'video_url'],
@@ -22,6 +37,9 @@ class InlineQueryResultVideo extends AInlineQueryResult {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
         $this->type = 'video';

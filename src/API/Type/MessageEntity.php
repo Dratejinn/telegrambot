@@ -6,8 +6,20 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class MessageEntity
+ * @package Telegram\API\Type
+ * @property string $type
+ * @property int $offset
+ * @property int $length
+ * @property null|string $url
+ * @property null|\Telegram\API\Type\User $user
+ */
 class MessageEntity extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'type'   => ['type' => ABaseObject::T_STRING,   'optional' => FALSE,    'external' => 'type'],

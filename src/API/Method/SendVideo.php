@@ -7,8 +7,20 @@ namespace Telegram\API\Method;
 use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
 use Telegram\API\Base\InputFile;
 
+/**
+ * Class SendVideo
+ * @package Telegram\API\Method
+ * @property string|\Telegram\API\Base\InputFile $video
+ * @property null|int $duration
+ * @property null|int $width
+ * @property null|int $height
+ * @property null|string $caption
+ */
 class SendVideo extends ASend {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'video'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE,    'external' => 'video',      'class' => InputFile::class],

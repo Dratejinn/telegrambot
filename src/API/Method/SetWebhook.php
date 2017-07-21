@@ -10,9 +10,19 @@ use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 use Telegram\API\Base\InputFile;
 
-
+/**
+ * Class SetWebhook
+ * @package Telegram\API\Method
+ * @property string $url
+ * @property null|\Telegram\API\Base\InputFile $certificate
+ * @property null|int $maxConnections
+ * @property null|string[] $allowedUpdates
+ */
 class SetWebhook extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'url'               => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'url'],
@@ -23,6 +33,9 @@ class SetWebhook extends ABaseObject implements IOutbound {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('setWebhook', $this);
         $arr = [];

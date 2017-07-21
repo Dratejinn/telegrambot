@@ -6,8 +6,22 @@ namespace Telegram\API\InlineQuery\Type;
 
 use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
 
+/**
+ * Class InlineQueryResultDocument
+ * @package Telegram\API\InlineQuery\Type
+ * @property null|string $caption
+ * @property string $documentUrl
+ * @property string $mimeType
+ * @property null|string $description
+ * @property null|string $thumbUrl
+ * @property null|int $thumbWidth
+ * @property null|int $thumbHeight
+ */
 class InlineQueryResultDocument extends AInlineQueryResult {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'caption'       => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,    'external' => 'caption'],
@@ -21,6 +35,9 @@ class InlineQueryResultDocument extends AInlineQueryResult {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
         $this->type = 'document';

@@ -6,10 +6,25 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class Document
+ * @package Telegram\API\Type
+ * @property string $fileId
+ * @property null|\Telegram\API\Type\PhotoSize $thumb
+ * @property null|string $fileName
+ * @property null|string $mimeType
+ * @property null|int $fileSize
+ */
 class Document extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     protected static $_IdProp = 'fileId';
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'fileId'    => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'file_id'],

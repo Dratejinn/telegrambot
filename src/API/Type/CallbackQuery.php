@@ -5,11 +5,30 @@ declare(strict_types=1);
 namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
+use Telegram\API\Method\AnswerCallbackQuery;
+use Telegram\API\Bot;
 
+/**
+ * Class CallbackQuery
+ * @package Telegram\API\Type
+ * @property string id
+ * @property \Telegram\API\Type\User from
+ * @property null|\Telegram\API\Type\Message message
+ * @property null|string inlineMessageId
+ * @property null|string chatInstance
+ * @property null|string data
+ * @property null|string gameShortName
+ */
 class CallbackQuery extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     protected static $_IdProp = 'id';
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'                => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'id'],
@@ -23,8 +42,13 @@ class CallbackQuery extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
-    public function answer(\Telegram\API\Bot $bot, string $text = NULL) {
-        $answer = new \Telegram\API\Method\AnswerCallbackQuery;
+    /**
+     * Answer this callback query with a text message
+     * @param \Telegram\API\Bot $bot
+     * @param string|NULL $text
+     */
+    public function answer(Bot $bot, string $text = NULL) {
+        $answer = new AnswerCallbackQuery;
         $answer->callbackQueryId = $this->id;
         if ($text !== NULL) {
             $answer->text = $text;

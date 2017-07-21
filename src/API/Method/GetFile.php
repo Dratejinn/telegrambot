@@ -9,8 +9,16 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
+/**
+ * Class GetFile
+ * @package Telegram\API\Method
+ * @property string $fileId
+ */
 class GetFile extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'fileId'            => ['type' => ABaseObject::T_STRING,   'optional' => FALSE, 'external' => 'file_id'],
@@ -18,6 +26,9 @@ class GetFile extends ABaseObject implements IOutbound {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('getFile', $this);
         $arr = [];

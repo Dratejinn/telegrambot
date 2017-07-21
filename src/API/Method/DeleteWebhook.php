@@ -10,6 +10,9 @@ use Telegram\API\Bot;
 
 class DeleteWebhook extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('deleteWebhook', $this);
         if ($reply instanceof \stdClass) {

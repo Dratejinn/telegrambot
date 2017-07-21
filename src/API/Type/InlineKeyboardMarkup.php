@@ -6,8 +6,16 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class InlineKeyboardMarkup
+ * @package Telegram\API\Type
+ * @property array $inlineKeyboard
+ */
 class InlineKeyboardMarkup extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'inlineKeyboard' => ['type' => ABaseObject::T_ARRAY, 'optional' => FALSE, 'external' => 'inline_keyboard'],
@@ -15,6 +23,11 @@ class InlineKeyboardMarkup extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     * InlineKeyboardMarkup constructor.
+     * @param \stdClass|NULL $payload
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
 
@@ -30,12 +43,20 @@ class InlineKeyboardMarkup extends ABaseObject {
             $this->inlineKeyboard = $keyboard;
         }
     }
+
+    /**
+     * Add a row to the inline keyboard
+     * @param array $row
+     * @throws \Exception
+     */
     public function addRow(array $row) {
         foreach ($row as $rowButton) {
             if (!$rowButton instanceof InlineKeyboardButton) {
                 throw new \Exception('Entry of row is not an instance of InlineKeyboardButton');
             }
         }
-        $this->inlineKeyboard[] = $row;
+        $inlineKeyboard = $this->inlineKeyboard;
+        $inlineKeyboard[] = $row;
+        $this->inlineKeyboard = $inlineKeyboard;
     }
 }

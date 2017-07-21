@@ -8,8 +8,21 @@ use Telegram\API\Type;
 use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
 use Telegram\API\Bot;
 
+/**
+ * Class SendMessage
+ * @package Telegram\API\Method
+ * @property string $text
+ * @property null|string $parseMode
+ * @property null|bool $disableWebPagePreview
+ */
 class SendMessage extends ASend {
 
+    const PARSEMODE_MARKDOWN = 'Markdown';
+    const PARSEMODE_HTML = 'HTML';
+
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'text'                  => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'text'],

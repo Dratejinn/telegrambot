@@ -5,11 +5,29 @@ declare(strict_types=1);
 namespace Telegram\API\Payments\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
+use Telegram\API\Type\User;
 
+/**
+ * Class PreCheckoutQuery
+ * @package Telegram\API\Payments\Type
+ * @property string $id
+ * @property \Telegram\API\Type\User $from
+ * @property string $currency
+ * @property int $totalAmount
+ * @property string $invoicePayload
+ * @property null|string $shippingOptionId
+ * @property null|\Telegram\API\Payments\Type\OrderInfo $orderInfo
+ */
 class PreCheckoutQuery extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     protected static $_IdProp = 'id';
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'                    => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'id'],

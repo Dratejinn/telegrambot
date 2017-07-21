@@ -6,8 +6,19 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class Contact
+ * @package Telegram\API\Type
+ * @property string $phoneNumber
+ * @property string $firstName
+ * @property null|string $lastName
+ * @property null|int $userId
+ */
 class Contact extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'phoneNumber'   => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'phone_number'],

@@ -9,8 +9,18 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
+/**
+ * Class GetUserProfilePhotos
+ * @package Telegram\API\Method
+ * @property int $userId
+ * @property null|int $limit
+ * @property null|int $offset
+ */
 class GetUserProfilePhotos extends ABaseObject implements IOutbound {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'userId'            => ['type' => ABaseObject::T_INT,   'optional' => FALSE, 'external' => 'user_id'],
@@ -20,6 +30,9 @@ class GetUserProfilePhotos extends ABaseObject implements IOutbound {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function call(Bot $bot) {
         $reply = $bot->call('getUserProfilePhotos', $this);
         $arr = [];

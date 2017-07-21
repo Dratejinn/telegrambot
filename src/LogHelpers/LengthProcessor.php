@@ -4,14 +4,18 @@ declare(strict_types = 1);
 
 namespace Telegram\LogHelpers;
 
-use Monolog\Logger;
-
 class LengthProcessor {
 
     protected $_adjustingRecords    = NULL;
     protected $_contextRecords      = NULL;
     protected $_extraRecords        = NULL;
 
+    /**
+     * LengthProcessor constructor.
+     * @param array $adjustingRecords
+     * @param array $contextRecords
+     * @param array $extraRecords
+     */
     public function __construct(array $adjustingRecords = [], array $contextRecords = [], array $extraRecords = []) {
         $this->_adjustingRecords = $adjustingRecords;
         $this->_contextRecords = $contextRecords;
@@ -19,6 +23,7 @@ class LengthProcessor {
     }
 
     /**
+     * Called from a monolog logger implementation
      * @param  array $record
      * @return array
      */
@@ -35,6 +40,12 @@ class LengthProcessor {
         return $record;
     }
 
+    /**
+     * Processes a log record
+     * @param array $process
+     * @param array $contextArray
+     * @return array
+     */
     private function _processArray(array $process, array $contextArray) {
         foreach ($contextArray as $recordKey => $length) {
             if (isset($process[$recordKey]) && is_string($process[$recordKey])) {

@@ -6,8 +6,19 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class Venue
+ * @package Telegram\API\Type
+ * @property \Telegram\API\Type\Location $location
+ * @property string $title
+ * @property string $address
+ * @property null|string $foursquareId
+ */
 class Venue extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'location'      => ['type' => ABaseObject::T_OBJECT,    'optional' => FALSE,  'external' => 'location', 'class' => Location::class],

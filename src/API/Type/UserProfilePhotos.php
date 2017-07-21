@@ -6,8 +6,17 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class UserProfilePhotos
+ * @package Telegram\API\Type
+ * @property int $totalCount
+ * @property array $photos
+ */
 class UserProfilePhotos extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'totalCount'    => ['type' => ABaseObject::T_INT,    'optional' => FALSE,  'external' => 'total_count'],
@@ -16,6 +25,10 @@ class UserProfilePhotos extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * UserProfilePhotos constructor.
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
 

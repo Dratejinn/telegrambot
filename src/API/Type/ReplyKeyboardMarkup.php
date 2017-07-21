@@ -6,8 +6,19 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 
+/**
+ * Class ReplyKeyboardMarkup
+ * @package Telegram\API\Type
+ * @property array $keyboard
+ * @property null|bool $resizeKeyboard
+ * @property null|bool $oneTimeKeyboard
+ * @property null|bool $selective
+ */
 class ReplyKeyboardMarkup extends ABaseObject {
 
+    /**
+     * @inheritdoc
+     */
     public static function GetDatamodel() : array {
         $datamodel = [
             'keyboard'          => ['type' => ABaseObject::T_ARRAY,  'optional' => FALSE,    'external' => 'keyboard'],
@@ -18,6 +29,10 @@ class ReplyKeyboardMarkup extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
+    /**
+     * ReplyKeyboardMarkup constructor.
+     * @inheritdoc
+     */
     public function __construct(\stdClass $payload = NULL) {
         parent::__construct($payload);
 

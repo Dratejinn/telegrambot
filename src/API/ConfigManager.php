@@ -5,16 +5,35 @@ declare(strict_types = 1);
 namespace Telegram\API;
 
 final class ConfigManager {
+
+    /**
+     * All configs stored as an associative array
+     * @var array
+     */
     private static $_Configs = [];
 
+    /**
+     * Constructing a ConfigManager is not allowed
+     * ConfigManager constructor.
+     */
     private function __construct() {
         //no
     }
 
+    /**
+     * Method to add a config
+     * @param string $name
+     * @param $value
+     */
     public static function AddConfig(string $name, $value) {
         self::$_Configs[$name] = $value;
     }
 
+    /**
+     * Method to add configs from a jsonfile
+     * @param string $configPath
+     * @return bool
+     */
     public static function AddConfigFromJSONFile(string $configPath) : bool {
         if (!file_exists($configPath)) {
             return FALSE;
@@ -32,6 +51,13 @@ final class ConfigManager {
         return TRUE;
     }
 
+    /**
+     * Method to add configs from an ini file
+     * @param string $configPath
+     * @param string $section
+     * @return bool
+     * @throws \Exception
+     */
     public static function AddConfigFromINIFile(string $configPath, string $section) : bool {
         if (!file_exists($configPath)) {
             return FALSE;
@@ -55,6 +81,11 @@ final class ConfigManager {
         return TRUE;
     }
 
+    /**
+     * Method to get a config, if no config is found for $name then NULL is returned
+     * @param string $name
+     * @return mixed|null
+     */
     public static function GetConfig(string $name) {
         if (self::HasConfig($name)) {
             return self::$_Configs[$name];
@@ -62,11 +93,12 @@ final class ConfigManager {
         return NULL;
     }
 
+    /**
+     * Method to check if the ConfigManager has a config with provided $name
+     * @param string $name
+     * @return bool
+     */
     public static function HasConfig(string $name) : bool {
         return isset(self::$_Configs[$name]);
-    }
-
-    public function __invoke(string $name) {
-        return self::GetConfig($name);
     }
 }
