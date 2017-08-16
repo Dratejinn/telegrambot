@@ -13,7 +13,7 @@ use Telegram\API\Stickers\Type\Sticker;
  * Class Message
  * @package Telegram\API\Type
  * @property int $id
- * @property null|\Telegram\API\Type\User $user
+ * @property null|\Telegram\API\Type\User $from
  * @property int $date
  * @property \Telegram\API\Type\Chat $chat
  * @property null|\Telegram\API\Type\User $forwardFrom
