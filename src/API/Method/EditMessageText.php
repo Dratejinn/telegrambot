@@ -42,7 +42,7 @@ class EditMessageText extends ABaseObject implements IOutbound {
      * @inheritdoc
      */
     public function call(Bot $bot) {
-        $reply = $bot->call('editMessageReplyMarkup', $this);
+        $reply = $bot->call('editMessageText', $this);
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 if ($reply->result === TRUE) {
