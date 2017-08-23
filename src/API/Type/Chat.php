@@ -22,6 +22,7 @@ use Telegram\API\Method\SendMessage;
  * @property null|\Telegram\API\Type\ChatPhoto $photo
  * @property null|string $description
  * @property null|string $inviteLink
+ * @property null|\Telegram\API\Type\Message $pinnedMessage
  */
 class Chat extends ABaseObject {
 
@@ -49,7 +50,8 @@ class Chat extends ABaseObject {
             'allAdmin'      => ['type' => ABaseObject::T_BOOL,                              'optional' => TRUE,     'external' => 'all_members_are_administrators'],
             'photo'         => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'photo', 'class' => ChatPhoto::class],
             'description'   => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'description'],
-            'inviteLink'    => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'invite_link']
+            'inviteLink'    => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'invite_link'],
+            'pinnedMessage' => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'pinned_message', 'class' => Message::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

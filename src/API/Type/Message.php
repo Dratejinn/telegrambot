@@ -18,8 +18,10 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property \Telegram\API\Type\Chat $chat
  * @property null|\Telegram\API\Type\User $forwardFrom
  * @property null|int $forwardFromMessageId
+ * @property null|string $forwardSignature
  * @property null|int $forwardDate
  * @property null|\Telegram\API\Type\Message $replyToMessage
+ * @property null|string $authorSignature
  * @property null|int $editDate
  * @property null|string $text
  * @property null|\Telegram\API\Type\MessageEntity[] $entities
@@ -72,8 +74,10 @@ class Message extends ABaseObject {
             'chat'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => FALSE,    'external' => 'chat',                       'class' => Chat::class],
             'forwardFrom'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'forward_from',               'class' => User::class],
             'forwardFromMessageId'  => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_from_message_id'],
+            'forwardSignature'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'forward_signature'],
             'forwardDate'           => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_date'],
             'replyToMessage'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_to_message',           'class' => Message::class],
+            'authorSignature'       => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'author_signature'],
             'editDate'              => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'edit_date'],
             'text'                  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'text'],
 

@@ -10,6 +10,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * Class User
  * @package Telegram\API\Type
  * @property int $id
+ * @property bool $isBot
  * @property string $firstName
  * @property null|string $lastName
  * @property null|string $username
@@ -28,6 +29,7 @@ class User extends ABaseObject {
     public static function GetDatamodel() : array {
         $datamodel = [
             'id'            => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'id'],
+            'isBot'         => ['type' => ABaseObject::T_BOOL,      'optional' => FALSE,    'external' => 'is_bot'],
             'firstName'     => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'first_name'],
             'lastName'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'last_name'],
             'username'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'username'],
