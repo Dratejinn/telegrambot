@@ -95,7 +95,6 @@ class Message extends ABaseObject {
             'location'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',                   'class' => Location::class],
             'venue'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'venue',                      'class' => Venue::class],
 
-            'newChatMember'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'new_chat_member',            'class' => User::class],
             'newChatMembers'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_members'],
             'leftChatMember'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'left_chat_member',           'class' => User::class],
             'newChatTitle'          => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'new_chat_title'],
