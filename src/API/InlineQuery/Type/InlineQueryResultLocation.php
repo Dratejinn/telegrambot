@@ -14,6 +14,7 @@ use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
  * @property null|string $thumbUrl
  * @property null|int $thumbWidth
  * @property null|int $thumbHeight
+ * @property null|int $livePeriod
  */
 class InlineQueryResultLocation extends AInlineQueryResult {
 
@@ -26,7 +27,8 @@ class InlineQueryResultLocation extends AInlineQueryResult {
             'longitude'     => ['type' => ABaseObject::T_FLOAT,  'optional' => FALSE,   'external' => 'longitude'],
             'thumbUrl'      => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,    'external' => 'thumb_url'],
             'thumbWidth'    => ['type' => ABaseObject::T_INT,    'optional' => TRUE,    'external' => 'thumb_width'],
-            'thumbHeight'   => ['type' => ABaseObject::T_INT,    'optional' => TRUE,    'external' => 'thumb_height']
+            'thumbHeight'   => ['type' => ABaseObject::T_INT,    'optional' => TRUE,    'external' => 'thumb_height'],
+            'livePeriod'    => ['type' => ABaseObject::T_INT,    'optional' => TRUE,    'external' => 'live_period']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

@@ -34,7 +34,6 @@ class PinChatMessage extends ABaseObject implements IOutbound {
      */
     public function call(Bot $bot) {
         $reply = $bot->call('pinChatMessage', $this);
-        $arr = [];
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 if (!empty($reply->result)) {

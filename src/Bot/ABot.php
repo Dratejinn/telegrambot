@@ -7,12 +7,10 @@ namespace Telegram\Bot;
 use Telegram\API;
 use Telegram\API\Method\GetUpdates;
 use Telegram\API\Type\{User, Update, Chat};
-use Telegram\Bot\Handler\{AMessageHandler};
+use Telegram\Bot\Handler\{ACallbackQueryHandler, AChosenInlineResultHandler, AInlineQueryHandler, AMessageHandler};
 use Telegram\LogHelpers;
 use Telegram\Storage\Interfaces\{ITelegramStorageHandler, IStorageHandlerAware};
 use Telegram\Storage\Traits\TStorageHandlerTrait;
-
-use Psr\Log;
 
 abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, IStorageHandlerAware {
 
@@ -69,6 +67,16 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
     private $_leaveChatHandlers = [];
 
     /**
+     * @var callable[]
+     */
+    private $_memberLeftChatHandlers = [];
+
+    /**
+     * @var callable[]
+     */
+    private $_membersJoinedChatHandlers = [];
+
+    /**
      * ABot constructor.
      * @param string|NULL $token
      * @param \Telegram\Storage\Interfaces\ITelegramStorageHandler|NULL $storageHandler
@@ -115,7 +123,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
 
     /**
      * Used to add a JoinChatHandler. This callable will be called after the bot has joined a new chat.
-     * The callable gets the following arguments: string $name, \Telegram\API\Type\Chat $chat, string $updateType.
+     * The callable gets the following arguments: ABot $bot, string $name Update $update
      *
      * @param string $name
      * @param callable $callback
@@ -134,13 +142,53 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
 
     /**
      * Used to add an LeaveChatHandler. This callable will be called after the bot has left a known chat.
-     * The callable gets the following arguments: string $name, \Telegram\API\Type\Chat $chat, string $updateType.
+     * The callable gets the following arguments: ABot $bot, string $name Update $update
      *
      * @param string $name
      * @param callable $callback
      */
     public function addLeaveChatHandler(string $name, callable $callback) {
         $this->_leaveChatHandlers[$name] = $callback;
+    }
+
+    /**
+     * Used to add a memberLeftChatHandler. This callable will be called after a user from a known group has left the chat.
+     * The callable gets the following arguments: ABot $bot, string $name Update $update
+     *
+     * @param string $name
+     * @param callable $callback
+     */
+    public function addMemberLeftChatHandler(string $name, callable  $callback) {
+        $this->_memberLeftChatHandlers[$name] = $callback;
+    }
+
+    /**
+     * Removes a memberLeftChatHandler
+     *
+     * @param string $name
+     */
+    public function removeMemberLeftChatHandler(string $name) {
+        unset($this->_memberLeftChatHandlers[$name]);
+    }
+
+    /**
+     * Used to add a membberLeftChatHandler. This callable will be called after a user from a known group has left the chat.
+     * The callable gets the following arguments: ABot $bot, string $name Update $update
+     *
+     * @param string $name
+     * @param callable $callback
+     */
+    public function addMembersJoinedChatHandler(string $name, callable $callback) {
+        $this->_membersJoinedChatHandlers[$name] = $callback;
+    }
+
+    /**
+     * Removes a membersJoinedChatHandler
+     *
+     * @param string $name
+     */
+    public function removeMembersJoinedChatHandler(string $name) {
+        unset($this->_membersJoinedChatHandlers[$name]);
     }
 
     /**
@@ -237,7 +285,11 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                         $this->delete($update->{$updateType}->chat);
                         unset($this->_chats[(string) $update->{$updateType}->chat->id]);
                         foreach ($this->_leaveChatHandlers as $name => $callable) {
-                            $callable($name, $update->{$updateType}->chat, $update->{$updateType});
+                            $callable($this, $name, $update);
+                        }
+                    } else {
+                        foreach ($this->_memberLeftChatHandlers as $name => $callable) {
+                            $callable($this, $name, $update);
                         }
                     }
                 } elseif (!isset($this->_chats[(string) $update->{$updateType}->chat->id])) {
@@ -245,7 +297,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                     $this->store($update->{$updateType}->chat);
                     $this->_chats[(string) $update->{$updateType}->chat->id] = $update->{$updateType}->chat;
                     foreach ($this->_joinChatHandlers as $name => $callable) {
-                        $callable($name, $update->{$updateType}->chat, $update->{$updateType});
+                        $callable($this, $name, $update);
                     }
                 } else {
                     //check if we should update the chat in storage
@@ -256,6 +308,11 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                             $this->logInfo('Updating chat with id: ' . $update->{$updateType}->chat->id, $this->getLoggerContext());
                             $this->store($update->{$updateType}->chat);
                         }
+                    }
+                }
+                if (isset($update->{$updateType}->newChatMembers)) {
+                    foreach ($this->_membersJoinedChatHandlers as $name => $callable) {
+                        $callable($this, $name, $update);
                     }
                 }
                 //fallthrough intended

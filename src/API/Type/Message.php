@@ -25,6 +25,7 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|int $editDate
  * @property null|string $text
  * @property null|\Telegram\API\Type\MessageEntity[] $entities
+ * @property null|\Telegram\API\Type\MessageEntity[] $captionEntities
  * @property null|\Telegram\API\Type\Audio $audio
  * @property null|\Telegram\API\Type\Document $document
  * @property null|\Telegram\API\Games\Type\Game $game
@@ -82,6 +83,7 @@ class Message extends ABaseObject {
             'text'                  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'text'],
 
             'entities'              => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'entities'],
+            'captionEntities'       => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'caption_entities'],
             'audio'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'audio',                      'class' => Audio::class],
             'document'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'document',                   'class' => Document::class],
             'game'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'game',                       'class' => Game::class],
@@ -95,7 +97,6 @@ class Message extends ABaseObject {
             'location'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',                   'class' => Location::class],
             'venue'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'venue',                      'class' => Venue::class],
 
-            'newChatMember'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'new_chat_member',            'class' => User::class],
             'newChatMembers'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_members'],
             'leftChatMember'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'left_chat_member',           'class' => User::class],
             'newChatTitle'          => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'new_chat_title'],
@@ -126,6 +127,14 @@ class Message extends ABaseObject {
                 $entities[] = new MessageEntity($entity);
             }
             $this->entities = $entities;
+        }
+
+        if (isset($this->captionEntities)) {
+            $entities = [];
+            foreach ($this->captionEntities as $entity) {
+                $entities[] = new MessageEntity($entity);
+            }
+            $this->captionEntities = $entities;
         }
 
         if (isset($this->photo)) {

@@ -32,7 +32,6 @@ class SetChatDescription extends ABaseObject implements IOutbound {
      */
     public function call(Bot $bot) {
         $reply = $bot->call('setChatDescription', $this);
-        $arr = [];
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 if (!empty($reply->result)) {
