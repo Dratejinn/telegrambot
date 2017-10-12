@@ -38,7 +38,6 @@ class SetWebhook extends ABaseObject implements IOutbound {
      */
     public function call(Bot $bot) {
         $reply = $bot->call('setWebhook', $this);
-        $arr = [];
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 return TRUE;
@@ -50,6 +49,5 @@ class SetWebhook extends ABaseObject implements IOutbound {
                 }
             }
         }
-        return $arr;
     }
 }

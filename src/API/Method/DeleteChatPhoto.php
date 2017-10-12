@@ -30,7 +30,6 @@ class DeleteChatPhoto extends ABaseObject implements IOutbound {
      */
     public function call(Bot $bot) {
         $reply = $bot->call('deleteChatPhoto', $this);
-        $arr = [];
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 if (!empty($reply->result)) {
