@@ -10,7 +10,7 @@ use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 
 /**
- * Class SetChatPhoto
+ * Class DeleteChatStickerSet
  * @package Telegram\API\Method
  * @property string|int|float $chatId
  */

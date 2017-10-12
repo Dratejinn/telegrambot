@@ -10,7 +10,7 @@ use Telegram\API\Bot;
 use Telegram\API\Type;
 
 /**
- * Class EditMessageText
+ * Class EditMessageLiveLocation
  * @package Telegram\API\Method
  * @property null|float|int $chatId
  * @property null|int $messageId
