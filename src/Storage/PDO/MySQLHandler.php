@@ -134,11 +134,15 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
             if (($settings['optional'] && !$storeOptionals)) {
                 continue;
             }
+            if (!isset($object->{$propName})) {
+                continue;
+            }
+
             $colName = $this->_getColumnName($propName);
-            if (isset($object->{$propName}) && !in_array($colName, $databaseColumns) && $object->{$propName} instanceof ABaseObject) {
-                    $insertValues[$colName] = $object->getJSON();
+            if (!in_array($colName, $databaseColumns) && $object->{$propName} instanceof ABaseObject) {
+                $insertValues[$colName] = $object->getJSON();
             } else {
-                if (isset($object->{$propName}) && $object->{$propName} instanceof ABaseObject) {
+                if ($object->{$propName} instanceof ABaseObject) {
                     //check if the property has a Database or not.
                     $propObject = $object->{$propName};
                     $hasTableStatement->execute([':database' => $this->_database, ':tableName' => $telegramAdapter::GetBaseObjectClassBaseName($propObject)]);
@@ -157,7 +161,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
                         $insertValues[$colName] = $object->getJSON();
                     }
                 } else {
-                    $insertValues[$colName] = isset($object->{$propName}) ? $object->{$propName} : NULL;
+                    $insertValues[$colName] = $object->{$propName};
                 }
             }
         }
@@ -175,6 +179,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
             $updateOnDuplicate = substr($updateOnDuplicate, 0, -1);
             $statement = $pdo->prepare('INSERT INTO ' . $table . ' (' . implode(',', $columns) . ') VALUES (' . implode(',', array_keys($values)) . ') ' . $updateOnDuplicate);
             $res = $statement->execute($values);
+
             $this->disconnect();
             return $res;
         }
