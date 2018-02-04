@@ -66,7 +66,7 @@ final class ConfigManager {
         if ($config === FALSE) {
             return FALSE;
         }
-        
+
         if (!isset(self::$_Configs[$section])) {
             self::$_Configs[$section] = [];
         }

@@ -4,6 +4,8 @@ TelegramConfig.json
 Tokens.ini
 phinx.yml
 /Examples/userCreds.php
+cacert.pem
+TelegramConfig.json
 
 # User-specific stuff:
 .idea/workspace.xml

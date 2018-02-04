@@ -403,8 +403,16 @@ abstract class ABaseObject implements IStorageHandlerAware {
      */
     public function getMultipartFormData() : array {
         $payload = [];
+        $attachments = [];
 
-        $convertValue = function($item) {
+        $convertValue = function($item) use (&$attachments) {
+            if ($item instanceof AInputMedia) {
+                if ($item->hasAttachment()) {
+                    $attachName = 'attachment' . count($attachments);
+                    $attachments[$attachName] = $item->getAttachment()->getCurlFile();
+                    $item->media = 'attach://' . $attachName;
+                }
+            }
             if ($item instanceof InputFile) {
                 $item = $item->getCurlFile();
             } elseif ($item instanceof ABaseObject) {
@@ -430,7 +438,7 @@ abstract class ABaseObject implements IStorageHandlerAware {
                 throw new \Exception('Required field \'' . $field . '\' has not been set!');
             }
         }
-        return $payload;
+        return array_merge($payload, $attachments);
     }
 
     /**
@@ -464,6 +472,11 @@ abstract class ABaseObject implements IStorageHandlerAware {
     public function hasInputFile() {
         $hasInputFile = FALSE;
         array_walk_recursive($this->_values, function($item) use (&$hasInputFile) {
+            if ($item instanceof AInputMedia) {
+                if ($item->hasAttachment()) {
+                    $hasInputFile = TRUE;
+                }
+            }
             if ($item instanceof InputFile) {
                 $hasInputFile = TRUE;
             }
