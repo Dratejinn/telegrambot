@@ -551,9 +551,9 @@ abstract class ABaseObject implements IStorageHandlerAware {
      * Decode a json string to a stdClass
      * @param string $jsonString
      * @param bool $throw
-     * @return \stdClass
+     * @return \stdClass|null
      */
-    public static function DecodeJSON(string $jsonString, bool $throw = TRUE) : \stdClass {
+    public static function DecodeJSON(string $jsonString, bool $throw = TRUE) {
         $obj = json_decode($jsonString, FALSE);
         if ($obj === NULL && $throw) {
             $err = json_last_error();

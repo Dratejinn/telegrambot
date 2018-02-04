@@ -85,29 +85,33 @@ final class API {
         }
         /* Decode json string */
         $res = Base\Abstracts\ABaseObject::DecodeJSON($content, FALSE);
-        if ($res === FALSE && self::HasLogger()) {
-            $err = json_last_error();
-            switch ($err) {
-                case JSON_ERROR_NONE:
-                    break;
-                case JSON_ERROR_DEPTH:
-                    self::$_Logger->alert('JSON decode error: Maximum stack depth exceeded');
-                    break;
-                case JSON_ERROR_STATE_MISMATCH:
-                    self::$_Logger->alert('JSON decode error: Underflow or the modes mismatch');
-                    break;
-                case JSON_ERROR_CTRL_CHAR:
-                    self::$_Logger->alert('JSON decode error: Unexpected control character found');
-                    break;
-                case JSON_ERROR_SYNTAX:
-                    self::$_Logger->alert('JSON decode error: Syntax error, malformed JSON');
-                    break;
-                case JSON_ERROR_UTF8:
-                    self::$_Logger->alert('JSON decode error: Malformed UTF-8 characters, possibly incorrectly encoded');
-                    break;
-                default:
-                    self::$_Logger->alert('JSON decode error: Unknown error (' . $err . ')');
-                    break;
+        if ($res === NULL) {
+            $res = new \stdClass;
+            $res->ok = FALSE;
+            if (self::HasLogger()) {
+                $err = json_last_error();
+                switch ($err) {
+                    case JSON_ERROR_NONE:
+                        break;
+                    case JSON_ERROR_DEPTH:
+                        self::$_Logger->alert('JSON decode error: Maximum stack depth exceeded');
+                        break;
+                    case JSON_ERROR_STATE_MISMATCH:
+                        self::$_Logger->alert('JSON decode error: Underflow or the modes mismatch');
+                        break;
+                    case JSON_ERROR_CTRL_CHAR:
+                        self::$_Logger->alert('JSON decode error: Unexpected control character found');
+                        break;
+                    case JSON_ERROR_SYNTAX:
+                        self::$_Logger->alert('JSON decode error: Syntax error, malformed JSON');
+                        break;
+                    case JSON_ERROR_UTF8:
+                        self::$_Logger->alert('JSON decode error: Malformed UTF-8 characters, possibly incorrectly encoded');
+                        break;
+                    default:
+                        self::$_Logger->alert('JSON decode error: Unknown error (' . $err . ')');
+                        break;
+                }
             }
         }
         return $res;
