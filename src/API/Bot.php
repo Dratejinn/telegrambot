@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Telegram\API;
 
+use Monolog\Logger;
 use Telegram\API\Method\GetMe;
 use Telegram\API\Type\User;
 use Telegram\LogHelpers;
@@ -11,7 +12,7 @@ use Telegram\LogHelpers;
 class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
 
     use LogHelpers\Traits\TLoggerTrait;
-    
+
     /**
      * The token used to identify the bot
      * @var string
@@ -34,10 +35,15 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
      * Bot constructor.
      * @param string|NULL $token
      */
-    public function __construct(string $token = NULL) {
+    public function __construct(string $token = NULL, Logger $logger = NULL) {
         if ($token !== NULL) {
             $this->_token = $token;
         }
+
+        if ($logger) {
+            $this->setLogger($logger);
+        }
+
         $getMe = new GetMe;
         do {
             $this->_me = $getMe->call($this);

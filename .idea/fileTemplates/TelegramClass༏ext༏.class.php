@@ -14,8 +14,8 @@ class ${NAME} extends ABaseObject {
      * @inheritdoc
      */
     public static function GetDatamodel() : array {
-        \$datamodel = [
+        ${DS}datamodel = [
         ];
-        return array_merge(parent::GetDatamodel(), \$datamodel);
+        return array_merge(parent::GetDatamodel(), ${DS}datamodel);
     }
 }
