@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Telegram\API\Method;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
+use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 use Telegram\API\Type\Message;
 
@@ -16,7 +17,7 @@ use Telegram\API\Type\Message;
  * @property null|bool $disableNotification
  * @property null|int $replyToMessageId
  */
-class SendMediaGroup extends ABaseObject {
+class SendMediaGroup extends ABaseObject implements IOutbound {
 
     /**
      * @inheritdoc
