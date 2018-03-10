@@ -51,6 +51,7 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|\Telegram\API\Type\Message $pinnedMessage
  * @property null|\Telegram\API\Payments\Type\Invoice $invoice
  * @property null|\Telegram\API\Payments\Type\SuccessfulPayment $succesfulPayment
+ * @property null|string $connectedWebsite
  */
 class Message extends ABaseObject {
 
@@ -109,7 +110,8 @@ class Message extends ABaseObject {
             'migrateFromChatId'     => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => TRUE,     'external' => 'migrateFromChatId'],
             'pinnedMessage'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pinned_message',             'class' => Message::class],
             'invoice'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'invoice',                    'class' => Invoice::class],
-            'successfulPayment'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'successful_payment',         'class' => SuccessfulPayment::class]
+            'successfulPayment'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'successful_payment',         'class' => SuccessfulPayment::class],
+            'connectedWebsite'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'connected_website']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

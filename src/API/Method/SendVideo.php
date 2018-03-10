@@ -15,6 +15,8 @@ use Telegram\API\Base\InputFile;
  * @property null|int $width
  * @property null|int $height
  * @property null|string $caption
+ * @property null|string $parseMode
+ * @property null|bool $supportsStreaming
  */
 class SendVideo extends ASend {
 
@@ -23,11 +25,13 @@ class SendVideo extends ASend {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'video'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE,    'external' => 'video',      'class' => InputFile::class],
-            'duration'  => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'duration'],
-            'width'     => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'width'],
-            'height'    => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'height'],
-            'caption'   => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'caption'],
+            'video'             => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE,    'external' => 'video',      'class' => InputFile::class],
+            'duration'          => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'duration'],
+            'width'             => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'width'],
+            'height'            => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'height'],
+            'caption'           => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'caption'],
+            'parseMode'         => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'parse_mode'],
+            'supportsStreaming' => ['type' => ABaseObject::T_BOOL,                              'optional' => TRUE,     'external' => 'supports_streaming']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
