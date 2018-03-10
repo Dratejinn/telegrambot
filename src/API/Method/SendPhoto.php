@@ -12,6 +12,7 @@ use Telegram\API\Base\InputFile;
  * @package Telegram\API\Method
  * @property string|\Telegram\API\Base\InputFile $photo
  * @property null|string $caption
+ * @property null|string $parseMode
  */
 class SendPhoto extends ASend {
 
@@ -22,6 +23,7 @@ class SendPhoto extends ASend {
         $datamodel = [
             'photo'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE,    'external' => 'photo',      'class' => InputFile::class],
             'caption'   => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'caption'],
+            'parseMode' => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'parse_mode']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

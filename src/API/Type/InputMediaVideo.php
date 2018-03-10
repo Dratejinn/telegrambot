@@ -13,6 +13,7 @@ use Telegram\API\Base\Abstracts\AInputMedia;
  * @property null|int $width
  * @property null|int $height
  * @property null|int $duration
+ * @property null|bool $supportsStreaming
  */
 class InputMediaVideo extends AInputMedia {
 
@@ -23,7 +24,8 @@ class InputMediaVideo extends AInputMedia {
         $datamodel = [
             'width' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'width'],
             'height' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'height'],
-            'duration' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'duration']
+            'duration' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'duration'],
+            'supportsStreaming' => ['type' => ABaseObject::T_BOOL, 'optional' => TRUE, 'external' => 'supports_streaming']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
