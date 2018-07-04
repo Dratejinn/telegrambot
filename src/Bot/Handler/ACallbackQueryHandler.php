@@ -35,4 +35,19 @@ abstract class ACallbackQueryHandler extends \Telegram\Bot\AHandler {
             $removeInlineKeyboard->call($this->_apiBot);
         }
     }
+
+
+    /**
+     * Returns a freshly constructed EditMessage text with the messageId and chatId set to match the chat and message from the callbackQuery
+     * @return \Telegram\API\Method\EditMessageText
+     */
+    public function getEditMessageText() : API\Method\EditMessageText {
+        $editMessage = new API\Method\EditMessageText;
+        $message = $this->_callbackQuery->message;
+        $editMessage->messageId = $message->id;
+        $editMessage->chatId = $message->chat->id;
+
+        return $editMessage;
+    }
+
 }
