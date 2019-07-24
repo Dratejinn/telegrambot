@@ -12,6 +12,7 @@ use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
  * @property string $phoneNumber
  * @property string $firstName
  * @property null|string $lastName
+ * @property null|string $vcard
  */
 class SendContact extends ASend {
 
@@ -23,6 +24,7 @@ class SendContact extends ASend {
             'phoneNumber'   => ['type' => ABaseObject::T_STRING,   'optional' => FALSE,    'external' => 'phone_number'],
             'firstName'     => ['type' => ABaseObject::T_STRING,   'optional' => FALSE,    'external' => 'first_name'],
             'lastName'      => ['type' => ABaseObject::T_STRING,   'optional' => TRUE,     'external' => 'last_name'],
+            'vcard'         => ['type' => ABaseObject::T_STRING,   'optional' => TRUE,     'external' => 'vcard']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

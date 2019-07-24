@@ -87,6 +87,7 @@ class Message extends ABaseObject {
             'captionEntities'       => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'caption_entities'],
             'audio'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'audio',                      'class' => Audio::class],
             'document'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'document',                   'class' => Document::class],
+            'animation'             => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'animation',                  'class' => Animation::class],
             'game'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'game',                       'class' => Game::class],
             'photo'                 => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'photo'],
             'sticker'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'sticker',                    'class' => Sticker::class],

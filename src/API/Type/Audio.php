@@ -15,6 +15,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property null|string $title
  * @property null|string $mimeType
  * @property null|int $fileSize
+ * @property null|\Telegram\API\Type\PhotoSize $thumb
  */
 class Audio extends ABaseObject {
 
@@ -33,7 +34,8 @@ class Audio extends ABaseObject {
             'performer' => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'performer'],
             'title'     => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'title'],
             'mimeType'  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'mime_type'],
-            'fileSize'  => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'file_size']
+            'fileSize'  => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'file_size'],
+            'thumb'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'thumb', 'class' => PhotoSize::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

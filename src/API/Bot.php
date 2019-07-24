@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 
 namespace Telegram\API;
-
+œ
 use Monolog\Logger;
 use Telegram\API\Method\GetMe;
 use Telegram\API\Type\User;
@@ -35,7 +35,7 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
      * Bot constructor.
      * @param string|NULL $token
      */
-    public function __construct(string $token = NULL, Logger $logger = NULL) {
+    public function __construct(string $token = NULL, Logger $logger = NULL, bool $retrieveMe = TRUE) {
         if ($token !== NULL) {
             $this->_token = $token;
         }
@@ -44,14 +44,9 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
             $this->setLogger($logger);
         }
 
-        $getMe = new GetMe;
-        do {
-            $this->_me = $getMe->call($this);
-            if (!$this->_me instanceof User) {
-                $this->logAlert("'Me' is not an instance of User! Telegram api might be down... retrying in " . static::$_ConnectionRetryTimeout . ' seconds...');
-                sleep(static::$_ConnectionRetryTimeout);
-            }
-        } while (!$this->_me instanceof User);
+        if ($retrieveMe) {
+            $this->_retrieveMe();
+        }
     }
 
     /**
@@ -83,6 +78,9 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
      * @return \Telegram\API\Type\User
      */
     public function getMe() : User {
+        if ($this->_me === NULL) {
+            $this->_retrieveMe();
+        }
         return $this->_me;
     }
 
@@ -116,5 +114,21 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
      */
     public static function SetConnectionRetryTimeout(int $timeoutinSeconds) {
         static::$_ConnectionRetryTimeout = $timeoutinSeconds;
+    }
+
+    /**
+     * Method used to retrieve the userobject of the bot.
+     *
+     * @return \Telegram\API\Type\User
+     */
+    private function _retrieveMe() : User {
+        $getMe = new GetMe;
+        do {
+            $this->_me = $getMe->call($this);
+            if (!$this->_me instanceof User) {
+                $this->logAlert("'Me' is not an instance of User! Telegram api might be down... retrying in " . static::$_ConnectionRetryTimeout . ' seconds...');
+                sleep(static::$_ConnectionRetryTimeout);
+            }
+        } while (!$this->_me instanceof User);
     }
 }
