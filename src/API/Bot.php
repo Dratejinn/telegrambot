@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 
 namespace Telegram\API;
-œ
+
 use Monolog\Logger;
 use Telegram\API\Method\GetMe;
 use Telegram\API\Type\User;
