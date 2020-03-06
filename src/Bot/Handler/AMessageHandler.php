@@ -4,10 +4,6 @@ declare(strict_types = 1);
 
 namespace Telegram\Bot\Handler;
 
-use Telegram\API;
-use Telegram\Bot\ABot;
-use Telegram\API\Method\SendMessage;
-
 abstract class AMessageHandler extends \Telegram\Bot\AHandler {
 
     /**
@@ -59,7 +55,7 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
      * @param string $handler
      */
     public function addCommandHandler(string $handler) {
-        if (class_exists($handler) && is_a($handler, ACommandHelper::class, TRUE)) {
+        if (class_exists($handler) && is_a($handler, ACommandHandler::class, TRUE)) {
             $this->_commandHandlers[] = $handler;
         }
     }
