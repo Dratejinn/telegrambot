@@ -130,5 +130,6 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
                 sleep(static::$_ConnectionRetryTimeout);
             }
         } while (!$this->_me instanceof User);
+        return $this->_me;
     }
 }
