@@ -6,6 +6,7 @@ namespace Telegram\API\Type;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Games\Type\Game;
+use Telegram\API\Passport\PassportData;
 use Telegram\API\Payments\Type\{Invoice, SuccessfulPayment};
 use Telegram\API\Stickers\Type\Sticker;
 
@@ -52,6 +53,8 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|\Telegram\API\Payments\Type\Invoice $invoice
  * @property null|\Telegram\API\Payments\Type\SuccessfulPayment $succesfulPayment
  * @property null|string $connectedWebsite
+ * @property null|\Telegram\API\Passport\PassportData $passportData
+ * @property null|\Telegram\API\Type\InlineKeyboardMarkup $replyMarkup
  */
 class Message extends ABaseObject {
 
@@ -112,7 +115,9 @@ class Message extends ABaseObject {
             'pinnedMessage'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pinned_message',             'class' => Message::class],
             'invoice'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'invoice',                    'class' => Invoice::class],
             'successfulPayment'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'successful_payment',         'class' => SuccessfulPayment::class],
-            'connectedWebsite'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'connected_website']
+            'connectedWebsite'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'connected_website'],
+            'passportData'          => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'passport_data',              'class' => PassportData::class],
+            'replyMarkup'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_markup',               'class' => InlineKeyboardMarkup::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
