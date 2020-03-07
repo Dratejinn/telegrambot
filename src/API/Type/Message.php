@@ -20,6 +20,7 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|\Telegram\API\Type\User $forwardFrom
  * @property null|int $forwardFromMessageId
  * @property null|string $forwardSignature
+ * @property null|string $forwardSenderName
  * @property null|int $forwardDate
  * @property null|\Telegram\API\Type\Message $replyToMessage
  * @property null|string $authorSignature
@@ -38,6 +39,7 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|\Telegram\API\Type\Contact $contact
  * @property null|\Telegram\API\Type\Location $location
  * @property null|\Telegram\API\Type\Venue $venue
+ * @property null|\Telegram\API\Type\Poll $poll
  * @property null|\Telegram\API\Type\User $newChatMember
  * @property null|\Telegram\API\Type\User[] $newChatMembers
  * @property null|\Telegram\API\Type\User $leftChatMember
@@ -80,6 +82,7 @@ class Message extends ABaseObject {
             'forwardFrom'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'forward_from',               'class' => User::class],
             'forwardFromMessageId'  => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_from_message_id'],
             'forwardSignature'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'forward_signature'],
+            'forwardSenderName'     => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'forward_sender_name'],
             'forwardDate'           => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_date'],
             'replyToMessage'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_to_message',           'class' => Message::class],
             'authorSignature'       => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'author_signature'],
@@ -101,6 +104,7 @@ class Message extends ABaseObject {
             'contact'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'contact',                    'class' => Contact::class],
             'location'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',                   'class' => Location::class],
             'venue'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'venue',                      'class' => Venue::class],
+            'poll'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'poll',                       'class' => Poll::class],
 
             'newChatMembers'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_members'],
             'leftChatMember'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'left_chat_member',           'class' => User::class],

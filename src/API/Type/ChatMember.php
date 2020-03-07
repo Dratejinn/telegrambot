@@ -20,6 +20,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property null|bool $canInviteUsers
  * @property null|bool $canRestrictMembers
  * @property null|bool $canPinMessages
+ * @property null|bool $isMember
  * @property null|bool $canPromoteMembers
  * @property null|bool $canSendMessages
  * @property null|bool $canSendMediaMessages
@@ -44,6 +45,7 @@ class ChatMember extends ABaseObject {
             'canInviteUsers'        => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_invite_users'],
             'canRestrictMembers'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_restrict_members'],
             'canPinMessages'        => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_pin_messages'],
+            'isMember'              => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'is_member'],
             'canPromoteMembers'     => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_promote_members'],
             'canSendMessages'       => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_send_messages'],
             'canSendMediaMessages'  => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_send_media_messages'],

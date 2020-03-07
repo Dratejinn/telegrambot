@@ -24,5 +24,15 @@ class PassportData extends ABaseObject {
         return array_merge(parent::GetDatamodel(), $dataModel);
     }
 
+    public function __construct(\stdClass $payload = NULL) {
+        parent::__construct($payload);
+
+        $credentials = [];
+        foreach ($this->credentials as $credential) {
+            $credentials = new EncryptedCredentials($credential);
+        }
+        $this->credentials = $credential;
+    }
+
 
 }
