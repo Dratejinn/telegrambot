@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Examples\Bot;
 
+use Examples\Bot\Handlers\PollHandler;
 use Telegram\Bot\ABot as TBot;
 
 class ExampleBot extends TBot {
@@ -12,7 +13,8 @@ class ExampleBot extends TBot {
 
     protected $_handlers = [
         self::UPDATE_TYPE_MESSAGE => Handlers\MessageHandler::class,
-        self::UPDATE_TYPE_INLINEQUERY => Handlers\InlineQueryHandler::class
+        self::UPDATE_TYPE_INLINEQUERY => Handlers\InlineQueryHandler::class,
+        self::UPDATE_TYPE_POLL => PollHandler::class
     ];
 
     public function __construct(string $token = NULL) {

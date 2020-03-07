@@ -51,7 +51,7 @@ class Poll extends ABaseObject {
         if (isset($this->options)) {
             $options = [];
             foreach ($this->options as $option) {
-                $options[] = new PollOption($options);
+                $options[] = new PollOption($option);
             }
             $this->options = $options;
         }

@@ -17,7 +17,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  */
 class PassportFile extends ABaseObject {
 
-    public static function GetDatamodel(): array {
+    public static function GetDatamodel() : array {
         $datModel = [
             'fileId' => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'file_id'],
             'fileUniqueId' => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'file_unique_id'],
