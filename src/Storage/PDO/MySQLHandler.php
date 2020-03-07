@@ -215,7 +215,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
                 $query .= "`$property` = ?";
             }
             $statement = $pdo->prepare($query);
-            $res = $statement->execute(array_values($datamodel));
+            $success = $statement->execute(array_values($datamodel));
             $this->disconnect();
             return $success;
         }
@@ -288,7 +288,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         }
         $this->_sanitizeStdObj($stdObj);
         $datamodel = $dummy::GetDatamodel();
-        $this->_loadObjectRecursively($stdObj, $datamodel);
+        $this->_loadObjectRecursively($pdo, $stdObj, $datamodel);
         return $stdObj;
     }
 
@@ -344,7 +344,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
      * @param \stdClass $stdObj
      * @param array $datamodel
      */
-    private function _loadObjectRecursively(\stdClass $stdObj, array $datamodel) {
+    private function _loadObjectRecursively(\PDO $pdo, \stdClass $stdObj, array $datamodel) {
         foreach ($datamodel as $propName => $model) {
             if (!isset($stdObj->{$propName})) {
                 continue;

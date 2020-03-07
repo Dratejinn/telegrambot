@@ -34,6 +34,8 @@ class Bot implements LogHelpers\Interfaces\ILoggerAwareInterface {
     /**
      * Bot constructor.
      * @param string|NULL $token
+     * @param \Monolog\Logger $logger
+     * @param bool $retrieveMe
      */
     public function __construct(string $token = NULL, Logger $logger = NULL, bool $retrieveMe = TRUE) {
         if ($token !== NULL) {

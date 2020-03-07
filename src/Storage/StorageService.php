@@ -13,6 +13,9 @@ class StorageService implements Interfaces\ITelegramStorageService, ILoggerAware
 
     use TLoggerTrait;
 
+    /**
+     * @var \Telegram\Storage\Interfaces\ITelegramStorageHandler[]
+     */
     private $_storageHandlers = [];
 
     /**
@@ -35,7 +38,7 @@ class StorageService implements Interfaces\ITelegramStorageService, ILoggerAware
         }
         $success = TRUE;
         foreach ($this->_storageHandlers as $storageHandler) {
-            $res = $storageHandler->store($origin, $class, $object);
+            $res = $storageHandler->store($object, $optionalArguments);
             if (!$res) {
                 $success = FALSE;
                 $this->logAlert('Storing was unsuccessfull for StorageHandler ' . $storageHandler->getStorageHandlerName());
@@ -70,10 +73,11 @@ class StorageService implements Interfaces\ITelegramStorageService, ILoggerAware
      * @param string $class
      * @param string $id
      * @param string $index
+     * @param array $optionalArguments
      * @return \Telegram\API\Base\Abstracts\ABaseObject
      * @throws \Exception
      */
-    public function load(string $class, string $id, string $index = 'id') : ABaseObject {
+    public function load(string $class, string $id = '', string $index = NULL, array $optionalArguments = []) : ABaseObject {
         if (empty($this->_storageHandlers)) {
             throw new \Exception('No storageHandlers pushed onto the stack!');
         }

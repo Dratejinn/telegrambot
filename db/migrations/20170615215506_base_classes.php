@@ -55,7 +55,6 @@ class BaseClasses extends TelegramMigration {
             new Type\Video,
             new Type\Voice,
             new Type\WebhookInfo,
-            new GameType\Animation,
             // new GameType\CallbackGame,
             new GameType\Game,
             new GameType\GameHighScore,

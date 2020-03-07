@@ -7,7 +7,9 @@ namespace Telegram\Bot;
 use Telegram\API;
 use Telegram\API\Method\GetUpdates;
 use Telegram\API\Type\{User, Update, Chat};
-use Telegram\Bot\Handler\{ACallbackQueryHandler, AChosenInlineResultHandler, AInlineQueryHandler, AMessageHandler};
+use Telegram\Bot\Handler\{
+    ACallbackQueryHandler, AChosenInlineResultHandler, AInlineQueryHandler, AMessageHandler, APollAnswerHandler, APollHandler
+};
 use Telegram\LogHelpers;
 use Telegram\Storage\Interfaces\{ITelegramStorageHandler, IStorageHandlerAware};
 use Telegram\Storage\Traits\TStorageHandlerTrait;
@@ -26,6 +28,8 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
     const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
     const UPDATE_TYPE_SHIPPINGQUERY         = 'shippingQuery';
     const UPDATE_TYPE_PRECHECKOUTQUERY      = 'preCheckoutQuery';
+    const UPDATE_TYPE_POLL                  = 'poll';
+    const UPDATE_TYPE_POLL_ANSWER           = 'pollAnswer';
 
     const GETUPDATES_SLEEP_INTERVAL = 1; //seconds
     const RUN_ERROR_TIMEOUT = 60; //seconds
@@ -321,6 +325,8 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
             case static::UPDATE_TYPE_CALLBACKQUERY:
             case static::UPDATE_TYPE_SHIPPINGQUERY:
             case static::UPDATE_TYPE_PRECHECKOUTQUERY:
+            case static::UPDATE_TYPE_POLL:
+            case static::UPDATE_TYPE_POLL_ANSWER:
                 if (isset($this->_handlers[$updateType])) {
                     $handler = new $this->_handlers[$updateType]($update, $this);
                     if ($this->hasLogger()) {
@@ -398,6 +404,12 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                 break;
             case 'callbackQuery':
                 $handlerClass = ACallbackQueryHandler::class;
+                break;
+            case 'poll':
+                $handlerClass = APollHandler::class;
+                break;
+            case 'pollAnswer':
+                $handlerClass = APollAnswerHandler::class;
                 break;
             default:
                 return FALSE;

@@ -47,5 +47,6 @@ class AnswerShippingQuery extends ABaseObject implements IOutbound {
                 }
             }
         }
+        return FALSE;
     }
 }

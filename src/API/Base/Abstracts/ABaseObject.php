@@ -74,7 +74,7 @@ abstract class ABaseObject implements IStorageHandlerAware {
      */
     public function store() : bool {
         if ($this->hasStorageHandler()) {
-            return $this->_storageHandler->store(static::class, $this);
+            return $this->_storageHandler->store($this);
         }
         return FALSE;
     }

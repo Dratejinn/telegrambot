@@ -10,6 +10,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * Class PhotoSize
  * @package Telegram\API\Type
  * @property string $fileId
+ * @property string $fileUniqueId
  * @property int $width
  * @property int $height
  * @property null|int fileSize
@@ -26,10 +27,11 @@ class PhotoSize extends ABaseObject {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'fileId'    => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'file_id'],
-            'width'     => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'offset'],
-            'height'    => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'height'],
-            'fileSize'  => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'file_size'],
+            'fileId'        => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'file_id'],
+            'fileUniqueId'  => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'file_unique_id'],
+            'width'         => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'offset'],
+            'height'        => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'height'],
+            'fileSize'      => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'file_size'],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
