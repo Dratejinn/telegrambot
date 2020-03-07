@@ -18,11 +18,12 @@ use Telegram\API\Method\SendMessage;
  * @property null|string $username
  * @property null|string $firstName
  * @property null|string $lastName
- * @property null|bool $allAdmin
  * @property null|\Telegram\API\Type\ChatPhoto $photo
  * @property null|string $description
  * @property null|string $inviteLink
  * @property null|\Telegram\API\Type\Message $pinnedMessage
+ * @property null|\Telegram\API\Type\ChatPermissions $permissions
+ * @property null|int $slowModeDelay
  * @property null|string $stickerSetName
  * @property null|bool $canSetStickerSet
  */
@@ -42,22 +43,23 @@ class Chat extends ABaseObject {
      * @inheritdoc
      */
     public static function GetDatamodel() : array {
-        $datamodel = [
+        $dataModel = [
             'id'                => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => FALSE,    'external' => 'id'],
             'type'              => ['type' => ABaseObject::T_STRING,                            'optional' => FALSE,    'external' => 'type'],
             'title'             => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'title'],
             'username'          => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'username'],
             'firstName'         => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'first_name'],
             'lastName'          => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'last_name'],
-            'allAdmin'          => ['type' => ABaseObject::T_BOOL,                              'optional' => TRUE,     'external' => 'all_members_are_administrators'],
             'photo'             => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'photo', 'class' => ChatPhoto::class],
             'description'       => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'description'],
             'inviteLink'        => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'invite_link'],
             'pinnedMessage'     => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'pinned_message', 'class' => Message::class],
+            'permissions'       => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'permissions', 'class' => ChatPermissions::class],
+            'slowModeDelay'     => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'slow_mode_delay'],
             'stickerSetName'    => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'sticker_set_name'],
             'canSetStickerSet'  => ['type' => ABaseObject::T_BOOL,                              'optional' => TRUE,     'external' => 'can_set_sticker_set']
         ];
-        return array_merge(parent::GetDatamodel(), $datamodel);
+        return array_merge(parent::GetDatamodel(), $dataModel);
     }
 
     /**

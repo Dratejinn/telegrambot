@@ -6,35 +6,5 @@ phinx.yml
 /Examples/userCreds.php
 cacert.pem
 TelegramConfig.json
-
-# User-specific stuff:
-.idea/workspace.xml
-.idea/webResources.xml
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/dictionaries
-
-# Sensitive or high-churn files:
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.xml
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-
-# Gradle:
-.idea/**/gradle.xml
-.idea/**/libraries
-
-# Mongo Explorer plugin:
-.idea/**/mongoSettings.xml
-
-#iml files
-.idea/*.iml
-
-#.idea php file
-.idea/php.xml
-
-#dictionaries
-.idea/dictionaries/*
+.idea/
+*.key

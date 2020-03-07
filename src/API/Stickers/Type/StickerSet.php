@@ -12,7 +12,8 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @package Telegram\API\Stickers\Type
  * @property string $name
  * @property string $title
- * @property bool $isMasks
+ * @property null|bool $isAnimated
+ * @property null|bool $containsMasks
  * @property \Telegram\API\Stickers\Type\Sticker[] $stickers
  */
 class StickerSet extends ABaseObject {
@@ -27,10 +28,11 @@ class StickerSet extends ABaseObject {
      */
     public static function GetDatamodel(): array {
         $datamodel = [
-            'name'      => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'name'],
-            'title'     => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'title'],
-            'isMasks'   => ['type' => ABaseObject::T_BOOL,   'optional' => FALSE, 'external' => 'is_masks'],
-            'stickers'  => ['type' => ABaseObject::T_ARRAY,  'optional' => FALSE, 'external' => 'stickers']
+            'name'          => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'name'],
+            'title'         => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'title'],
+            'isAnimated'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'is_animated'],
+            'containsMasks' => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'containsMasks'],
+            'stickers'      => ['type' => ABaseObject::T_ARRAY,     'optional' => FALSE,    'external' => 'stickers']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

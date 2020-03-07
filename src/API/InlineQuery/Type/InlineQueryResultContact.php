@@ -15,6 +15,7 @@ use Telegram\API\Base\Abstracts\{ABaseObject, AInlineQueryResult};
  * @property null|string $thumburl
  * @property null|int $thumbWidth
  * @property null|int $thumbHeight
+ * @property null|string $vcard
  */
 class InlineQueryResultContact extends AInlineQueryResult {
 
@@ -28,7 +29,8 @@ class InlineQueryResultContact extends AInlineQueryResult {
             'lastName'      => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,   'external' => 'last_name'],
             'thumbUrl'      => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,   'external' => 'thumb_url'],
             'thumbWidth'    => ['type' => ABaseObject::T_INT,    'optional' => TRUE,   'external' => 'thumb_width'],
-            'thumbHeight'   => ['type' => ABaseObject::T_INT,    'optional' => TRUE,   'external' => 'thumb_height']
+            'thumbHeight'   => ['type' => ABaseObject::T_INT,    'optional' => TRUE,   'external' => 'thumb_height'],
+            'vcard'         => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,   'external' => 'vcard']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

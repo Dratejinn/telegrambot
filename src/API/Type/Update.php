@@ -21,6 +21,8 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property null|\Telegram\API\Type\CallbackQuery $callbackQuery
  * @property null|\Telegram\API\Payments\Type\ShippingQuery $shippingQuery
  * @property null|\Telegram\API\Payments\Type\PreCheckoutQuery $preCheckoutQuery
+ * @property null|\Telegram\API\Type\Poll $poll
+ * @property null|\Telegram\API\Type\PollAnswer $pollAnswer
  */
 class Update extends ABaseObject {
 
@@ -49,7 +51,9 @@ class Update extends ABaseObject {
             'chosenInlineResult'    => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'chosen_inline_result',   'class' => ChosenInlineResult::class],
             'callbackQuery'         => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'callback_query',         'class' => CallbackQuery::class],
             'shippingQuery'         => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'shipping_query',         'class' => ShippingQuery::class],
-            'preCheckoutQuery'      => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'pre_checkout_query',     'class' => PreCheckoutQuery::class]
+            'preCheckoutQuery'      => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'pre_checkout_query',     'class' => PreCheckoutQuery::class],
+            'poll'                  => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'poll',                   'class' => Poll::class],
+            'pollAnswer'            => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,     'external' => 'poll_answer',            'class' => PollAnswer::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

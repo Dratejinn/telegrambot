@@ -74,7 +74,7 @@ abstract class ABaseObject implements IStorageHandlerAware {
      */
     public function store() : bool {
         if ($this->hasStorageHandler()) {
-            return $this->_storageHandler->store(static::class, $this);
+            return $this->_storageHandler->store($this);
         }
         return FALSE;
     }
@@ -412,6 +412,11 @@ abstract class ABaseObject implements IStorageHandlerAware {
                     $attachments[$attachName] = $item->getAttachment()->getCurlFile();
                     $item->media = 'attach://' . $attachName;
                 }
+                if ($item->hasThumbAttachment()) {
+                    $attachName = 'attachment' . count($attachments);
+                    $attachments[$attachName] = $item->getThumbAttachment()->getCurlFile();
+                    $item->thumb = 'attach://' . $attachName;
+                }
             }
             if ($item instanceof InputFile) {
                 $item = $item->getCurlFile();
@@ -476,6 +481,9 @@ abstract class ABaseObject implements IStorageHandlerAware {
                 if ($item->hasAttachment()) {
                     $hasInputFile = TRUE;
                 }
+                if ($item->hasThumbAttachment()) {
+                    $hasInputFile = TRUE;
+                }
             }
             if ($item instanceof InputFile) {
                 $hasInputFile = TRUE;
@@ -516,6 +524,39 @@ abstract class ABaseObject implements IStorageHandlerAware {
         }
 
         return $payload;
+    }
+
+    public function validateProperties() : bool {
+        foreach (array_keys($this->_datamodel) as $field) {
+            if ($this->hasFieldValue($field)) {
+                $fieldType = $this->getFieldType($field);
+                switch ($fieldType) {
+                    case self::T_OBJECT:
+                        $res = $value->validateProperties();
+                        if (!$res) {
+                            return FALSE;
+                        }
+                        break;
+                    case self::T_ARRAY:
+                        $res = TRUE;
+                        array_walk_recursive($value, function($item) use (&$res) {
+                            if ($item instanceof ABaseObject) {
+                                $valid = $item->validateProperties();
+                                if (!$valid) {
+                                    $res = FALSE;
+                                }
+                            }
+                        });
+                        if (!$res) {
+                            return FALSE;
+                        }
+                        break;
+                }
+            } elseif (!$this->isOptional($field)) {
+                return FALSE;
+            }
+        }
+        return TRUE;
     }
 
     /**

@@ -10,6 +10,7 @@ class MessageHandler extends AMessageHandler {
 
     protected $_commandHandlers = [
         Command\ExampleCommandHandler::class,
+        Command\PollCommandHandler::class
     ];
 
     public function handleText(string $text) {

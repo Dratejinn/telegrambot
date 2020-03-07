@@ -13,6 +13,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property string $firstName
  * @property null|string $lastName
  * @property null|int $userId
+ * @property null|string $vcard
  */
 class Contact extends ABaseObject {
 
@@ -24,7 +25,8 @@ class Contact extends ABaseObject {
             'phoneNumber'   => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'phone_number'],
             'firstName'     => ['type' => ABaseObject::T_STRING, 'optional' => FALSE,    'external' => 'first_name'],
             'lastName'      => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,     'external' => 'last_name'],
-            'userId'        => ['type' => ABaseObject::T_INT,    'optional' => TRUE,     'external' => 'user_id']
+            'userId'        => ['type' => ABaseObject::T_INT,    'optional' => TRUE,     'external' => 'user_id'],
+            'vcard'         => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,     'external' => 'vcard']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

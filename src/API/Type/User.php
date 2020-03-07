@@ -15,6 +15,9 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property null|string $lastName
  * @property null|string $username
  * @property null|string $languageCode
+ * @property null|bool $canJoinGroups
+ * @property null|bool $canReadAllGroupMessages
+ * @property null|bool $supportsInlineQueries
  */
 class User extends ABaseObject {
 
@@ -27,15 +30,18 @@ class User extends ABaseObject {
      * @inheritdoc
      */
     public static function GetDatamodel() : array {
-        $datamodel = [
-            'id'            => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'id'],
-            'isBot'         => ['type' => ABaseObject::T_BOOL,      'optional' => FALSE,    'external' => 'is_bot'],
-            'firstName'     => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'first_name'],
-            'lastName'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'last_name'],
-            'username'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'username'],
-            'languageCode'  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'language_code']
+        $dataModel = [
+            'id'                        => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'id'],
+            'isBot'                     => ['type' => ABaseObject::T_BOOL,      'optional' => FALSE,    'external' => 'is_bot'],
+            'firstName'                 => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'first_name'],
+            'lastName'                  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'last_name'],
+            'username'                  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'username'],
+            'languageCode'              => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'language_code'],
+            'canJoinGroups'             => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_join_groups'],
+            'canReadAllGroupMessages'   => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'can_read_all_group_messages'],
+            'supportsInlineQueries'     => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'supports_inline_queries']
         ];
-        return array_merge(parent::GetDatamodel(), $datamodel);
+        return array_merge(parent::GetDatamodel(), $dataModel);
     }
 
     /**

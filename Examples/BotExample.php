@@ -34,4 +34,19 @@ if ($userCreds) {
     $bot->setStorageHandler($mysqlHandler);
 }
 
+$logger = new \Monolog\Logger('Logger');
+$format = "%datetime% | %level_name% | %context.botname% | %message% %context% %extra%\n";
+$formatter = new \Monolog\Formatter\LineFormatter($format, NULL, FALSE, TRUE);
+$processor = new \Telegram\LogHelpers\LengthProcessor([
+    'level_name' => 8
+], [
+    'botname' => 10
+]);
+$logger->pushProcessor($processor);
+$cliLog = new \Monolog\Handler\StreamHandler(STDOUT, \Monolog\Logger::DEBUG);
+$cliLog->setFormatter($formatter);
+$logger->pushHandler($cliLog);
+
+$bot->setLogger($logger);
+API\API::SetLogger($logger);
 $bot->run();

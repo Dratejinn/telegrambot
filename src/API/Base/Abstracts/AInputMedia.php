@@ -12,6 +12,7 @@ use Telegram\API\Base\InputFile;
  * @property string $type
  * @property string $media
  * @property null|string $caption
+ * @property null|string $parseMode
  */
 class AInputMedia extends ABaseObject {
 
@@ -21,13 +22,19 @@ class AInputMedia extends ABaseObject {
     private $_attachment = NULL;
 
     /**
+     * @var null|\Telegram\API\Base\InputFile
+     */
+    private $_thumbAttachment = NULL;
+
+    /**
      * @inheritdoc
      */
     public static function GetDatamodel(): array {
         $datamodel = [
             'type'      => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'type'],
             'media'     => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'media'],
-            'caption'   => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,  'external' => 'caption']
+            'caption'   => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,  'external' => 'caption'],
+            'parseMode' => ['type' => ABaseObject::T_STRING, 'optional' => TRUE, 'external' => 'parse_mode']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
@@ -58,6 +65,31 @@ class AInputMedia extends ABaseObject {
     }
 
     /**
+     * Used to set the thumbnail as an attachment
+     *
+     * @param \Telegram\API\Base\InputFile $inputFile
+     */
+    public function setThumbAttachment(InputFile $inputFile) {
+        $this->_thumbAttachment = $inputFile;
+    }
+
+    /**
+     * Used to check wether thumb has a file attached
+     *
+     * @return bool
+     */
+    public function hasThumbAttachment() : bool {
+        return $this->_thumbAttachment !== NULL;
+    }
+
+    /**
+     * @return null|\Telegram\API\Base\InputFile
+     */
+    public function getThumbAttachment() {
+        return $this->_thumbAttachment;
+    }
+
+    /**
      * @param string $name
      * @param $value
      */
@@ -65,6 +97,11 @@ class AInputMedia extends ABaseObject {
         if ($name == 'media' && $this->_attachment) {
             $this->_attachment = NULL;
         }
+
+        if ($name == 'thumb' && $this->_thumbAttachment) {
+            $this->_thumbAttachment = NULL;
+        }
+
         parent::__set($name, $value);
     }
 }
