@@ -11,6 +11,7 @@ use Telegram\API\Type\PhotoSize;
  * Class Animation
  * @package Telegram\API\Games\Type
  * @property string $fileId
+ * @property string $fileUniqueId
  * @property int $width
  * @property int $height
  * @property int $duration
@@ -33,6 +34,7 @@ class Animation extends ABaseObject {
     public static function GetDatamodel() : array {
         $datamodel = [
             'fileId'        => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'file_id'],
+            'fileUniqueId'  => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'file_unique_id'],
             'width'         => ['type' => ABaseObject::T_INT,    'optional' => FALSE, 'external' => 'width'],
             'height'        => ['type' => ABaseObject::T_INT,    'optional' => FALSE, 'external' => 'height'],
             'duration'      => ['type' => ABaseObject::T_INT,    'optional' => FALSE, 'external' => 'duration'],

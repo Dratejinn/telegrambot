@@ -14,11 +14,8 @@ use Telegram\API\Bot;
  * @package Telegram\API\Method
  * @property string|int|float $chatId
  * @property int $userId
+ * @property \Telegram\API\Type\ChatPermissions $permissions
  * @property null|int $untilDate
- * @property null|bool $canSendMessage
- * @property null|bool $canSendMediaMessages
- * @property null|bool $canSendOtherMessages
- * @property null|bool $canAddWebPagePreviews
  */
 class RestrictChatMember extends ABaseObject implements IOutbound {
 
@@ -29,11 +26,8 @@ class RestrictChatMember extends ABaseObject implements IOutbound {
         $datamodel = [
             'chatId'                => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT, ABaseObject::T_FLOAT],    'optional' => FALSE, 'external' => 'chat_id'],
             'userId'                => ['type' => ABaseObject::T_INT,                                                   'optional' => FALSE, 'external' => 'user_id'],
+            'permissions'           => ['type' => ABaseObject::T_OBJECT,                                                'optional' => FALSE, 'external' => 'permissions', 'class' => Type\ChatPermissions::class],
             'untilDate'             => ['type' => ABaseObject::T_INT,                                                   'optional' => TRUE,  'external' => 'until_date'],
-            'canSendMessage'        => ['type' => ABaseObject::T_BOOL,                                                  'optional' => TRUE,  'external' => 'can_send_messages'],
-            'canSendMediaMessages'  => ['type' => ABaseObject::T_BOOL,                                                  'optional' => TRUE,  'external' => 'can_send_media_messages'],
-            'canSendOtherMessages'  => ['type' => ABaseObject::T_BOOL,                                                  'optional' => TRUE,  'external' => 'can_send_other_messages'],
-            'canAddWebPagePreviews' => ['type' => ABaseObject::T_BOOL,                                                  'optional' => TRUE,  'external' => 'can_add_web_page_previews']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
