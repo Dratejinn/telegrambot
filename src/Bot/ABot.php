@@ -92,13 +92,12 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
         $this->_me = $this->_bot->getMe();
         if ($storageHandler) {
             $this->setStorageHandler($storageHandler);
-            $this->init();
         }
+        $this->init();
     }
 
     /**
-     * After constructing a bot it is optional to call init to load any Chats from the provided storage handler.
-     * This is also called internally when constructing a bot with a storage handler
+     * After constructing a bot, init will be called. If there as a storagehandler set, this method will retrieve chats from storage in case no chats have been found yet
      */
     public function init() {
         $this->logDebug('Initializing!', $this->getLoggerContext());
@@ -110,6 +109,32 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                     throw new \LogicException('retrieval of chats went wrong! Chat is not an instance of Telegram\\API\\Type\\Chat!');
                 }
                 $this->_chats[(string) $chat->id] = $chat;
+            }
+        }
+        if (isset($this->_handlers[self::UPDATE_TYPE_MESSAGE])) {
+            $dummyUpdate = new Update;
+            /** @var AMessageHandler $messageHandler */
+            $messageHandler = new $this->_handlers[self::UPDATE_TYPE_MESSAGE]($dummyUpdate, $this);
+            $commandHandlers = $messageHandler->getCommandHandlers();
+
+            $commandSet = [];
+
+            foreach ($commandHandlers as $commandHandler) {
+                $respondsTo = $commandHandler::GetRespondsTo();
+                foreach ($respondsTo as $command) {
+                    if ($commandHandler::ShouldPublishCommand($command)) {
+                        $botCommand = new API\Type\BotCommand;
+                        $botCommand->command = $command;
+                        $botCommand->description = $commandHandler::GetDescriptionForCommand($command);
+                        $commandSet[] = $botCommand;
+                    }
+                }
+            }
+
+            if (!empty($commandSet)) {
+                $setMyCommands = new API\Method\SetMyCommands;
+                $setMyCommands->commands = $commandSet;
+                $setMyCommands->call($this->_bot);
             }
         }
     }

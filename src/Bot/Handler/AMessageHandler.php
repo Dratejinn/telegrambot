@@ -101,6 +101,15 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
     }
 
     /**
+     * Returns the current set of CommandHandlers
+     *
+     * @return \Telegram\Bot\Handler\ACommandHandler[]
+     */
+    public function getCommandHandlers() : array {
+        return $this->_commandHandlers;
+    }
+
+    /**
      * Returns the commandHandler responsible for handling $command
      * @param string $command
      * @return null|\Telegram\Bot\Handler\ACommandHandler

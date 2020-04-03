@@ -35,4 +35,24 @@ abstract class ACommandHandler extends \Telegram\Bot\AHandler {
      * @return string[]
      */
     abstract public static function GetRespondsTo() : array;
+
+    /**
+     * Returns TRUE when the command should be published through SetBotCommands
+     *
+     * @param string $command
+     * @return bool
+     */
+    public static function ShouldPublishCommand(string $command) : bool {
+        return FALSE;
+    }
+
+    /**
+     * Called when a command from GetRespondsTo results in TRUE From ShouldPublishCommand.
+     *
+     * @param string $command
+     * @return string
+     */
+    public static function GetDescriptionForCommand(string $command) : string {
+        throw new \LogicException('CommandHandler returned ShouldPublish for Command but does not extend the method: ' . __METHOD__);
+    }
 }
