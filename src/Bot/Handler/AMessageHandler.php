@@ -60,7 +60,6 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
      * @param \Telegram\API\Type\Message $message
      */
     public function handleMessage(Message $message) {
-        var_dump($message);
     }
 
     /**
