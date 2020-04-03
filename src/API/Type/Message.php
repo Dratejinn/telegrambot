@@ -40,6 +40,7 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|\Telegram\API\Type\Location $location
  * @property null|\Telegram\API\Type\Venue $venue
  * @property null|\Telegram\API\Type\Poll $poll
+ * @property null|\Telegram\API\Type\Dice $dice
  * @property null|\Telegram\API\Type\User $newChatMember
  * @property null|\Telegram\API\Type\User[] $newChatMembers
  * @property null|\Telegram\API\Type\User $leftChatMember
@@ -105,6 +106,7 @@ class Message extends ABaseObject {
             'location'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',                   'class' => Location::class],
             'venue'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'venue',                      'class' => Venue::class],
             'poll'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'poll',                       'class' => Poll::class],
+            'dice'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'dice',                       'class' => Dice::class],
 
             'newChatMembers'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_members'],
             'leftChatMember'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'left_chat_member',           'class' => User::class],

@@ -2,6 +2,7 @@ TelegramConfig.json
 /vendor/
 *.log
 Tokens.ini
+Chats.ini
 phinx.yml
 /Examples/userCreds.php
 cacert.pem

@@ -17,7 +17,8 @@ use Telegram\API\Stickers\Type\MaskPosition;
  * @property int $userId
  * @property string $name
  * @property string $title
- * @property string|\Telegram\API\Base\InputFile $pngSticker
+ * @property null|string|\Telegram\API\Base\InputFile $pngSticker
+ * @property null|string|\Telegram\API\Base\InputFile $tgsSticker
  * @property string $emojis
  * @property null|bool $isMasks
  * @property null|\Telegram\API\Stickers\Type\MaskPosition $maskPosition
@@ -32,7 +33,8 @@ class CreateNewStickerSet extends ABaseObject implements IOutbound {
             'userId'        => ['type' => ABaseObject::T_INT,                               'optional' => FALSE, 'external' => 'user_id'],
             'name'          => ['type' => ABaseObject::T_STRING,                            'optional' => FALSE, 'external' => 'name'],
             'title'         => ['type' => ABaseObject::T_STRING,                            'optional' => FALSE, 'external' => 'title'],
-            'pngSticker'    => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE, 'external' => 'png_sticker',       'class' => InputFile::class],
+            'pngSticker'    => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => TRUE,  'external' => 'png_sticker',       'class' => InputFile::class],
+            'tgsSticker'    => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => TRUE,  'external' => 'tgs_sticker',       'class' => InputFile::class],
             'emojis'        => ['type' => ABaseObject::T_STRING,                            'optional' => FALSE, 'external' => 'emojis'],
             'isMasks'       => ['type' => ABaseObject::T_BOOL,                              'optional' => TRUE,  'external' => 'is_masks'],
             'maskPosition'  => ['type' => ABaseObject::T_OBJECT,                            'optional' => TRUE,  'external' => 'mask_position',     'class' => MaskPosition::class]
