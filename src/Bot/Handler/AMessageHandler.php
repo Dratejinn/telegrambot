@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Telegram\Bot\Handler;
 
+use Telegram\API\Type\Message;
+
 abstract class AMessageHandler extends \Telegram\Bot\AHandler {
 
     /**
@@ -31,6 +33,8 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
             } else {
                 $this->handleText($text);
             }
+        } else {
+            $this->handleMessage($this->_message);
         }
     }
 
@@ -48,6 +52,14 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
      */
     public function handleUnknownCommand(string $command) {
 
+    }
+
+    /**
+     * Used to handle the message
+     *
+     * @param \Telegram\API\Type\Message $message
+     */
+    public function handleMessage(Message $message) {
     }
 
     /**

@@ -7,11 +7,20 @@ namespace Telegram\API;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Telegram\API\Base\InputFile;
+use Telegram\API\Method\GetMyCommands;
+use Telegram\API\Method\SendAnimation;
+use Telegram\API\Method\SendDice;
 use Telegram\API\Method\SendMediaGroup;
+use Telegram\API\Stickers\Method\SendSticker;
 use Telegram\API\Type\InputMediaPhoto;
 
-$token = '';
-$chat = 0;
+ConfigManager::AddConfigFromINIFile(__DIR__ . '/../Tokens.ini', 'token');
+ConfigManager::AddConfigFromINIFile(__DIR__ . '/../Chats.ini', 'chat');
+$tokens = ConfigManager::GetConfig('token');
+$token = $tokens['devbot']['token'];
+
+$chats = ConfigManager::GetConfig('chat');
+$chat = $chats['private']['chatId'];
 
 $res = ConfigManager::AddConfigFromJSONFile(__DIR__ . '/../TelegramConfig.json');
 
@@ -40,6 +49,14 @@ if (!$chat) {
     exit(0);
 }
 
+$getMyCommands = new GetMyCommands;
+var_dump($getMyCommands->call($bot));
+
+$sendDice = new SendDice;
+$sendDice->chatId = $chat;
+$sendDice->call($bot);
+
+
 $inputMedia1 = new InputMediaPhoto;
 $inputMedia1->setAttachment(new InputFile(__DIR__ . '/test1.png'));
 
@@ -56,6 +73,10 @@ $pieces = $argv;
 array_shift($pieces);
 $message  = implode(' ', $pieces);
 
+if (empty($message)) {
+    $message = 'No text provided :(';
+}
+
 $sendMessage = new Method\SendMessage;
 $sendMessage->chatId = $chat;
 $sendMessage->text = $message;
@@ -68,5 +89,15 @@ $sendLocation->longitude = 4.7089148;
 $sendLocation->title = 'Brightfish B.V.';
 $sendLocation->address = 'Wegalaan 46';
 
-$result = $sendLocation->call($bot);
+$sendLocation->call($bot);
 
+$sendSticker = new SendSticker;
+$sendSticker->chatId = $chat;
+$sendSticker->sticker = 'CAACAgQAAxkBAAIDVV5rwjTSxLBp55dcGPanK544jA0eAAISAAOKPJcrPzhHw6OsBroYBA';
+
+$sendSticker->call($bot);
+
+$sendAnimation = new SendAnimation;
+$sendAnimation->chatId = $chat;
+$sendAnimation->animation = 'https://media.giphy.com/media/S5hi5uQZ7Tc5I2coHd/giphy.gif';
+$sendAnimation->call($bot);
