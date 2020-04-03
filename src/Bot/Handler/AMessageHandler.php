@@ -90,7 +90,7 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
      * @return string
      */
     public function getCommandName(string $text) : string {
-        list($command) = explode(' ', $text);
+        [$command] = explode(' ', $text);
         $pos = strpos($command, '@');
         if ($pos === FALSE) {
             $command = substr($command, 1);
@@ -98,6 +98,15 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
             $command = substr($command, 1, ($pos - 1));
         }
         return $command;
+    }
+
+    /**
+     * Returns the current set of CommandHandlers
+     *
+     * @return \Telegram\Bot\Handler\ACommandHandler[]
+     */
+    public function getCommandHandlers() : array {
+        return $this->_commandHandlers;
     }
 
     /**
