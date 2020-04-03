@@ -114,7 +114,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
         if (isset($this->_handlers[self::UPDATE_TYPE_MESSAGE])) {
             $dummyUpdate = new Update;
             /** @var AMessageHandler $messageHandler */
-            $messageHandler = new $this->_handlers[self::UPDATE_TYPE_MESSAGE]($dummyUpdate, $this->_bot);
+            $messageHandler = new $this->_handlers[self::UPDATE_TYPE_MESSAGE]($dummyUpdate, $this);
             $commandHandlers = $messageHandler->getCommandHandlers();
 
             $commandSet = [];
@@ -126,7 +126,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                         $botCommand = new API\Type\BotCommand;
                         $botCommand->command = $command;
                         $botCommand->description = $commandHandler::GetDescriptionForCommand($command);
-                        $commandSet[] = $command;
+                        $commandSet[] = $botCommand;
                     }
                 }
             }
