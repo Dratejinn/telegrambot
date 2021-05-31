@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Telegram\API\Base\Abstracts;
 
 use Telegram\API\Base\InputFile;
+use Telegram\API\Type\MessageEntity;
 
 /**
  * Class AInputMedia
@@ -13,6 +14,7 @@ use Telegram\API\Base\InputFile;
  * @property string $media
  * @property null|string $caption
  * @property null|string $parseMode
+ * @property null|\Telegram\API\Type\MessageEntity[] $captionEntities
  */
 class AInputMedia extends ABaseObject {
 
@@ -31,10 +33,11 @@ class AInputMedia extends ABaseObject {
      */
     public static function GetDatamodel(): array {
         $datamodel = [
-            'type'      => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'type'],
-            'media'     => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'media'],
-            'caption'   => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,  'external' => 'caption'],
-            'parseMode' => ['type' => ABaseObject::T_STRING, 'optional' => TRUE, 'external' => 'parse_mode']
+            'type'              => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'type'],
+            'media'             => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'media'],
+            'caption'           => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,  'external' => 'caption'],
+            'parseMode'         => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,  'external' => 'parse_mode'],
+            'captionEntities'   => ['type' => ABaseObject::T_ARRAY,  'optional' => TRUE,  'external' => 'caption_entities']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
@@ -87,6 +90,22 @@ class AInputMedia extends ABaseObject {
      */
     public function getThumbAttachment() {
         return $this->_thumbAttachment;
+    }
+
+    /**
+     * AInputMedia constructor.
+     * @param \stdClass|null $payload
+     */
+    public function __construct(\stdClass $payload = NULL) {
+        parent::__construct($payload);
+
+        if (isset($this->captionEntities)) {
+            $captionEntities = [];
+            foreach ($this->captionEntities as $captionEntity) {
+                $captionEntities[] = new MessageEntity($captionEntity);
+            }
+            $this->captionEntities = $captionEntities;
+        }
     }
 
     /**

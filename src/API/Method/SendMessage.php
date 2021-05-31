@@ -13,6 +13,7 @@ use Telegram\API\Bot;
  * @package Telegram\API\Method
  * @property string $text
  * @property null|string $parseMode
+ * @property null|\Telegram\API\Type\MessageEntity[] $entities
  * @property null|bool $disableWebPagePreview
  */
 class SendMessage extends ASend {
@@ -27,6 +28,7 @@ class SendMessage extends ASend {
         $datamodel = [
             'text'                  => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'text'],
             'parseMode'             => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'parse_mode'],
+            'entities'              => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'entities'],
             'disableWebPagePreview' => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'disable_web_page_preview'],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);

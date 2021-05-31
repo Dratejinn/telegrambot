@@ -15,8 +15,10 @@ use Telegram\API\Base\InputFile;
  * @package Telegram\API\Method
  * @property string $url
  * @property null|\Telegram\API\Base\InputFile $certificate
+ * @property null|string $ipAddress
  * @property null|int $maxConnections
  * @property null|string[] $allowedUpdates
+ * @property null|bool $dropPendingUpdates
  */
 class SetWebhook extends ABaseObject implements IOutbound {
 
@@ -25,10 +27,12 @@ class SetWebhook extends ABaseObject implements IOutbound {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'url'               => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'url'],
-            'certificate'       => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'certificate',    'class' => InputFile::class],
-            'maxConnections'    => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'max_connections'],
-            'allowedUpdates'    => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'allowed_updates']
+            'url'                   => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'url'],
+            'certificate'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'certificate',    'class' => InputFile::class],
+            'ipAddress'             => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'ip_address'],
+            'maxConnections'        => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'max_connections'],
+            'allowedUpdates'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'allowed_updates'],
+            'dropPendingUpdates'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'drop_pending_updates']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

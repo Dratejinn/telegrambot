@@ -48,7 +48,7 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
     /**
      * @var null|\Telegram\API\Method\GetUpdates
      */
-    private $_updateHandler     = NULL;
+    protected $_updateHandler    = NULL;
 
     /**
      * @var \Telegram\Bot\AHandler[]

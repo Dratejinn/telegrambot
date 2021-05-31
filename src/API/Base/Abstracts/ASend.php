@@ -14,6 +14,7 @@ use Telegram\API\Bot;
  * @property string|int|float $chatId
  * @property null|bool $disableNotification
  * @property null|int $replyToMessageId
+ * @property null|bool $allowSendingWithoutReply
  * @property null|\Telegram\API\Type\InlineKeyboardMarkup|\Telegram\API\Type\ReplyKeyboardMarkup|\Telegram\API\Type\ReplyKeyboardRemove|\Telegram\API\Type\ForceReply $replyMarkup
  */
 abstract class ASend extends ABaseObject implements IOutbound {
@@ -23,10 +24,11 @@ abstract class ASend extends ABaseObject implements IOutbound {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'chatId'                => ['type' => [ABaseObject::T_INT, ABaseObject::T_STRING, ABaseObject::T_FLOAT], 'optional' => FALSE,    'external' => 'chat_id'],
-            'disableNotification'   => ['type' => ABaseObject::T_BOOL,                                               'optional' => TRUE,     'external' => 'disable_notification'],
-            'replyToMessageId'      => ['type' => ABaseObject::T_INT,                                                'optional' => TRUE,     'external' => 'reply_to_message_id'],
-            'replyMarkup'           => ['type' => ABaseObject::T_OBJECT,                                             'optional' => TRUE,     'external' => 'reply_markup',           'class' => [Type\InlineKeyboardMarkup::class, Type\ReplyKeyboardMarkup::class, Type\ReplyKeyboardRemove::class, Type\ForceReply::class]],
+            'chatId'                    => ['type' => [ABaseObject::T_INT, ABaseObject::T_STRING, ABaseObject::T_FLOAT], 'optional' => FALSE,    'external' => 'chat_id'],
+            'disableNotification'       => ['type' => ABaseObject::T_BOOL,                                               'optional' => TRUE,     'external' => 'disable_notification'],
+            'replyToMessageId'          => ['type' => ABaseObject::T_INT,                                                'optional' => TRUE,     'external' => 'reply_to_message_id'],
+            'allowSendingWithoutReply'  => ['type' => ABaseObject::T_BOOL,                                               'optional' => TRUE,     'external' => 'allow_sending_without_reply'],
+            'replyMarkup'               => ['type' => ABaseObject::T_OBJECT,                                             'optional' => TRUE,     'external' => 'reply_markup', 'class' => [Type\InlineKeyboardMarkup::class, Type\ReplyKeyboardMarkup::class, Type\ReplyKeyboardRemove::class, Type\ForceReply::class]],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

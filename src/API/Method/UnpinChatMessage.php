@@ -12,6 +12,7 @@ use Telegram\API\Base\Interfaces\IOutbound;
  * Class UnpinChatMessage
  * @package Telegram\API\Method
  * @property string|int|float $chatId
+ * @property null|int|float $messageId
  */
 class UnpinChatMessage extends ABaseObject implements IOutbound {
 
@@ -20,7 +21,8 @@ class UnpinChatMessage extends ABaseObject implements IOutbound {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'chatId'              => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT, ABaseObject::T_FLOAT], 'optional' => FALSE, 'external' => 'chat_id'],
+            'chatId' => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT, ABaseObject::T_FLOAT], 'optional' => FALSE, 'external' => 'chat_id'],
+            'messageId' => ['type' => [ABaseObject::T_INT, ABaseObject::T_FLOAT], 'optional' => TRUE, 'external' => 'message_id']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
@@ -30,7 +32,7 @@ class UnpinChatMessage extends ABaseObject implements IOutbound {
      */
     public function call(Bot $bot) {
         $reply = $bot->call('unpinChatMessage', $this);
-        $arr = [];
+
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 if (!empty($reply->result)) {

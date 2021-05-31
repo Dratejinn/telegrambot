@@ -16,6 +16,7 @@ use Telegram\API\Type;
  * @property null|int $messageId
  * @property string $text
  * @property null|string $parseMode
+ * @property null|\Telegram\API\Type\MessageEntity[] $entities
  * @property null|bool $disableWebPagePreview
  * @property null|string $inlineMessageId
  * @property null|\Telegram\API\Type\InlineKeyboardMarkup $replyMarkup
@@ -31,6 +32,7 @@ class EditMessageText extends ABaseObject implements IOutbound {
             'messageId'             => ['type' => ABaseObject::T_INT,                           'optional' => TRUE,     'external' => 'message_id'],
             'text'                  => ['type' => ABaseObject::T_STRING,                        'optional' => FALSE,    'external' => 'text'],
             'parseMode'             => ['type' => ABaseObject::T_STRING,                        'optional' => TRUE,     'external' => 'parse_mode'],
+            'entities'              => ['type' => ABaseObject::T_ARRAY,                         'optional' => TRUE,     'external' => 'entities'],
             'disableWebPagePreview' => ['type' => ABaseObject::T_BOOL,                          'optional' => TRUE,     'external' => 'disable_web_page_preview'],
             'inlineMessageId'       => ['type' => ABaseObject::T_STRING,                        'optional' => TRUE,     'external' => 'inline_message_id'],
             'replyMarkup'           => ['type' => ABaseObject::T_OBJECT,                        'optional' => TRUE,     'external' => 'reply_markup',       'class' => Type\InlineKeyboardMarkup::class],

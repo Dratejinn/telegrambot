@@ -16,6 +16,7 @@ use Telegram\API\Base\InputFile;
  * @property null|int $height
  * @property null|string $caption
  * @property null|string $parseMode
+ * @property null|\Telegram\API\Type\MessageEntity[] $captionEntities
  * @property null|bool $supportsStreaming
  */
 class SendVideo extends ASend {
@@ -31,6 +32,7 @@ class SendVideo extends ASend {
             'height'            => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'height'],
             'caption'           => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'caption'],
             'parseMode'         => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'parse_mode'],
+            'captionEntities'   => ['type' => ABaseObject::T_ARRAY,                             'optional' => TRUE,     'external' => 'caption_entities'],
             'supportsStreaming' => ['type' => ABaseObject::T_BOOL,                              'optional' => TRUE,     'external' => 'supports_streaming']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);

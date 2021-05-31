@@ -18,6 +18,10 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property bool $isAnonymous
  * @property string $type
  * @property null|int $correctOptionId
+ * @property null|string $explanation
+ * @property nulL|string $explanationEntities
+ * @property null|int $openPeriod
+ * @property null|int $closeDate
  */
 class Poll extends ABaseObject {
 
@@ -27,7 +31,7 @@ class Poll extends ABaseObject {
     const T_QUIZ = 'quiz';
 
     public static function GetDatamodel() : array {
-        $dataModel = [
+        $datamodel = [
             'id' => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'id'],
             'question' => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'question'],
             'options' => ['type' => ABaseObject::T_ARRAY, 'optional' => FALSE, 'external' => 'options'],
@@ -36,9 +40,13 @@ class Poll extends ABaseObject {
             'isAnonymous' => ['type' => ABaseObject::T_BOOL, 'optional' => FALSE, 'external' => 'is_anonymous'],
             'type' => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'type'],
             'allowsMultipleAnswers' => ['type' => ABaseObject::T_BOOL, 'optional' => FALSE, 'external' => 'allows_multiple_answers'],
-            'correctOptionId' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'correct_option_id']
+            'correctOptionId' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'correct_option_id'],
+            'explanation' => ['type' => ABaseObject::T_STRING, 'optional' => TRUE, 'external' => 'explanation'],
+            'explanationEntities' => ['type' => ABaseObject::T_ARRAY, 'optional' => TRUE, 'explanation_entities'],
+            'openPeriod' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'open_period'],
+            'closeDate' => ['type' => ABaseObject::T_INT, 'optional' => TRUE, 'external' => 'close_date']
         ];
-        return array_merge(parent::GetDatamodel(), $dataModel);
+        return array_merge(parent::GetDatamodel(), $datamodel);
     }
 
     public function __construct(\stdClass $payload = NULL) {
@@ -54,6 +62,13 @@ class Poll extends ABaseObject {
                 $options[] = new PollOption($option);
             }
             $this->options = $options;
+        }
+        if (isset($this->explanationEntities)) {
+            $explanationEntities = [];
+            foreach ($this->explanationEntities as $entity) {
+                $explanationEntities[] = new MessageEntity($entity);
+            }
+            $this->explanationEntities = $explanationEntities;
         }
     }
 

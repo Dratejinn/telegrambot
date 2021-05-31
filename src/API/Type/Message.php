@@ -15,6 +15,7 @@ use Telegram\API\Stickers\Type\Sticker;
  * @package Telegram\API\Type
  * @property int $id
  * @property null|\Telegram\API\Type\User $from
+ * @property null|\Telegram\API\Type\Chat $senderChat
  * @property int $date
  * @property \Telegram\API\Type\Chat $chat
  * @property null|\Telegram\API\Type\User $forwardFrom
@@ -23,8 +24,10 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|string $forwardSenderName
  * @property null|int $forwardDate
  * @property null|\Telegram\API\Type\Message $replyToMessage
- * @property null|string $authorSignature
+ * @property null|\Telegram\API\Type\User $viaBot
  * @property null|int $editDate
+ * @property null|string $mediaGroupId
+ * @property null|string $authorSignature
  * @property null|string $text
  * @property null|\Telegram\API\Type\MessageEntity[] $entities
  * @property null|\Telegram\API\Type\MessageEntity[] $captionEntities
@@ -50,13 +53,19 @@ use Telegram\API\Stickers\Type\Sticker;
  * @property null|bool $groupChatCreated
  * @property null|bool $superGroupChatCreated
  * @property null|bool $channelChatCreated
+ * @property null|\Telegram\API\Type\MessageAutoDeleteTimerChanged $messageAutoDeleteTimerChanged
  * @property null|int|float $migrateToChatId
  * @property null|int|float $migrateFromChatId
  * @property null|\Telegram\API\Type\Message $pinnedMessage
  * @property null|\Telegram\API\Payments\Type\Invoice $invoice
- * @property null|\Telegram\API\Payments\Type\SuccessfulPayment $succesfulPayment
+ * @property null|\Telegram\API\Payments\Type\SuccessfulPayment $successfulPayment
  * @property null|string $connectedWebsite
  * @property null|\Telegram\API\Passport\PassportData $passportData
+ * @property null|\Telegram\API\Type\ProximityAlertTriggered $proximityAlertTriggered
+ * @property null|\Telegram\API\Type\VoiceChatScheduled $voiceChatScheduled
+ * @property null|\Telegram\API\Type\VoiceChatStarted $voiceChatStarted
+ * @property null|\Telegram\API\Type\VoiceChatEnded $voiceChatEnded
+ * @property null|\Telegram\API\Type\VoiceChatParticipantsInvited $voiceChatParticipantsInvited
  * @property null|\Telegram\API\Type\InlineKeyboardMarkup $replyMarkup
  */
 class Message extends ABaseObject {
@@ -76,54 +85,63 @@ class Message extends ABaseObject {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'id'                    => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'message_id'],
-            'from'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'from',                       'class' => User::class],
-            'date'                  => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'date'],
-            'chat'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => FALSE,    'external' => 'chat',                       'class' => Chat::class],
-            'forwardFrom'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'forward_from',               'class' => User::class],
-            'forwardFromMessageId'  => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_from_message_id'],
-            'forwardSignature'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'forward_signature'],
-            'forwardSenderName'     => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'forward_sender_name'],
-            'forwardDate'           => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_date'],
-            'replyToMessage'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_to_message',           'class' => Message::class],
-            'authorSignature'       => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'author_signature'],
-            'editDate'              => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'edit_date'],
-            'text'                  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'text'],
+            'id'                            => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'message_id'],
+            'from'                          => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'from',                               'class' => User::class],
+            'senderChat'                    => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'sender_chat',                        'class' => Chat::class],
+            'date'                          => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'date'],
+            'chat'                          => ['type' => ABaseObject::T_OBJECT,    'optional' => FALSE,    'external' => 'chat',                               'class' => Chat::class],
+            'forwardFrom'                   => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'forward_from',                       'class' => User::class],
+            'forwardFromMessageId'          => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_from_message_id'],
+            'forwardSignature'              => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'forward_signature'],
+            'forwardSenderName'             => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'forward_sender_name'],
+            'forwardDate'                   => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'forward_date'],
+            'replyToMessage'                => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_to_message',                   'class' => Message::class],
+            'viaBot'                        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'via_bot',                            'class' => User::class],
+            'editDate'                      => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'edit_date'],
+            'mediaGroupId'                  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'media_group_id'],
+            'authorSignature'               => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'author_signature'],
+            'text'                          => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'text'],
 
-            'entities'              => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'entities'],
-            'captionEntities'       => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'caption_entities'],
-            'audio'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'audio',                      'class' => Audio::class],
-            'document'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'document',                   'class' => Document::class],
-            'animation'             => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'animation',                  'class' => Animation::class],
-            'game'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'game',                       'class' => Game::class],
-            'photo'                 => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'photo'],
-            'sticker'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'sticker',                    'class' => Sticker::class],
-            'video'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'video',                      'class' => Video::class],
-            'voice'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'voice',                      'class' => Voice::class],
-            'videoNote'             => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'video_note',                 'class' => VideoNote::class],
-            'caption'               => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'caption'],
-            'contact'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'contact',                    'class' => Contact::class],
-            'location'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',                   'class' => Location::class],
-            'venue'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'venue',                      'class' => Venue::class],
-            'poll'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'poll',                       'class' => Poll::class],
-            'dice'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'dice',                       'class' => Dice::class],
+            'entities'                      => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'entities'],
+            'captionEntities'               => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'caption_entities'],
+            'audio'                         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'audio',                              'class' => Audio::class],
+            'document'                      => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'document',                           'class' => Document::class],
+            'animation'                     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'animation',                          'class' => Animation::class],
+            'game'                          => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'game',                               'class' => Game::class],
+            'photo'                         => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'photo'],
+            'sticker'                       => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'sticker',                            'class' => Sticker::class],
+            'video'                         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'video',                              'class' => Video::class],
+            'voice'                         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'voice',                              'class' => Voice::class],
+            'videoNote'                     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'video_note',                         'class' => VideoNote::class],
+            'caption'                       => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'caption'],
+            'contact'                       => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'contact',                            'class' => Contact::class],
+            'location'                      => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',                           'class' => Location::class],
+            'venue'                         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'venue',                              'class' => Venue::class],
+            'poll'                          => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'poll',                               'class' => Poll::class],
+            'dice'                          => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'dice',                               'class' => Dice::class],
 
-            'newChatMembers'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_members'],
-            'leftChatMember'        => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'left_chat_member',           'class' => User::class],
-            'newChatTitle'          => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'new_chat_title'],
-            'newChatPhoto'          => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_photo'],
-            'deleteChatPhoto'       => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'delete_chat_photo'],
-            'groupChatCreated'      => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'group_chat_created'],
-            'superGroupChatCreated' => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'supergroup_chat_created'],
-            'channelChatCreated'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'channel_chat_created'],
-            'migrateToChatId'       => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => TRUE,     'external' => 'migrate_to_chat_id'],
-            'migrateFromChatId'     => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => TRUE,     'external' => 'migrateFromChatId'],
-            'pinnedMessage'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pinned_message',             'class' => Message::class],
-            'invoice'               => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'invoice',                    'class' => Invoice::class],
-            'successfulPayment'     => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'successful_payment',         'class' => SuccessfulPayment::class],
-            'connectedWebsite'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'connected_website'],
-            'passportData'          => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'passport_data',              'class' => PassportData::class],
-            'replyMarkup'           => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_markup',               'class' => InlineKeyboardMarkup::class]
+            'newChatMembers'                => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_members'],
+            'leftChatMember'                => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'left_chat_member',                   'class' => User::class],
+            'newChatTitle'                  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'new_chat_title'],
+            'newChatPhoto'                  => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'new_chat_photo'],
+            'deleteChatPhoto'               => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'delete_chat_photo'],
+            'groupChatCreated'              => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'group_chat_created'],
+            'superGroupChatCreated'         => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'supergroup_chat_created'],
+            'channelChatCreated'            => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'channel_chat_created'],
+            'messageAutoDeleteTimerChanged' => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'message_auto_delete_timer_changed',  'class' => MessageAutoDeleteTimerChanged::class],
+            'migrateToChatId'               => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => TRUE,     'external' => 'migrate_to_chat_id'],
+            'migrateFromChatId'             => ['type' => [ABaseObject::T_FLOAT, ABaseObject::T_INT],       'optional' => TRUE,     'external' => 'migrateFromChatId'],
+            'pinnedMessage'                 => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'pinned_message',                     'class' => Message::class],
+            'invoice'                       => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'invoice',                            'class' => Invoice::class],
+            'successfulPayment'             => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'successful_payment',                 'class' => SuccessfulPayment::class],
+            'connectedWebsite'              => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'connected_website'],
+            'passportData'                  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'passport_data',                      'class' => PassportData::class],
+            'proximityAlertTriggered'       => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'proximity_alert_triggered',          'class' => ProximityAlertTriggered::class],
+            'voiceChatScheduled'            => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'voice_chat_scheduled',               'class' => VoiceChatScheduled::class],
+            'voiceChatStarted'              => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'voice_chat_started',                 'class' => VoiceChatStarted::class],
+            'voiceChatEnded'                => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'voice_chat_ended',                   'class' => VoiceChatEnded::class],
+            'voiceChatParticipantsInvited'  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'voice_chat_participants_invited',    'class' => VoiceChatParticipantsInvited::class],
+            'replyMarkup'                   => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'reply_markup',                       'class' => InlineKeyboardMarkup::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
