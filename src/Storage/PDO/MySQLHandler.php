@@ -316,7 +316,7 @@ class MySQLHandler extends Abstracts\APDOBase implements ITelegramStorageHandler
         $datamodel = $dummy::GetDatamodel();
         foreach ($objArr as $stdObj) {
             $this->_sanitizeStdObj($stdObj);
-            $this->_loadObjectRecursively($stdObj, $datamodel);
+            $this->_loadObjectRecursively($pdo, $stdObj, $datamodel);
             $ret[] = new $class($stdObj);
         }
         $this->disconnect();
