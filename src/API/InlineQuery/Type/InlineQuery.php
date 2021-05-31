@@ -12,9 +12,10 @@ use Telegram\API\Type;
  * @package Telegram\API\InlineQuery\Type
  * @property string $id
  * @property \Telegram\API\Type\User $from
- * @property null|\Telegram\API\Type\Location $location
  * @property string $query
  * @property string $offset
+ * @property null|string $chatType
+ * @property null|\Telegram\API\Type\Location $location
  */
 class InlineQuery extends ABaseObject {
 
@@ -30,9 +31,10 @@ class InlineQuery extends ABaseObject {
         $datamodel = [
             'id'        => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'id'],
             'from'      => ['type' => ABaseObject::T_OBJECT,    'optional' => FALSE,    'external' => 'from',       'class' => Type\User::class],
-            'location'  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',   'class' => Type\Location::class],
             'query'     => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'query'],
             'offset'    => ['type' => ABaseObject::T_STRING,    'optional' => FALSE,    'external' => 'offset'],
+            'chatType'  => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'chat_type'],
+            'location'  => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'location',   'class' => Type\Location::class]
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

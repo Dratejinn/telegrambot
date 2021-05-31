@@ -17,6 +17,9 @@ use Telegram\API\Type;
  * @property null|string $inlineMessageId
  * @property float $latitude
  * @property float $longitude
+ * @property null|float $horizontalAccuracy
+ * @property null|int $heading
+ * @property null|int $proximityAlertRadius
  * @property null|\Telegram\API\Type\InlineKeyboardMarkup $replyMarkup
  */
 class EditMessageLiveLocation extends ABaseObject implements IOutbound {
@@ -31,6 +34,9 @@ class EditMessageLiveLocation extends ABaseObject implements IOutbound {
             'inlineMessageId'       => ['type' => ABaseObject::T_STRING,                        'optional' => TRUE,     'external' => 'inline_message_id'],
             'latitude'              => ['type' => ABaseObject::T_FLOAT,                         'optional' => FALSE,    'external' => 'latitude'],
             'longitude'             => ['type' => ABaseObject::T_FLOAT,                         'optional' => FALSE,    'external' => 'longitude'],
+            'horizontalAccuracy'    => ['type' => ABaseObject::T_FLOAT,                         'optional' => TRUE,     'external' => 'horizontal_accuracy'],
+            'heading'               => ['type' => ABaseObject::T_INT,                           'optional' => TRUE,     'external' => 'heading'],
+            'proximityAlertRadius'  => ['type' => ABaseObject::T_INT,                           'optional' => TRUE,     'external' => 'proximity_alert_radius'],
             'replyMarkup'           => ['type' => ABaseObject::T_OBJECT,                        'optional' => TRUE,     'external' => 'reply_markup',       'class' => Type\InlineKeyboardMarkup::class],
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);

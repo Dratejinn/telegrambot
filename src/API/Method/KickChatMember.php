@@ -15,6 +15,7 @@ use Telegram\API\Bot;
  * @property string|int|float $chatId
  * @property int $userId
  * @property null|int $untilDate
+ * @property null|bool $revokeMessages
  */
 class KickChatMember extends ABaseObject implements IOutbound {
 
@@ -23,9 +24,10 @@ class KickChatMember extends ABaseObject implements IOutbound {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'chatId'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT, ABaseObject::T_FLOAT],   'optional' => FALSE,    'external' => 'chat_id'],
-            'userId'     => ['type' => ABaseObject::T_INT,                                                  'optional' => FALSE,    'external' => 'user_id'],
-            'untilDate'  => ['type' => ABaseObject::T_INT,                                                  'optional' => TRUE,     'external' => 'until_date']
+            'chatId'            => ['type' => [ABaseObject::T_STRING, ABaseObject::T_INT, ABaseObject::T_FLOAT],   'optional' => FALSE,    'external' => 'chat_id'],
+            'userId'            => ['type' => ABaseObject::T_INT,                                                  'optional' => FALSE,    'external' => 'user_id'],
+            'untilDate'         => ['type' => ABaseObject::T_INT,                                                  'optional' => TRUE,     'external' => 'until_date'],
+            'revokeMessages'    => ['type' => ABaseObject::T_BOOL,                                                 'optional' => TRUE,     'external' => 'revoke_messages']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

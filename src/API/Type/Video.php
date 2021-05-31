@@ -15,6 +15,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property int $height
  * @property int $duration
  * @property null|\Telegram\API\Type\PhotoSize $thumb
+ * @property null|string $fileName
  * @property null|string $mimeType
  * @property null|int $fileSize
  */
@@ -36,6 +37,7 @@ class Video extends ABaseObject {
             'height'        => ['type' => ABaseObject::T_INT,    'optional' => FALSE,    'external' => 'height'],
             'duration'      => ['type' => ABaseObject::T_INT,    'optional' => FALSE,    'external' => 'duration'],
             'thumb'         => ['type' => ABaseObject::T_OBJECT, 'optional' => TRUE,     'external' => 'thumb', 'class' => PhotoSize::class],
+            'fileName'      => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,     'external' => 'file_name'],
             'mimeType'      => ['type' => ABaseObject::T_STRING, 'optional' => TRUE,     'external' => 'mime_type'],
             'fileSize'      => ['type' => ABaseObject::T_INT,    'optional' => TRUE,     'external' => 'file_size']
         ];

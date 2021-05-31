@@ -16,6 +16,7 @@ use Telegram\API\Base\InputFile;
  * @property null|string $title
  * @property null|string $caption
  * @property null|string $parseMode
+ * @property null|\Telegram\API\Type\MessageEntity[] $captionEntities
  */
 class SendAudio extends ASend {
 
@@ -24,12 +25,13 @@ class SendAudio extends ASend {
      */
     public static function GetDatamodel() : array {
         $datamodel = [
-            'audio'     => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE,    'external' => 'audio',      'class' => InputFile::class],
-            'duration'  => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'duration'],
-            'performer' => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'performer'],
-            'title'     => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'title'],
-            'caption'   => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'caption'],
-            'parseMode' => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'parse_mode']
+            'audio'             => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT],   'optional' => FALSE,    'external' => 'audio',      'class' => InputFile::class],
+            'duration'          => ['type' => ABaseObject::T_INT,                               'optional' => TRUE,     'external' => 'duration'],
+            'performer'         => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'performer'],
+            'title'             => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'title'],
+            'caption'           => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'caption'],
+            'parseMode'         => ['type' => ABaseObject::T_STRING,                            'optional' => TRUE,     'external' => 'parse_mode'],
+            'captionEntities'   => ['type' => ABaseObject::T_ARRAY,                             'optional' => TRUE,     'external' => 'caption_entities']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

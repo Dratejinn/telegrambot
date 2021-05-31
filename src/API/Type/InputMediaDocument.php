@@ -13,6 +13,7 @@ use Telegram\API\Base\InputFile;
  * Class InputMediaDocument
  * @package Telegram\API\Type
  * @property null|string|\Telegram\API\Base\InputFile $thumb
+ * @property null|bool $disableContentTypeDetection
  */
 class InputMediaDocument extends AInputMedia {
 
@@ -22,6 +23,7 @@ class InputMediaDocument extends AInputMedia {
     public static function GetDatamodel(): array {
         $datamodel = [
             'thumb' => ['type' => [ABaseObject::T_STRING, ABaseObject::T_OBJECT], 'optional' => TRUE, 'external' => 'thumb', 'class' => InputFile::class],
+            'disableContentTypeDetection'   => ['type' => ABaseObject::T_BOOL, 'optional' => TRUE, 'external' => 'disable_content_type_detection']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

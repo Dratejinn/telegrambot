@@ -25,6 +25,8 @@ class SendChatAction extends ABaseObject {
     const ACTION_FIND_LOCATION      = 'find_location';
     const ACTION_RECORD_VIDEO_NOTE  = 'record_video_note';
     const ACTION_UPLOAD_VIDEO_NOTE  = 'upload_video_note';
+    const ACTION_RECORD_VOICE       = 'record_voice';
+    const ACTION_UPLOAD_VOICE       = 'upload_voice';
 
     /**
      * @inheritdoc

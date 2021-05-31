@@ -7,17 +7,15 @@ namespace Telegram\API\Type;
 use Telegram\API\Base\Abstracts\ABaseObject;
 
 /**
- * Class Dice
+ * Class MessageAutoDeleteTimerChanged
  * @package Telegram\API\Type
- *
- * @property string $emoji
- * @property int $value
+ * @property int $messageAutoDeleteTime
  */
-class Dice extends ABaseObject {
+class MessageAutoDeleteTimerChanged extends ABaseObject {
+
     public static function GetDatamodel() : array {
         $datamodel = [
-            'emoji' => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'emoji'],
-            'value'   => ['type' => ABaseObject::T_INT, 'optional' => FALSE, 'external' => 'value']
+            'messageAutoDeleteTime' => ['type' => ABaseObject::T_INT, 'optional' => FALSE, 'external' => 'message_auto_delete_time']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

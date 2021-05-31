@@ -14,6 +14,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
  * @property int $duration
  * @property null|string $performer
  * @property null|string $title
+ * @property null|string $fileName
  * @property null|string $mimeType
  * @property null|int $fileSize
  * @property null|\Telegram\API\Type\PhotoSize $thumb
@@ -35,6 +36,7 @@ class Audio extends ABaseObject {
             'duration'      => ['type' => ABaseObject::T_INT,       'optional' => FALSE,    'external' => 'duration'],
             'performer'     => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'performer'],
             'title'         => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'title'],
+            'fileName'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'file_name'],
             'mimeType'      => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'mime_type'],
             'fileSize'      => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'file_size'],
             'thumb'         => ['type' => ABaseObject::T_OBJECT,    'optional' => TRUE,     'external' => 'thumb', 'class' => PhotoSize::class]

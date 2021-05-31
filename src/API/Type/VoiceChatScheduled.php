@@ -7,17 +7,15 @@ namespace Telegram\API\Type;
 use Telegram\API\Base\Abstracts\ABaseObject;
 
 /**
- * Class Dice
+ * Class VoiceChatScheduled
  * @package Telegram\API\Type
- *
- * @property string $emoji
- * @property int $value
+ * @property int $startDate
  */
-class Dice extends ABaseObject {
+class VoiceChatScheduled extends ABaseObject {
+
     public static function GetDatamodel() : array {
         $datamodel = [
-            'emoji' => ['type' => ABaseObject::T_STRING, 'optional' => FALSE, 'external' => 'emoji'],
-            'value'   => ['type' => ABaseObject::T_INT, 'optional' => FALSE, 'external' => 'value']
+            'startDate' => ['type' => ABaseObject::T_INT, 'optional' => FALSE, 'external' => 'start_date']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

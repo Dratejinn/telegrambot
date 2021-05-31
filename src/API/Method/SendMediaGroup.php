@@ -16,6 +16,7 @@ use Telegram\API\Type\Message;
  * @property \Telegram\API\Base\Abstracts\AInputMedia[]
  * @property null|bool $disableNotification
  * @property null|int $replyToMessageId
+ * @property null|bool $allowSendingWithoutReply
  */
 class SendMediaGroup extends ABaseObject implements IOutbound {
 
@@ -24,10 +25,11 @@ class SendMediaGroup extends ABaseObject implements IOutbound {
      */
     public static function GetDatamodel(): array {
         $datamodel = [
-            'chatId'                => ['type' => [ABaseObject::T_INT, ABaseObject::T_STRING, ABaseObject::T_FLOAT], 'optional' => FALSE,    'external' => 'chat_id'],
-            'media'                 => ['type' => ABaseObject::T_ARRAY,                                              'optional' => FALSE,    'external' => 'media'],
-            'disableNotification'   => ['type' => ABaseObject::T_BOOL,                                               'optional' => TRUE,     'external' => 'disable_notification'],
-            'replyToMessageId'      => ['type' => ABaseObject::T_INT,                                                'optional' => TRUE,     'external' => 'reply_to_message_id']
+            'chatId'                    => ['type' => [ABaseObject::T_INT, ABaseObject::T_STRING, ABaseObject::T_FLOAT], 'optional' => FALSE,    'external' => 'chat_id'],
+            'media'                     => ['type' => ABaseObject::T_ARRAY,                                              'optional' => FALSE,    'external' => 'media'],
+            'disableNotification'       => ['type' => ABaseObject::T_BOOL,                                               'optional' => TRUE,     'external' => 'disable_notification'],
+            'replyToMessageId'          => ['type' => ABaseObject::T_INT,                                                'optional' => TRUE,     'external' => 'reply_to_message_id'],
+            'allowSendingWithoutReply'  => ['type' => ABaseObject::T_BOOL,                                               'optional' => TRUE,     'external' => 'allow_sending_without_reply']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }

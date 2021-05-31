@@ -13,9 +13,11 @@ use Telegram\API\Base\Abstracts\{ABaseObject, ASend};
  * @property string $description
  * @property string $payload
  * @property string $providerToken
- * @property string $startParameter
  * @property string $currency
  * @property \Telegram\API\Payments\Type\LabeledPrice[] $prices
+ * @property null|int $maxTipAmount
+ * @property null|int[] $suggestedTipAmounts
+ * @property null|string $startParameter
  * @property null|string $providerData
  * @property null|string $photoUrl
  * @property null|int $photoSize
@@ -40,9 +42,11 @@ class SendInvoice extends ASend {
             'description'               => ['type' => ABaseObject::T_STRING,                        'optional' => FALSE, 'external' => 'description'],
             'payload'                   => ['type' => ABaseObject::T_STRING,                        'optional' => FALSE, 'external' => 'payload'],
             'providerToken'             => ['type' => ABaseObject::T_STRING,                        'optional' => FALSE, 'external' => 'provider_token'],
-            'startParameter'            => ['type' => ABaseObject::T_STRING,                        'optional' => FALSE, 'external' => 'start_parameter'],
             'currency'                  => ['type' => ABaseObject::T_STRING,                        'optional' => FALSE, 'external' => 'currency'],
             'prices'                    => ['type' => ABaseObject::T_ARRAY,                         'optional' => FALSE, 'external' => 'prices'],
+            'maxTipAmount'              => ['type' => ABaseObject::T_INT,                           'optional' => TRUE,  'external' => 'max_tip_amount'],
+            'suggestedTipAmounts'       => ['type' => ABaseObject::T_ARRAY,                         'optional' => TRUE,  'external' => 'suggested_tip_amounts'],
+            'startParameter'            => ['type' => ABaseObject::T_STRING,                        'optional' => TRUE,  'external' => 'start_parameter'],
             'providerData'              => ['type' => ABaseObject::T_STRING,                        'optional' => TRUE,  'external' => 'provider_data'],
             'photoUrl'                  => ['type' => ABaseObject::T_STRING,                        'optional' => TRUE,  'external' => 'photo_url'],
             'photoSize'                 => ['type' => ABaseObject::T_INT,                           'optional' => TRUE,  'external' => 'photo_size'],
