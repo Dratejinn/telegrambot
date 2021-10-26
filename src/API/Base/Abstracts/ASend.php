@@ -36,7 +36,7 @@ abstract class ASend extends ABaseObject implements IOutbound {
     /**
      * @inheritdoc
      * @param \Telegram\API\Bot $bot
-     * @return \Telegram\API\Type\Message
+     * @return \Telegram\API\Type\Message|\stdClass
      * @throws \Exception
      */
     public function call(Bot $bot) {
@@ -47,10 +47,11 @@ abstract class ASend extends ABaseObject implements IOutbound {
             } else {
                 if (isset($reply->description)) {
                     $bot->logAlert("Could not properly execute the request!\n\n" . $reply->description . PHP_EOL);
-                } else {
-                    throw new \Exception('An unknown error has occurred!');
                 }
+                return $reply;
             }
+        } else {
+            throw new \Exception('An unknown error has occurred!');
         }
     }
 
