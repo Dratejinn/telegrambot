@@ -74,11 +74,13 @@ class Chat extends ABaseObject {
      * Create a chat instance
      * @param float $id
      * @param string $type
+     * @return self
      */
-    final public static function Create(float $id, string $type) {
+    final public static function Create(float $id, string $type) : self {
         $chat = new self;
         $chat->id = $id;
         $chat->type = $type;
+        return $chat;
     }
 
     /**
