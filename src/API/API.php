@@ -50,6 +50,20 @@ final class API {
             curl_setopt($curl, CURLOPT_CAINFO, ConfigManager::GetConfig('CA-certfile'));
         }
 
+        /* Check if connect timeout is set in the config. */
+        if (ConfigManager::HasConfig('CURLOPT_CONNECTTIMEOUT')) {
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, ConfigManager::GetConfig('CURL-Connection-Timeout'));
+        } else {
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 60);
+        }
+
+        /* Check if transfer timeout is set in the config. */
+        if (ConfigManager::HasConfig('CURLOPT_TIMEOUT')) {
+            curl_setopt($curl, CURLOPT_TIMEOUT, ConfigManager::GetConfig('CURL-Transfer-Timeout'));
+        } else {
+            curl_setopt($curl, CURLOPT_TIMEOUT, 60);
+        }
+
         switch ($payloadType) {
             case 'JSON':
                 $contentLength = strlen($payload);
