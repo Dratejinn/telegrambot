@@ -51,14 +51,14 @@ final class API {
         }
 
         /* Check if connect timeout is set in the config. */
-        if (ConfigManager::HasConfig('CURLOPT_CONNECTTIMEOUT')) {
+        if (ConfigManager::HasConfig('CURL-Connection-Timeout')) {
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, ConfigManager::GetConfig('CURL-Connection-Timeout'));
         } else {
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 60);
         }
 
         /* Check if transfer timeout is set in the config. */
-        if (ConfigManager::HasConfig('CURLOPT_TIMEOUT')) {
+        if (ConfigManager::HasConfig('CURL-Transfer-Timeout')) {
             curl_setopt($curl, CURLOPT_TIMEOUT, ConfigManager::GetConfig('CURL-Transfer-Timeout'));
         } else {
             curl_setopt($curl, CURLOPT_TIMEOUT, 60);
