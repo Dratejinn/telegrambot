@@ -13,10 +13,10 @@
     "require": {
         "php": ">=7.0.0 || ^8.0",
         "ext-curl": "*",
-        "psr/log": "~1.0"
+        "psr/log": "^1.0 || ^2.0 || ^3.0"
     },
     "require-dev": {
-        "monolog/monolog": "^1.22",
+        "monolog/monolog": "^3.0",
         "robmorgan/phinx": "^0.8.1"
     },
     "suggest": {
