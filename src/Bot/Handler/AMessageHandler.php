@@ -4,14 +4,23 @@ declare(strict_types = 1);
 
 namespace Telegram\Bot\Handler;
 
+use Telegram\API;
 use Telegram\API\Type\Message;
+use Telegram\Bot\ABot;
 
 abstract class AMessageHandler extends \Telegram\Bot\AHandler {
 
     /**
      * @var \Telegram\Bot\Handler\ACommandHandler[]
      */
-    protected $_commandHandlers = [];
+    protected array $_commandHandlers = [];
+
+    public function __construct(API\Type\Update $update, ABot $bot) {
+        parent::__construct($update, $bot);
+
+        $this->addCommandHandler($this->_getPrivacyCommandHandler());
+    }
+
 
     /**
      * @inheritdoc
@@ -108,6 +117,11 @@ abstract class AMessageHandler extends \Telegram\Bot\AHandler {
     public function getCommandHandlers() : array {
         return $this->_commandHandlers;
     }
+
+    /**
+     * @return class-string<ACommandHandler>
+     */
+    abstract protected function _getPrivacyCommandHandler() : string;
 
     /**
      * Returns the commandHandler responsible for handling $command

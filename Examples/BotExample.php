@@ -27,7 +27,10 @@ API\ConfigManager::AddConfigFromINIFile(__DIR__ . '/Log.ini', 'Log');
 ConfigManager::AddConfigFromINIFile(__DIR__ . '/../Tokens.ini', 'token');
 $tokens = ConfigManager::GetConfig('token');
 $token = $tokens['devbot']['token'];
-$bot = new ExampleBot($token);
+
+$emailAddress = 'some@address.com';
+
+$bot = new ExampleBot($token, $emailAddress);
 if ($userCreds) {
     $connectionDetails = new ConnectionDetailsMySQL;
     $mysqlHandler = new MySQLHandler($connectionDetails, $userCreds, 'telegrambot');
