@@ -7,6 +7,7 @@ namespace Telegram\API\Method;
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
+use Telegram\Exception\OutboundException;
 
 /**
  * Class DeleteWebhook
@@ -29,10 +30,8 @@ class DeleteWebhook extends ABaseObject implements IOutbound {
     public function call(Bot $bot) {
         $reply = $bot->call('deleteWebhook', $this);
         if ($reply instanceof \stdClass) {
-            if ($reply->ok) {
-                return TRUE;
-            }
+            return $reply->ok;
         }
-        return NULL;
+        throw new OutboundException($this, $reply, 'An unknown error has occurred!');
     }
 }

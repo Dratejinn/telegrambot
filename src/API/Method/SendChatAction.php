@@ -6,6 +6,7 @@ namespace Telegram\API\Method;
 
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Bot;
+use Telegram\Exception\OutboundException;
 
 /**
  * Class SendChatAction
@@ -47,13 +48,10 @@ class SendChatAction extends ABaseObject {
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 return $reply->result;
-            } else {
-                if (isset($reply->description)) {
-                    throw new \Exception("Could not properly execute the request!\n" . $reply->description);
-                } else {
-                    throw new \Exception('An unknown error has occurred!');
-                }
+            } elseif (isset($reply->description)) {
+                throw new OutboundException($this, $reply, "Could not properly execute the request!\n" . $reply->description);
             }
         }
+        throw new OutboundException($this, $reply, 'An unknown error has occurred!');
     }
 }

@@ -35,7 +35,7 @@ class GetChatMember extends ABaseObject implements IOutbound {
         $reply = $bot->call('getChatMember', $this);
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
-                    return new Type\ChatMember($reply->result);
+                return new Type\ChatMember($reply->result);
             }
         }
         return NULL;
