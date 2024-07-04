@@ -7,6 +7,7 @@ namespace Telegram\API\Base\Abstracts;
 use Telegram\API\Type;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
+use Telegram\Exception\OutboundException;
 
 /**
  * Class ASend
@@ -51,7 +52,7 @@ abstract class ASend extends ABaseObject implements IOutbound {
                 return $reply;
             }
         } else {
-            throw new \Exception('An unknown error has occurred!');
+            throw new OutboundException($this, $reply, 'An unknown error has occurred!');
         }
     }
 

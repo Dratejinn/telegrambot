@@ -9,6 +9,7 @@ use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
 use Telegram\API\Base\InputFile;
+use Telegram\Exception\OutboundException;
 
 /**
  * Class SetWebhook
@@ -19,6 +20,7 @@ use Telegram\API\Base\InputFile;
  * @property null|int $maxConnections
  * @property null|string[] $allowedUpdates
  * @property null|bool $dropPendingUpdates
+ * @property null|string $secretToken
  */
 class SetWebhook extends ABaseObject implements IOutbound {
 
@@ -32,7 +34,8 @@ class SetWebhook extends ABaseObject implements IOutbound {
             'ipAddress'             => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'ip_address'],
             'maxConnections'        => ['type' => ABaseObject::T_INT,       'optional' => TRUE,     'external' => 'max_connections'],
             'allowedUpdates'        => ['type' => ABaseObject::T_ARRAY,     'optional' => TRUE,     'external' => 'allowed_updates'],
-            'dropPendingUpdates'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'drop_pending_updates']
+            'dropPendingUpdates'    => ['type' => ABaseObject::T_BOOL,      'optional' => TRUE,     'external' => 'drop_pending_updates'],
+            'secretToken'           => ['type' => ABaseObject::T_STRING,    'optional' => TRUE,     'external' => 'secret_token']
         ];
         return array_merge(parent::GetDatamodel(), $datamodel);
     }
@@ -45,13 +48,10 @@ class SetWebhook extends ABaseObject implements IOutbound {
         if ($reply instanceof \stdClass) {
             if ($reply->ok) {
                 return TRUE;
-            } else {
-                if (isset($reply->description)) {
-                    throw new \Exception("Could not properly execute the request!\n" . $reply->description);
-                } else {
-                    throw new \Exception('An unknown error has occurred!');
-                }
+            } elseif (isset($reply->description)) {
+                throw new OutboundException($this, $reply, "Could not properly execute the request!\n" . $reply->description);
             }
         }
+        throw new OutboundException($this, $reply, 'An unknown error has occurred!');
     }
 }

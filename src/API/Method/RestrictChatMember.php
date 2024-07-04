@@ -8,6 +8,7 @@ use Telegram\API\Type;
 use Telegram\API\Base\Abstracts\ABaseObject;
 use Telegram\API\Base\Interfaces\IOutbound;
 use Telegram\API\Bot;
+use Telegram\Exception\OutboundException;
 
 /**
  * Class RestrictChatMember
@@ -42,13 +43,10 @@ class RestrictChatMember extends ABaseObject implements IOutbound {
                 if (!empty($reply->result)) {
                     return $reply->result;
                 }
-            } else {
-                if (isset($reply->description)) {
-                    throw new \Exception("Could not properly execute the request!\n" . $reply->description);
-                } else {
-                    throw new \Exception('An unknown error has occurred!');
-                }
+            } elseif (isset($reply->description)) {
+                throw new OutboundException($this, $reply, "Could not properly execute the request!\n" . $reply->description);
             }
         }
+        throw new OutboundException($this, $reply, 'An unknown error has occurred!');
     }
 }

@@ -32,9 +32,7 @@ class SetChatAdministratorCustomTitle extends ABaseObject implements IOutbound {
     public function call(Bot $bot) {
         $reply = $bot->call('setChatAdministratorCustomTitle', $this);
         if ($reply instanceof \stdClass) {
-            if ($reply->ok) {
-                return TRUE;
-            }
+            return $reply->ok;
         }
         return NULL;
     }

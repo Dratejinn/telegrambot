@@ -19,77 +19,69 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
     use LogHelpers\Traits\TLoggerTrait;
     use TStorageHandlerTrait;
 
-    const UPDATE_TYPE_MESSAGE               = 'message';
-    const UPDATE_TYPE_EDITEDMESSAGE         = 'editedMessage';
-    const UPDATE_TYPE_CHANNELPOST           = 'channelPost';
-    const UPDATE_TYPE_EDITEDCHANNELPOST     = 'editedChannelPost';
-    const UPDATE_TYPE_INLINEQUERY           = 'inlineQuery';
-    const UPDATE_TYPE_CHOSENINLINERESULT    = 'chosenInlineResult';
-    const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
-    const UPDATE_TYPE_SHIPPINGQUERY         = 'shippingQuery';
-    const UPDATE_TYPE_PRECHECKOUTQUERY      = 'preCheckoutQuery';
-    const UPDATE_TYPE_POLL                  = 'poll';
-    const UPDATE_TYPE_POLL_ANSWER           = 'pollAnswer';
+    public const UPDATE_TYPE_MESSAGE               = 'message';
+    public const UPDATE_TYPE_EDITEDMESSAGE         = 'editedMessage';
+    public const UPDATE_TYPE_CHANNELPOST           = 'channelPost';
+    public const UPDATE_TYPE_EDITEDCHANNELPOST     = 'editedChannelPost';
+    public const UPDATE_TYPE_INLINEQUERY           = 'inlineQuery';
+    public const UPDATE_TYPE_CHOSENINLINERESULT    = 'chosenInlineResult';
+    public const UPDATE_TYPE_CALLBACKQUERY         = 'callbackQuery';
+    public const UPDATE_TYPE_SHIPPINGQUERY         = 'shippingQuery';
+    public const UPDATE_TYPE_PRECHECKOUTQUERY      = 'preCheckoutQuery';
+    public const UPDATE_TYPE_POLL                  = 'poll';
+    public const UPDATE_TYPE_POLL_ANSWER           = 'pollAnswer';
 
-    const GETUPDATES_SLEEP_INTERVAL = 1; //seconds
-    const RUN_ERROR_TIMEOUT = 60; //seconds
+    public const GETUPDATES_SLEEP_INTERVAL = 1; //seconds
+    public const RUN_ERROR_TIMEOUT = 60; //seconds
 
-
-    /**
-     * @var null|\Telegram\API\Bot
-     */
-    protected $_bot             = NULL;
-
-    /**
-     * @var null|\Telegram\API\Type\User
-     */
-    protected $_me              = NULL;
-
-    /**
-     * @var null|\Telegram\API\Method\GetUpdates
-     */
-    protected $_updateHandler    = NULL;
+    protected ?API\Bot $_bot = NULL;
+    protected ?User $_me = NULL;
+    protected ?GetUpdates $_updateHandler = NULL;
+    protected string $_privacyPolicyEmailAddress;
 
     /**
      * @var \Telegram\Bot\AHandler[]
      */
-    protected $_handlers        = [];
+    protected array $_handlers = [];
 
     /**
      * @var \Telegram\API\Type\Chat[]
      */
-    protected $_chats           = [];
+    protected array $_chats = [];
 
     /**
      * @var callable[]
      */
-    private $_joinChatHandlers  = [];
+    private array $_joinChatHandlers = [];
 
     /**
      * @var callable[]
      */
-    private $_leaveChatHandlers = [];
+    private array $_leaveChatHandlers = [];
 
     /**
      * @var callable[]
      */
-    private $_memberLeftChatHandlers = [];
+    private array $_memberLeftChatHandlers = [];
 
     /**
      * @var callable[]
      */
-    private $_membersJoinedChatHandlers = [];
+    private array $_membersJoinedChatHandlers = [];
 
     /**
      * ABot constructor.
      * @param string|NULL $token
      * @param \Telegram\Storage\Interfaces\ITelegramStorageHandler|NULL $storageHandler
      */
-    public function __construct(string $token = NULL, ITelegramStorageHandler $storageHandler = NULL) {
+    public function __construct(?string $token, string $privacyPolicyEmailAddress, ?ITelegramStorageHandler $storageHandler = NULL) {
         //initialize APIbot
         $this->_bot = new API\Bot($token);
         $this->_updateHandler = new GetUpdates;
         $this->_me = $this->_bot->getMe();
+
+        $this->_privacyPolicyEmailAddress = $privacyPolicyEmailAddress;
+
         if ($storageHandler) {
             $this->setStorageHandler($storageHandler);
         }
@@ -137,6 +129,10 @@ abstract class ABot implements LogHelpers\Interfaces\ILoggerAwareInterface, ISto
                 $setMyCommands->call($this->_bot);
             }
         }
+    }
+
+    public function getPrivacyPolicyEmailAddress() : string {
+        return $this->_privacyPolicyEmailAddress;
     }
 
     /**
